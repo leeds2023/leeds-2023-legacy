@@ -4,7 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import '@/styles/global.css';
+import '../styles/fonts.css';
 ---
 
 <!doctype html>
@@ -34,10 +34,11 @@ import '@/styles/global.css';
 		);
 	}
 	html {
-		font-family: system-ui, sans-serif;
+		font-family: 'DM Sans', system-ui, sans-serif;
 		background: #13151a;
 		background-size: 224px;
 	}
+
 	code {
 		font-family:
 			Menlo,
