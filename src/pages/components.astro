@@ -1,5 +1,39 @@
 ---
-
+import Title from '../components/typography/Title.astro';
+import Text from '../components/typography/Text.astro';
+import PillLabel from '../components/typography/PillLabel.astro';
+import Button from '../components/Button.astro';
 ---
 
-<h2>Components will go here</h2>
+<div class="mx-auto flex max-w-6xl flex-col gap-10 py-10">
+	<PillLabel>Title | size: superLarge</PillLabel>
+	<Title size="superLarge" type="h1">Letting Culture Loose</Title>
+	<PillLabel>Title | size: extraLarge</PillLabel>
+	<Title size="extraLarge">
+		After an amazing year, letting culture loose in Leeds, we created these highlights to show you
+		how it went down
+	</Title>
+	<PillLabel>Title | size: large (second row is extra large and bolded)</PillLabel>
+	<Title size="large" className="leading-normal">
+		A Year to Remember: <br /><span class="text-6xl font-bold">Leeds 2023</span>
+	</Title>
+	<PillLabel>Text | size: extraLarge</PillLabel>
+	<Text size={'extraLarge'}>
+		From street performances to grand exhibitions, Leeds unleashed a vibrant tapestry of cultural
+		experiences. Dive in to relive the moments.
+		<br /><br />
+		 Art in Unexpected Places: Discovering creativity at every corner, from staircases to bus stops.
+	</Text>
+	<PillLabel>Title | size: extremelyLarge</PillLabel>
+	<Title size="extremelyLarge">January</Title>
+	<div class="flex max-w-md flex-col gap-6">
+		<Title>Opening ceremony</Title>
+		<Text>
+			A grand parade featuring local artists, musicians, and dancers, marking the start of Leeds
+			2023 celebrations.
+		</Text>
+	</div>
+	<div>
+		<Button>Click me!</Button>
+	</div>
+</div>

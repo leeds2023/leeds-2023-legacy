@@ -1,0 +1,92 @@
+---
+import { cn } from '../../lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const headings = {
+	h1: 'h1',
+	h2: 'h2',
+	h3: 'h3',
+	h4: 'h4',
+	h5: 'h5',
+	h6: 'h6',
+} as const;
+
+const title = cva('title', {
+	variants: {
+		size: {
+			small: 'text-lg font-display',
+			medium: 'text-2xl font-display',
+			large: 'text-5xl font-display',
+			extraLarge: 'text-7xl font-display',
+			superLarge: 'text-9xl font-display uppercase font-bold',
+			extremelyLarge: 'text-[16rem] font-display uppercase font-bold',
+		},
+		color: {
+			default: 'text-black',
+			dark: 'text-black',
+			light: 'text-white',
+		},
+	},
+});
+
+type TitleVariant = VariantProps<typeof title>;
+type RequiredSize = Pick<TitleVariant, 'size'>;
+type RequiredColor = Pick<TitleVariant, 'color'>;
+type Heading = (typeof headings)[keyof typeof headings];
+
+type Props = RequiredSize &
+	RequiredColor & {
+		type?: Heading;
+		className?: string;
+	};
+
+const { className, type = 'h2', size = 'large', color = 'default' } = Astro.props;
+---
+
+{
+	type === 'h1' && (
+		<h1 class={cn(title({ size, color }), className)}>
+			<slot />
+		</h1>
+	)
+}
+
+{
+	type === 'h2' && (
+		<h2 class={cn(title({ size, color }), className)}>
+			<slot />
+		</h2>
+	)
+}
+
+{
+	type === 'h3' && (
+		<h3 class={cn(title({ size, color }), className)}>
+			<slot />
+		</h3>
+	)
+}
+
+{
+	type === 'h4' && (
+		<h4 class={cn(title({ size, color }), className)}>
+			<slot />
+		</h4>
+	)
+}
+
+{
+	type === 'h5' && (
+		<h5 class={cn(title({ size, color }), className)}>
+			<slot />
+		</h5>
+	)
+}
+
+{
+	type === 'h6' && (
+		<h6 class={cn(title({ size, color }), className)}>
+			<slot />
+		</h6>
+	)
+}

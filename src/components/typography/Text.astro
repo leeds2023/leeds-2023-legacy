@@ -1,0 +1,49 @@
+---
+import { cn } from '../../lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const element = {
+	p: 'p',
+	span: 'span',
+} as const;
+
+type ElementType = (typeof element)[keyof typeof element];
+
+const text = cva('text', {
+	variants: {
+		size: {
+			small: 'text-base',
+			medium: 'text-lg',
+			large: 'text-xl',
+			extraLarge: 'text-2xl',
+			superLarge: 'text-3xl',
+		},
+		color: {
+			default: 'text-gray-900',
+			light: 'text-gray-500',
+			dark: 'text-gray-900',
+		},
+	},
+});
+
+type TextVariant = VariantProps<typeof text>;
+
+type Props = TextVariant & {
+	type?: ElementType;
+	className?: string;
+};
+
+const { size = 'large', color = 'default', type = 'p', className } = Astro.props;
+---
+
+{
+	type === 'p' ? (
+		<p class={cn(text({ size, color }), className)}>
+			<slot />
+		</p>
+	) : (
+		<span class={cn(text({ size, color }), className)}>
+			<slot />
+		</span>
+	)
+}
