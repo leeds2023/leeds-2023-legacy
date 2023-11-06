@@ -25,6 +25,7 @@ type Props = ButtonVariants & {
 	href?: string;
 	className?: string;
 	dataElementName?: string;
+	ariaLabel?: string;
 };
 
 const {
@@ -34,6 +35,7 @@ const {
 	color = 'primary',
 	className,
 	dataElementName,
+	ariaLabel,
 } = Astro.props;
 ---
 
@@ -47,7 +49,11 @@ const {
 
 {
 	type === 'button' && (
-		<button data-element={dataElementName} class={cn(button({ size, color }), className)}>
+		<button
+			aria-label={ariaLabel}
+			data-element={dataElementName}
+			class={cn(button({ size, color }), className)}
+		>
 			<slot />
 		</button>
 	)

@@ -27,7 +27,11 @@ import Close from '@assets/icons/Close.astro';
 				<Title size={'superLarge'} className="relative z-40 max-w-md text-center lg:max-w-xl">
 					Letting Culture Loose
 				</Title>
-				<Button dataElementName="play-documentary" className="relative z-50">
+				<Button
+					ariaLabel="open-documentary-modal"
+					dataElementName="play-documentary"
+					className="relative z-50"
+				>
 					Play the documentary
 				</Button>
 			</div>
@@ -75,8 +79,10 @@ import Close from '@assets/icons/Close.astro';
 >
 	<div class="flex w-[80%] items-center justify-between pb-6">
 		<div><Image src={LogoWhite} alt="Leeds 2023" width={160} /></div>
-		<button data-element="close-documentary-btn" class="flex h-12 w-12 items-center justify-center"
-			><Close color="#FFF" /></button
+		<button
+			aria-label="close-documentary-modal"
+			data-element="close-documentary-btn"
+			class="flex h-12 w-12 items-center justify-center"><Close color="#FFF" /></button
 		>
 	</div>
 	<div class="flex h-[100%] w-[80%] items-center justify-center bg-gray-300">
