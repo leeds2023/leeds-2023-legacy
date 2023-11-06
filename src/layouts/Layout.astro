@@ -18,8 +18,8 @@ import '../styles/fonts.css';
 		<title>{title}</title>
 	</head>
 	<body>
-		<div class="scroll-wrapper">
-			<div class="scroll-content">
+		<div class="smooth-wrapper">
+			<div class="smooth-content">
 				<slot />
 			</div>
 		</div>
@@ -54,8 +54,8 @@ import '../styles/fonts.css';
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 	function setupScrollSmooth() {
-		const scrollWrapper = document.querySelector('.scroll-wrapper');
-		const scrollContent = document.querySelector('.scroll-content');
+		const scrollWrapper = document.querySelector('.smooth-wrapper');
+		const scrollContent = document.querySelector('.smooth-content');
 		if (!scrollWrapper || !scrollContent) return;
 
 		ScrollSmoother.create({
