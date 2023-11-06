@@ -3,13 +3,14 @@ import Section from '@components/ui/Section.astro';
 import { Image } from 'astro:assets';
 import LogoWhite from '@assets/hero/logo-white.svg';
 import Close from '@assets/icons/Close.astro';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 ---
 
 <Section
 	dataElementName="documentary-section"
-	className="fixed left-0 top-0 z-[60] flex h-screen w-full -translate-y-full flex-col items-center justify-center gap-12 bg-brandDarkGreen-100"
+	className="fixed left-0 top-0 z-[60] flex h-screen w-full -translate-y-full flex-col items-center justify-center gap-10 bg-brandDarkGreen-100"
 >
-	<div class="flex w-[80%] items-center justify-between pb-6">
+	<div class="flex w-[80%] items-center justify-between">
 		<div><Image src={LogoWhite} alt="Leeds 2023" width={160} /></div>
 		<button
 			aria-label="close-documentary-modal"
@@ -18,6 +19,11 @@ import Close from '@assets/icons/Close.astro';
 		>
 	</div>
 	<div class="flex h-[100%] w-[80%] items-center justify-center bg-gray-300">
-		Video will go here
+		<YouTube
+			id="uYLJKMTJQUw"
+			playlabel="Play the video"
+			class={'w-full h-full max-w-none'}
+			params={'autoplay=1&start=30'}
+		/>
 	</div>
 </Section>
