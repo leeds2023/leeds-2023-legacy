@@ -23,7 +23,7 @@ import Close from '@assets/icons/Close.astro';
 	<Container>
 		<div class="flex flex-col items-center justify-center gap-12">
 			<div data-speed="1.1" class="flex flex-col items-center justify-center gap-12">
-				<Image src={Logo} alt="Leeds 2023" width={200} class={'relative z-30'} />
+				<Image loading={'eager'} src={Logo} alt="Leeds 2023" width={200} class={'relative z-30'} />
 				<Title size={'superLarge'} className="relative z-40 max-w-md text-center lg:max-w-xl">
 					Letting Culture Loose
 				</Title>
@@ -40,33 +40,33 @@ import Close from '@assets/icons/Close.astro';
 					data-speed="clamp(0.9)"
 					class="absolute left-52 top-32 w-[150px] select-none 2xl:w-[299px]"
 				>
-					<Image src={Hero1} alt="Hero 1" />
+					<Image loading={'eager'} src={Hero1} alt="Hero 1" />
 				</div>
 				<div
 					data-speed="clamp(0.9)"
 					class="absolute right-64 top-24 w-[78px] select-none 2xl:w-[155px]"
 				>
-					<Image src={Hero2} alt="Hero 2" />
+					<Image loading={'eager'} src={Hero2} alt="Hero 2" />
 				</div>
 				<div
 					data-speed="clamp(0.9)"
 					class="absolute bottom-24 left-48 w-[145px] select-none 2xl:w-[290px]"
 				>
-					<Image src={Hero3} alt="Hero 3" />
+					<Image loading={'eager'} src={Hero3} alt="Hero 3" />
 				</div>
 				<div
 					data-speed="clamp(0.9)"
 					class="absolute bottom-16 right-32 w-[141px] select-none 2xl:w-[283px]"
 				>
-					<Image src={Hero4} alt="Hero 4" />
+					<Image loading={'eager'} src={Hero4} alt="Hero 4" />
 				</div>
 			</div>
 			<div>
 				<div class="absolute bottom-0 left-0 z-50 w-[350px] select-none 2xl:w-[762px]">
-					<Image src={HeroRibbon1} alt="Hero Ribbon 1" />
+					<Image loading={'eager'} src={HeroRibbon1} alt="Hero Ribbon 1" />
 				</div>
 				<div class="absolute right-0 top-0 w-[350px] select-none 2xl:w-[762px]">
-					<Image src={HeroRibbon2} alt="Hero Ribbon 2" />
+					<Image loading={'eager'} src={HeroRibbon2} alt="Hero Ribbon 2" />
 				</div>
 			</div>
 		</div>
