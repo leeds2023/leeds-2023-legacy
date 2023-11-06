@@ -18,7 +18,11 @@ import '../styles/fonts.css';
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="scroll-wrapper">
+			<div class="scroll-content">
+				<slot />
+			</div>
+		</div>
 	</body>
 </html>
 <style is:global>
@@ -42,3 +46,24 @@ import '../styles/fonts.css';
 		box-sizing: border-box;
 	}
 </style>
+
+<script>
+	import gsap from 'gsap';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
+	import ScrollSmoother from 'gsap/ScrollSmoother';
+	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+	function setupScrollSmooth() {
+		const scrollWrapper = document.querySelector('.scroll-wrapper');
+		const scrollContent = document.querySelector('.scroll-content');
+		if (!scrollWrapper || !scrollContent) return;
+
+		ScrollSmoother.create({
+			smooth: 1,
+			effects: true,
+			smoothTouch: 0.1,
+		});
+	}
+
+	setupScrollSmooth();
+</script>
