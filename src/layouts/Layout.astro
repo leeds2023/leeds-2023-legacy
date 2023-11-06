@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import VideoModal from '@/components/VideoModal.astro';
 import '../styles/fonts.css';
 ---
 
@@ -18,11 +19,12 @@ import '../styles/fonts.css';
 		<title>{title}</title>
 	</head>
 	<body>
-		<div id="smooth-wrapper">
-			<div id="smooth-content">
+		<div class="smooth-wrapper">
+			<div class="smooth-content">
 				<slot />
 			</div>
 		</div>
+		<VideoModal />
 	</body>
 </html>
 <style is:global>
@@ -62,6 +64,8 @@ import '../styles/fonts.css';
 			smooth: 1,
 			effects: true,
 			smoothTouch: 0.1,
+			content: scrollContent,
+			wrapper: scrollWrapper,
 		});
 	}
 

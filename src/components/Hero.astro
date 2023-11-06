@@ -11,8 +11,6 @@ import Hero4 from '@assets/hero/4.png';
 import HeroRibbon1 from '@assets/hero/ribbon-1.png';
 import HeroRibbon2 from '@assets/hero/ribbon-2.png';
 import Logo from '@assets/hero/logo.svg';
-import LogoWhite from '@assets/hero/logo-white.svg';
-import Close from '@assets/icons/Close.astro';
 ---
 
 <Section
@@ -67,23 +65,6 @@ import Close from '@assets/icons/Close.astro';
 			</div>
 		</div>
 	</Container>
-</Section>
-
-<Section
-	dataElementName="documentary-section"
-	className="fixed left-0 top-0 z-[60] flex h-screen w-full -translate-y-full flex-col items-center justify-center gap-12 bg-brandDarkGreen-100"
->
-	<div class="flex w-[80%] items-center justify-between pb-6">
-		<div><Image src={LogoWhite} alt="Leeds 2023" width={160} /></div>
-		<button
-			aria-label="close-documentary-modal"
-			data-element="close-documentary-btn"
-			class="flex h-12 w-12 items-center justify-center"><Close color="#FFF" /></button
-		>
-	</div>
-	<div class="flex h-[100%] w-[80%] items-center justify-center bg-gray-300">
-		Video will go here
-	</div>
 </Section>
 
 <script>
