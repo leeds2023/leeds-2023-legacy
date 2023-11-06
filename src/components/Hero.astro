@@ -22,24 +22,38 @@ import Close from '@assets/icons/Close.astro';
 >
 	<Container>
 		<div class="flex flex-col items-center justify-center gap-12">
-			<Image src={Logo} alt="Leeds 2023" width={200} class={'relative z-30'} />
-			<Title size={'superLarge'} className="relative z-40 max-w-md text-center lg:max-w-xl">
-				Letting Culture Loose
-			</Title>
-			<Button dataElementName="play-documentary" className="relative z-50">
-				Play the documentary
-			</Button>
+			<div data-speed="1.1" class="flex flex-col items-center justify-center gap-12">
+				<Image src={Logo} alt="Leeds 2023" width={200} class={'relative z-30'} />
+				<Title size={'superLarge'} className="relative z-40 max-w-md text-center lg:max-w-xl">
+					Letting Culture Loose
+				</Title>
+				<Button dataElementName="play-documentary" className="relative z-50">
+					Play the documentary
+				</Button>
+			</div>
 			<div class="hidden xl:block">
-				<div class="absolute left-52 top-32 w-[150px] select-none 2xl:w-[299px]">
+				<div
+					data-speed="clamp(0.9)"
+					class="absolute left-52 top-32 w-[150px] select-none 2xl:w-[299px]"
+				>
 					<Image src={Hero1} alt="Hero 1" />
 				</div>
-				<div class="absolute right-64 top-24 w-[78px] select-none 2xl:w-[155px]">
+				<div
+					data-speed="clamp(0.9)"
+					class="absolute right-64 top-24 w-[78px] select-none 2xl:w-[155px]"
+				>
 					<Image src={Hero2} alt="Hero 2" />
 				</div>
-				<div class="absolute bottom-24 left-48 w-[145px] select-none 2xl:w-[290px]">
+				<div
+					data-speed="clamp(0.9)"
+					class="absolute bottom-24 left-48 w-[145px] select-none 2xl:w-[290px]"
+				>
 					<Image src={Hero3} alt="Hero 3" />
 				</div>
-				<div class="absolute bottom-16 right-32 w-[141px] select-none 2xl:w-[283px]">
+				<div
+					data-speed="clamp(0.9)"
+					class="absolute bottom-16 right-32 w-[141px] select-none 2xl:w-[283px]"
+				>
 					<Image src={Hero4} alt="Hero 4" />
 				</div>
 			</div>
