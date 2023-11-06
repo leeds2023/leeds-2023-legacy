@@ -1,0 +1,52 @@
+---
+import Section from '@components/ui/Section.astro';
+import Container from '@components/ui/Container.astro';
+import Title from '@/components/ui/Title.astro';
+import Button from '@/components/Button.astro';
+import { Image } from 'astro:assets';
+import Hero1 from '@assets/hero/1.png';
+import Hero2 from '@assets/hero/2.png';
+import Hero3 from '@assets/hero/3.png';
+import Hero4 from '@assets/hero/4.png';
+import HeroRibbon1 from '@assets/hero/ribbon-1.png';
+import HeroRibbon2 from '@assets/hero/ribbon-2.png';
+import Logo from '@assets/hero/logo.svg';
+---
+
+<Section
+	className="relative flex h-screen items-center justify-center overflow-hidden"
+	color={'mint'}
+	padding={'xlarge'}
+>
+	<Container>
+		<div class="flex flex-col items-center justify-center gap-12">
+			<Image src={Logo} alt="Leeds 2023" width={200} />
+			<Title size={'superLarge'} className="max-w-md text-center lg:max-w-xl">
+				Letting Culture Loose
+			</Title>
+			<Button>Play the documentary</Button>
+			<div class="hidden xl:block">
+				<div class="absolute left-52 top-32 w-[150px] select-none 2xl:w-[299px]">
+					<Image src={Hero1} alt="Hero 1" />
+				</div>
+				<div class="absolute right-64 top-24 w-[78px] select-none 2xl:w-[155px]">
+					<Image src={Hero2} alt="Hero 2" />
+				</div>
+				<div class="absolute bottom-24 left-48 w-[145px] select-none 2xl:w-[290px]">
+					<Image src={Hero3} alt="Hero 3" />
+				</div>
+				<div class="absolute bottom-16 right-32 w-[141px] select-none 2xl:w-[283px]">
+					<Image src={Hero4} alt="Hero 4" />
+				</div>
+			</div>
+			<div>
+				<div class="absolute bottom-0 left-0 z-50 w-[350px] select-none 2xl:w-[762px]">
+					<Image src={HeroRibbon1} alt="Hero Ribbon 1" />
+				</div>
+				<div class="absolute right-0 top-0 w-[350px] select-none 2xl:w-[762px]">
+					<Image src={HeroRibbon2} alt="Hero Ribbon 2" />
+				</div>
+			</div>
+		</div>
+	</Container>
+</Section>
