@@ -10,11 +10,12 @@ import HeroRibbon1 from '@assets/hero/ribbon-1.png';
 	padding={'xlarge'}
 	color={'lightCream'}
 	className="relative flex h-screen items-center justify-center"
+	dataElementName="split-text-section"
 >
 	<Container>
 		<div class="flex items-center justify-center text-center">
 			<div class="max-w-3xl 2xl:max-w-5xl">
-				<Title size={'extraLarge'}>
+				<Title dataElementName="split-text" className="text-brandDarkGreen-60" size={'extraLarge'}>
 					After an amazing year, letting culture loose in Leeds, we created these highlights to show
 					you how it went down
 				</Title>
@@ -25,3 +26,41 @@ import HeroRibbon1 from '@assets/hero/ribbon-1.png';
 		</div>
 	</Container>
 </Section>
+
+<script>
+	import gsap from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import { SplitText } from 'gsap/SplitText';
+	gsap.registerPlugin(SplitText, ScrollTrigger);
+
+	function scrollingText() {
+		if (
+			!document.querySelector('[data-element="split-text-section"]') ||
+			!document.querySelector('[data-element="split-text')
+		)
+			return;
+		const splitText = new SplitText('[data-element="split-text"]', {
+			wordsClass: 'split-text-word',
+		});
+		gsap
+			.timeline({
+				scrollTrigger: {
+					trigger: '[data-element="split-text-section"]',
+					start: 'top 0%',
+					end: 'bottom 100%',
+					scrub: 0.75,
+					pin: true,
+				},
+			})
+			.set(
+				splitText.chars,
+				{
+					color: '#082227',
+					stagger: 0.1,
+				},
+				0.1
+			);
+	}
+
+	scrollingText();
+</script>

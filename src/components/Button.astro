@@ -24,9 +24,17 @@ type Props = ButtonVariants & {
 	type?: 'link' | 'button';
 	href?: string;
 	className?: string;
+	dataElementName?: string;
 };
 
-const { type = 'button', href, size = 'medium', color = 'primary', className } = Astro.props;
+const {
+	type = 'button',
+	href,
+	size = 'medium',
+	color = 'primary',
+	className,
+	dataElementName,
+} = Astro.props;
 ---
 
 {
@@ -39,7 +47,7 @@ const { type = 'button', href, size = 'medium', color = 'primary', className } =
 
 {
 	type === 'button' && (
-		<button class={cn(button({ size, color }), className)}>
+		<button data-element={dataElementName} class={cn(button({ size, color }), className)}>
 			<slot />
 		</button>
 	)

@@ -38,14 +38,15 @@ type Props = RequiredSize &
 	RequiredColor & {
 		type?: Heading;
 		className?: string;
+		dataElementName?: string;
 	};
 
-const { className, type = 'h2', size = 'large', color = 'default' } = Astro.props;
+const { className, type = 'h2', size = 'large', color = 'default', dataElementName } = Astro.props;
 ---
 
 {
 	type === 'h1' && (
-		<h1 class={cn(title({ size, color }), className)}>
+		<h1 data-element={dataElementName} class={cn(title({ size, color }), className)}>
 			<slot />
 		</h1>
 	)
@@ -53,7 +54,7 @@ const { className, type = 'h2', size = 'large', color = 'default' } = Astro.prop
 
 {
 	type === 'h2' && (
-		<h2 class={cn(title({ size, color }), className)}>
+		<h2 data-element={dataElementName} class={cn(title({ size, color }), className)}>
 			<slot />
 		</h2>
 	)
@@ -61,7 +62,7 @@ const { className, type = 'h2', size = 'large', color = 'default' } = Astro.prop
 
 {
 	type === 'h3' && (
-		<h3 class={cn(title({ size, color }), className)}>
+		<h3 data-element={dataElementName} class={cn(title({ size, color }), className)}>
 			<slot />
 		</h3>
 	)
@@ -69,7 +70,7 @@ const { className, type = 'h2', size = 'large', color = 'default' } = Astro.prop
 
 {
 	type === 'h4' && (
-		<h4 class={cn(title({ size, color }), className)}>
+		<h4 data-element={dataElementName} class={cn(title({ size, color }), className)}>
 			<slot />
 		</h4>
 	)
@@ -77,7 +78,7 @@ const { className, type = 'h2', size = 'large', color = 'default' } = Astro.prop
 
 {
 	type === 'h5' && (
-		<h5 class={cn(title({ size, color }), className)}>
+		<h5 data-element={dataElementName} class={cn(title({ size, color }), className)}>
 			<slot />
 		</h5>
 	)
@@ -85,7 +86,7 @@ const { className, type = 'h2', size = 'large', color = 'default' } = Astro.prop
 
 {
 	type === 'h6' && (
-		<h6 class={cn(title({ size, color }), className)}>
+		<h6 data-element={dataElementName} class={cn(title({ size, color }), className)}>
 			<slot />
 		</h6>
 	)

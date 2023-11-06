@@ -11,6 +11,8 @@ import Hero4 from '@assets/hero/4.png';
 import HeroRibbon1 from '@assets/hero/ribbon-1.png';
 import HeroRibbon2 from '@assets/hero/ribbon-2.png';
 import Logo from '@assets/hero/logo.svg';
+import LogoWhite from '@assets/hero/logo-white.svg';
+import Close from '@assets/icons/Close.astro';
 ---
 
 <Section
@@ -20,11 +22,13 @@ import Logo from '@assets/hero/logo.svg';
 >
 	<Container>
 		<div class="flex flex-col items-center justify-center gap-12">
-			<Image src={Logo} alt="Leeds 2023" width={200} />
-			<Title size={'superLarge'} className="max-w-md text-center lg:max-w-xl">
+			<Image src={Logo} alt="Leeds 2023" width={200} class={'relative z-30'} />
+			<Title size={'superLarge'} className="relative z-40 max-w-md text-center lg:max-w-xl">
 				Letting Culture Loose
 			</Title>
-			<Button>Play the documentary</Button>
+			<Button dataElementName="play-documentary" className="relative z-50">
+				Play the documentary
+			</Button>
 			<div class="hidden xl:block">
 				<div class="absolute left-52 top-32 w-[150px] select-none 2xl:w-[299px]">
 					<Image src={Hero1} alt="Hero 1" />
@@ -50,3 +54,44 @@ import Logo from '@assets/hero/logo.svg';
 		</div>
 	</Container>
 </Section>
+
+<Section
+	dataElementName="documentary-section"
+	className="absolute left-0 top-0 z-[60] flex h-screen w-full -translate-y-full flex-col items-center justify-center gap-12 bg-brandDarkGreen-100"
+>
+	<div class="flex w-[80%] items-center justify-between pb-6">
+		<div><Image src={LogoWhite} alt="Leeds 2023" width={160} /></div>
+		<button data-element="close-documentary-btn" class="flex h-12 w-12 items-center justify-center"
+			><Close color="#FFF" /></button
+		>
+	</div>
+	<div class="flex h-[100%] w-[80%] items-center justify-center bg-gray-300">
+		Video will go here
+	</div>
+</Section>
+
+<script>
+	import gsap from 'gsap';
+
+	function documentaryVideo() {
+		const playButton = document.querySelector('[data-element="play-documentary"]');
+		const closeBtn = document.querySelector('[data-element="close-documentary-btn"]');
+		if (!playButton || !closeBtn) return;
+		playButton.addEventListener('click', () => {
+			gsap.to('[data-element="documentary-section"]', {
+				y: '0%',
+				duration: 1,
+				ease: 'power2.inOut',
+			});
+		});
+		closeBtn.addEventListener('click', () => {
+			gsap.to('[data-element="documentary-section"]', {
+				y: '-100%',
+				duration: 1,
+				ease: 'power2.inOut',
+			});
+		});
+	}
+
+	documentaryVideo();
+</script>

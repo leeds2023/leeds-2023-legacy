@@ -27,11 +27,12 @@ type SectionProps = VariantProps<typeof section>;
 
 type Props = SectionProps & {
 	className?: string;
+	dataElementName?: string;
 };
 
-const { padding = 'medium', color = 'white', className } = Astro.props;
+const { padding = 'medium', color = 'white', className, dataElementName } = Astro.props;
 ---
 
-<section class={cn(section({ padding, color }), className)}>
+<section data-element={dataElementName} class={cn(section({ padding, color }), className)}>
 	<slot />
 </section>
