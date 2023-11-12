@@ -1,0 +1,58 @@
+---
+import Title from '@components/ui/Title.astro';
+import Text from '@components/ui/Text.astro';
+import Button from '@components/ui/Button.astro';
+import { clsx } from 'clsx';
+export type Cta = {
+	type: 'link' | 'button';
+	text: string;
+	link?: string;
+	label?: string;
+	dataElementName?: string;
+	action?: () => void;
+};
+
+type Props = {
+	title?: string;
+	description: string;
+	cta?: Cta;
+	centered?: boolean;
+	lightText?: boolean;
+};
+
+const { title, description, cta, centered, lightText } = Astro.props;
+---
+
+<div class={clsx('flex flex-col gap-4 justify-center', centered && 'text-center items-center')}>
+	{
+		title && title !== '' && (
+			<Title type="h2" color={lightText ? 'light' : 'dark'} size={'medium'}>
+				{title}
+			</Title>
+		)
+	}
+	{
+		description && description !== '' && (
+			<Text color={lightText ? 'light' : 'dark'}>{description}</Text>
+		)
+	}
+	{
+		cta && cta.type === 'link' && (
+			<Button className="max-w-fit" type={cta.type} ariaLabel={cta.label} href={cta.link}>
+				{cta.text}
+			</Button>
+		)
+	}
+	{
+		cta && cta.type === 'button' && (
+			<Button
+				className="max-w-fit"
+				type={cta.type}
+				ariaLabel={cta.label}
+				dataElementName={cta.dataElementName}
+			>
+				{cta.text}
+			</Button>
+		)
+	}
+</div>

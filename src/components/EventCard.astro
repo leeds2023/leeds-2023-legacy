@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import { clsx } from 'clsx';
+import Title from './ui/Title.astro';
+import Text from './ui/Text.astro';
+import type { Cta } from './TitleTextCta.astro';
+
+type Props = {
+	image: string;
+	alt: string;
+	title: string;
+	description: string;
+	date?: string;
+	direction?: 'col' | 'row';
+	cta: Cta;
+};
+const { image, alt, title, description, date, direction = 'row', cta } = Astro.props;
+---
+
+<div class={clsx('flex border-2 border-blue-600', direction === 'col' ? 'flex-col' : 'flex-row')}>
+	<div class="relative">
+		{date && <span class="absolute left-0 top-0">{date}</span>}
+		<Image src={image} alt={alt} width={200} height={200} />
+	</div>
+	<div class="flex flex-col gap-2 bg-white">
+		<Title size={'medium'}>{title}</Title>
+		<Text size={'medium'}>{description}</Text>
+		{cta && <button class="font-semibold underline">{cta.text}</button>}
+	</div>
+</div>
