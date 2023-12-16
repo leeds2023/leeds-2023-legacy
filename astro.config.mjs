@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/serverless';
 import storyblok from '@storyblok/astro';
 import { loadEnv } from 'vite';
-const { STORYBLOK_TOKEN, OUTPUT_STRATEGY } = loadEnv('', process.cwd());
+const { STORYBLOK_TOKEN, OUTPUT_STRATEGY } = loadEnv('', process.cwd(), '');
 
 export default defineConfig({
 	output: OUTPUT_STRATEGY ? OUTPUT_STRATEGY : 'hybrid',
