@@ -78,6 +78,8 @@ const { blok } = Astro.props;
 >
 	<div class={cn('flex flex-col', container({ gap: blok.gap, container: blok.container }))}>
 		<span class="text-lg font-semibold">{blok.component}</span>
+		<span class="text-lg text-gray-600">{blok.sectionName}</span>
+
 		{
 			blok.blocks.map((item: SectionBlockValues) => (
 				<div>
