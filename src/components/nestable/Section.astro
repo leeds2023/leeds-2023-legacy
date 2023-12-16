@@ -42,7 +42,7 @@ const section = cva('text-darkText-30', {
 	},
 });
 
-const container = cva('container', {
+const container = cva('', {
 	variants: {
 		container: {
 			none: '',
@@ -79,9 +79,6 @@ const { blok } = Astro.props;
 	{...storyblokEditable(blok)}
 >
 	<div class={cn('flex flex-col', container({ gap: blok.gap, container: blok.container }))}>
-		<span class="text-lg font-semibold">{blok.component}</span>
-		<span class="text-lg text-gray-600">{blok.sectionName}</span>
-
 		{
 			blok.blocks.map((item: SectionBlockValues) => (
 				<div>

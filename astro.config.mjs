@@ -14,7 +14,7 @@ export default defineConfig({
 		storyblok({
 			accessToken: STORYBLOK_TOKEN,
 			components: {
-				legacyPage: 'components/content/Page',
+				legacyPage: 'components/layouts/Page',
 				modal: 'components/content/Modal',
 				section: 'components/nestable/Section',
 				hero: 'components/nestable/Hero',
