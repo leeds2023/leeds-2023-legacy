@@ -260,7 +260,7 @@ export interface FooterContentStoryblok {
 
 export interface FullWidthVideoStoryblok {
 	videoAsset?: AssetStoryblok;
-	youtubeUrl?: string;
+	youtubeId?: string;
 	coverImage: AssetStoryblok;
 	useVideoAsset?: boolean;
 	_uid: string;
