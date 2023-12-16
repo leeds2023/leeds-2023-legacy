@@ -70,9 +70,9 @@ Start a development server with https proxy:
 // Then install and run the proxy
 
           $ npm install -g local-ssl-proxy
-          $ local-ssl-proxy --source 3010 --target 4321 --cert localhost.pem --key localhost-key.pem
+          $ local-ssl-proxy --source 4320 --target 4321 --cert localhost.pem --key localhost-key.pem
         
-// https is now running on port 3010 and forwarding requests to http 4321
+// https is now running on port 4320 and forwarding requests to http 4321
 
 This script has already been setup in this projects package.json so you can also just run npm run sslproxy
 ```

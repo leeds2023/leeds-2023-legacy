@@ -1,4 +1,6 @@
 ---
+import { storyblokEditable } from '@storyblok/astro';
+
 import type { StatStoryblok } from '@/lib/storyblok/types';
 type Props = {
 	blok: StatStoryblok;
@@ -6,4 +8,6 @@ type Props = {
 const { blok } = Astro.props;
 ---
 
-<p>{JSON.stringify(blok.component)}</p>
+<div {...storyblokEditable(blok)}>
+	<p>{JSON.stringify(blok.component)}</p>
+</div>

@@ -1,4 +1,6 @@
 ---
+import { storyblokEditable } from '@storyblok/astro';
+
 import Layout from '@/layouts/Layout.astro';
 import type { SectionStoryblok, Seo } from '@/lib/storyblok/types';
 import Render from '@/lib/storyblok/Render.astro';
@@ -16,5 +18,7 @@ const { blok } = Astro.props;
 ---
 
 <Layout seo={blok.seo}>
-	{blok.blocks.map((item: SectionStoryblok) => <Render blok={item} />)}
+	<main {...storyblokEditable(blok)}>
+		{blok.blocks.map((item: SectionStoryblok) => <Render blok={item} />)}
+	</main>
 </Layout>

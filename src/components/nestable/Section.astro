@@ -1,6 +1,7 @@
 ---
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
+import { storyblokEditable } from '@storyblok/astro';
 import Render from '@/lib/storyblok/Render.astro';
 import type { SectionBlockValues, SectionStoryblok } from '@/lib/storyblok/types';
 
@@ -45,10 +46,10 @@ const container = cva('container', {
 	variants: {
 		container: {
 			none: '',
-			small: 'max-w-screen-sm',
-			medium: 'max-w-screen-md',
-			large: 'max-w-screen-lg',
-			xlarge: 'max-w-screen-xl',
+			small: 'mx-auto px-4 sm:px-0 sm:max-w-screen-sm',
+			medium: 'mx-auto px-4 sm:px-0 sm:max-w-screen-md',
+			large: 'mx-auto px-4 sm:px-0 sm:max-w-screen-lg',
+			xlarge: 'mx-auto px-4 sm:px-0 sm:max-w-screen-xl',
 		},
 		gap: {
 			none: '',
@@ -75,6 +76,7 @@ const { blok } = Astro.props;
 	class={cn(
 		section({ color: blok.color, padding: blok.padding, backgroundImage: blok.backgroundImage })
 	)}
+	{...storyblokEditable(blok)}
 >
 	<div class={cn('flex flex-col', container({ gap: blok.gap, container: blok.container }))}>
 		<span class="text-lg font-semibold">{blok.component}</span>

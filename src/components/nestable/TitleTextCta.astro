@@ -1,13 +1,16 @@
 ---
 import type { TitleTextCtaStoryblok } from '@/lib/storyblok/types';
+import { storyblokEditable } from '@storyblok/astro';
+
 type Props = {
 	blok: TitleTextCtaStoryblok;
 };
 const { blok } = Astro.props;
 ---
 
-<p>{JSON.stringify(blok.component)}</p>
-
+<div {...storyblokEditable(blok)}>
+	<p>{JSON.stringify(blok.component)}</p>
+</div>
 <!-- <div class={clsx('flex flex-col gap-4 justify-center', centered && 'text-center items-center')}>
 	{
 		title && title !== '' && (
