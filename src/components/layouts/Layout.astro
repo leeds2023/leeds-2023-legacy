@@ -89,11 +89,6 @@ const { seo } = Astro.props;
 			* {
 				box-sizing: border-box;
 			}
-
-			img {
-				opacity: 0;
-				transform: scale(0.97);
-			}
 		</style>
 
 		<script>
@@ -116,33 +111,6 @@ const { seo } = Astro.props;
 				});
 			}
 
-			function imagesOnLoadAnim() {
-				const images = document.querySelectorAll('img');
-				if (!images) return;
-
-				images.forEach((image) => {
-					image.addEventListener('load', () => {
-						gsap.to(image, {
-							opacity: 1,
-							duration: 0.5,
-							scale: 1,
-							ease: 'power2.out',
-						});
-					});
-
-					// In case the image is already loaded (from cache) we need to check if it's complete and trigger the animation immediately
-					if (image.complete) {
-						gsap.to(image, {
-							opacity: 1,
-							duration: 0.5,
-							scale: 1,
-							ease: 'power2.out',
-						});
-					}
-				});
-			}
-
-			imagesOnLoadAnim();
 			setupScrollSmooth();
 		</script>
 	</body>

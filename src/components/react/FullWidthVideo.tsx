@@ -25,7 +25,6 @@ export default function FullWidthVideo({ blok }: Props) {
 			// https://developers.google.com/youtube/player_parameters
 			autoplay: 1,
 			controls: 0,
-			modestbranding: 1,
 			rel: 0,
 		},
 	};
@@ -33,17 +32,41 @@ export default function FullWidthVideo({ blok }: Props) {
 	return (
 		<>
 			{active ? (
-				<div className="overflow-hidden">
+				<div className=" relative overflow-hidden">
 					<YouTube
 						videoId="LXb3EKWsInQ"
 						opts={opts}
 						iframeClassName={'w-full h-full absolute top-0 left-0'}
 						onReady={onPlayerReady}
 						className={'relative mb-[50px] h-[0] w-full overflow-hidden pb-[56.25%]'}
-					/>
+					></YouTube>
+					<div>
+						<button
+							className="absolute right-0 top-1/2 z-10 flex h-20 w-20 -translate-y-1/2 transform flex-col items-center gap-4 bg-brandMagenta-100 px-4 py-2 text-white"
+							onClick={() => {
+								videoElement?.pauseVideo();
+								setIsActive(false);
+							}}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="100%"
+								height="100%"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<path d="M18 6 6 18"></path>
+								<path d="m6 6 12 12"></path>
+							</svg>
+						</button>
+					</div>
 				</div>
 			) : (
-				<div className={'m-h-[20rem] relative h-[65vh] w-full'}>
+				<div className={'m-h-[20rem] relative h-[80vh] w-full'}>
 					<Image
 						src={blok.coverImage.filename}
 						alt={blok.coverImage.alt}
