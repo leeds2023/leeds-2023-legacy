@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "sslproxy": "local-ssl-proxy --source 3010 --target 4321 --cert localhost.pem --key localhost-key.pem",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -39,6 +40,7 @@
     "eslint-plugin-astro": "^0.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.33.2",
+    "local-ssl-proxy": "^2.0.5",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.1",
     "prettier-plugin-tailwindcss": "^0.5.6",

@@ -52,3 +52,46 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+
+## Getting the Storyblok Preview to work locally
+Storyblok provides a visual editor alongside there CMS API. To set it up to work correctly with your local enviroment you will first need to make an SSL certificate as Storybloks visual editor will only work over https:// protocol. To setup your SSL follow the below instructions.
+
+### Method 1
+Start a development server with https proxy:
+
+```
+// Install mkcert for creating a valid certificate (Mac OS):
+
+          $ brew install mkcert
+          $ mkcert -install
+          $ mkcert localhost
+        
+// Then install and run the proxy
+
+          $ npm install -g local-ssl-proxy
+          $ local-ssl-proxy --source 3010 --target 4321 --cert localhost.pem --key localhost-key.pem
+        
+// https is now running on port 3010 and forwarding requests to http 4321
+
+This script has already been setup in this projects package.json so you can also just run npm run sslproxy
+```
+
+### Method 2
+Create a static html page editor.html in your project with the following content:
+
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Storyblok Admin</title>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/javascript">
+            STORYBLOK_PREVIEW_URL = 'http://localhost:3000/'
+        </script>
+        <script src="https://app.storyblok.com/f/app-latest.js" type="text/javascript"></script>
+    </body>
+</html>
+```
