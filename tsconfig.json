@@ -10,11 +10,12 @@
       "@layouts/*": ["./src/layouts/*"],
       "@public/*": ["./public/*"],
       "@assets/*": ["./src/assets/*"],
+      "@types/*": ["./src/types/*"],
     },
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
-      },
+      }
     ],
   }
 }

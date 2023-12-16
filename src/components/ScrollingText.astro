@@ -1,31 +1,23 @@
 ---
 import { Image } from 'astro:assets';
-import Section from '@components/ui/Section.astro';
 import Container from '@components/ui/Container.astro';
 import Title from '@components/ui/Title.astro';
 import HeroRibbon1 from '@assets/hero/ribbon-1.png';
 ---
 
-<Section
-	padding={'xlarge'}
-	color={'lightCream'}
-	className="relative flex h-screen items-center justify-center"
-	dataElementName="split-text-section"
->
-	<Container>
-		<div class="flex items-center justify-center text-center">
-			<div class="max-w-2xl 2xl:max-w-5xl">
-				<Title dataElementName="split-text" className="text-brandDarkGreen-60" size={'extraLarge'}>
-					After an amazing year, letting culture loose in Leeds, we created these highlights to show
-					you how it went down
-				</Title>
-			</div>
-			<div class="absolute bottom-0 left-0 w-[320px] select-none 2xl:w-[530px]">
-				<Image src={HeroRibbon1} alt="Hero Ribbon 1" />
-			</div>
+<Container>
+	<div class="flex items-center justify-center text-center">
+		<div class="max-w-2xl 2xl:max-w-5xl">
+			<Title dataElementName="split-text" className="text-brandDarkGreen-60" size={'extraLarge'}>
+				After an amazing year, letting culture loose in Leeds, we created these highlights to show
+				you how it went down
+			</Title>
 		</div>
-	</Container>
-</Section>
+		<div class="absolute bottom-0 left-0 w-[320px] select-none 2xl:w-[530px]">
+			<Image src={HeroRibbon1} alt="Hero Ribbon 1" />
+		</div>
+	</div>
+</Container>
 
 <script>
 	import gsap from 'gsap';

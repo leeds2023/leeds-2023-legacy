@@ -1,22 +1,65 @@
 ---
-interface Props {
-	title: string;
-}
-
-const { title } = Astro.props;
-import VideoModal from '@/components/VideoModal.astro';
+import { SEO } from 'astro-seo';
+import type { Seo } from '@/lib/storyblok/types';
 import '../styles/fonts.css';
+
+type Props = {
+	seo: Seo;
+};
+
+const { seo } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<SEO
+			title={seo.title && seo.title !== '' ? seo.title : 'Leeds 2023'}
+			description={seo.description && seo.description !== ''
+				? seo.description
+				: 'Stories from a year of culture. Which brought us together, changed our minds and emboldened our city.'}
+			openGraph={{
+				basic: {
+					title:
+						seo.og_title && seo.og_title !== ''
+							? seo.og_title
+							: seo.title
+							? seo.title
+							: 'Leeds 2023',
+					type: 'website',
+					image: seo.og_image && seo.og_image.filename ? seo.og_image.filename : '',
+				},
+			}}
+			twitter={{
+				creator: '@LEEDS_2023',
+				site: '@LEEDS_2023',
+				card: 'summary_large_image',
+				title:
+					seo.twitter_title && seo.twitter_title !== ''
+						? seo.twitter_title
+						: seo.og_title && seo.og_title !== ''
+						? seo.og_title
+						: seo.title && seo.title !== ''
+						? seo.title
+						: 'Leeds 2023',
+				image:
+					seo.twitter_image && seo.twitter_image.filename
+						? seo.twitter_image.filename
+						: seo.og_image.filename
+						? seo.og_image.filename
+						: '',
+			}}
+			extend={{
+				link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+				meta: [
+					{
+						name: 'viewport',
+						content: 'width=device-width',
+					},
+				],
+			}}
+		/>
 	</head>
 	<body>
 		<div class="smooth-wrapper">
@@ -24,82 +67,81 @@ import '../styles/fonts.css';
 				<slot />
 			</div>
 		</div>
-		<VideoModal />
-	</body>
-</html>
-<style is:global>
-	html {
-		font-family: 'DM Sans', system-ui, sans-serif;
-	}
+		<style is:global>
+			html {
+				font-family: 'DM Sans', system-ui, sans-serif;
+			}
 
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+			code {
+				font-family:
+					Menlo,
+					Monaco,
+					Lucida Console,
+					Liberation Mono,
+					DejaVu Sans Mono,
+					Bitstream Vera Sans Mono,
+					Courier New,
+					monospace;
+			}
 
-	* {
-		box-sizing: border-box;
-	}
+			* {
+				box-sizing: border-box;
+			}
 
-	img {
-		opacity: 0;
-		transform: scale(0.97);
-	}
-</style>
+			img {
+				opacity: 0;
+				transform: scale(0.97);
+			}
+		</style>
 
-<script>
-	import gsap from 'gsap';
-	import ScrollTrigger from 'gsap/ScrollTrigger';
-	import ScrollSmoother from 'gsap/ScrollSmoother';
-	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+		<script>
+			import gsap from 'gsap';
+			import ScrollTrigger from 'gsap/ScrollTrigger';
+			import ScrollSmoother from 'gsap/ScrollSmoother';
+			gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-	function setupScrollSmooth() {
-		const scrollWrapper = document.querySelector('.smooth-wrapper');
-		const scrollContent = document.querySelector('.smooth-content');
-		if (!scrollWrapper || !scrollContent) return;
+			function setupScrollSmooth() {
+				const scrollWrapper = document.querySelector('.smooth-wrapper');
+				const scrollContent = document.querySelector('.smooth-content');
+				if (!scrollWrapper || !scrollContent) return;
 
-		ScrollSmoother.create({
-			smooth: 1,
-			effects: true,
-			smoothTouch: 0.1,
-			content: scrollContent,
-			wrapper: scrollWrapper,
-		});
-	}
-
-	function imagesOnLoadAnim() {
-		const images = document.querySelectorAll('img');
-		if (!images) return;
-
-		images.forEach((image) => {
-			image.addEventListener('load', () => {
-				gsap.to(image, {
-					opacity: 1,
-					duration: 0.5,
-					scale: 1,
-					ease: 'power2.out',
-				});
-			});
-
-			// In case the image is already loaded (from cache) we need to check if it's complete and trigger the animation immediately
-			if (image.complete) {
-				gsap.to(image, {
-					opacity: 1,
-					duration: 0.5,
-					scale: 1,
-					ease: 'power2.out',
+				ScrollSmoother.create({
+					smooth: 1,
+					effects: true,
+					smoothTouch: 0.1,
+					content: scrollContent,
+					wrapper: scrollWrapper,
 				});
 			}
-		});
-	}
 
-	imagesOnLoadAnim();
-	setupScrollSmooth();
-</script>
+			function imagesOnLoadAnim() {
+				const images = document.querySelectorAll('img');
+				if (!images) return;
+
+				images.forEach((image) => {
+					image.addEventListener('load', () => {
+						gsap.to(image, {
+							opacity: 1,
+							duration: 0.5,
+							scale: 1,
+							ease: 'power2.out',
+						});
+					});
+
+					// In case the image is already loaded (from cache) we need to check if it's complete and trigger the animation immediately
+					if (image.complete) {
+						gsap.to(image, {
+							opacity: 1,
+							duration: 0.5,
+							scale: 1,
+							ease: 'power2.out',
+						});
+					}
+				});
+			}
+
+			imagesOnLoadAnim();
+			setupScrollSmooth();
+		</script>
+	</body>
+</html>

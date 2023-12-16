@@ -1,0 +1,12 @@
+---
+import type { MediaLinkStoryblok } from '@/lib/storyblok/types';
+
+export type MediaLinkBlock = Props;
+type Props = {
+	blok: MediaLinkStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<p>{JSON.stringify(blok.component)}</p>

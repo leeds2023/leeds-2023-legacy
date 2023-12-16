@@ -1,0 +1,8 @@
+---
+import type { FooterContentStoryblok } from '@/lib/storyblok/types';
+type Props = FooterContentStoryblok;
+
+const { links, copyrightText, prependDateText, component } = Astro.props;
+---
+
+<p>{JSON.stringify({ links, copyrightText, prependDateText, component })}</p>

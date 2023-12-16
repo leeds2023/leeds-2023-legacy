@@ -1,0 +1,11 @@
+---
+import type { EventStoryblok } from '@/lib/storyblok/types';
+
+type Props = {
+	blok: EventStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<p>{JSON.stringify(blok.component)}</p>

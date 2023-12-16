@@ -1,0 +1,89 @@
+---
+import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
+import Render from '@/lib/storyblok/Render.astro';
+import type { SectionBlockValues, SectionStoryblok } from '@/lib/storyblok/types';
+
+const section = cva('text-darkText-30', {
+	variants: {
+		color: {
+			mint: 'bg-brandMint-100',
+			white: 'bg-white',
+			rose: 'bg-brandRose-100 text-darkText-20',
+			cream: 'bg-brandCream-80',
+			lightCream: 'bg-brandCream-40',
+			burgundy: 'bg-brandBurgundy-100 text-lightText-30',
+			teal: 'bg-brandTeal-100 text-lightText-30',
+			yellow: 'bg-brandYellow-100',
+			green: 'bg-brandDarkGreen-100 text-lightText-30',
+			magenta: 'bg-brandMagenta-80 text-lightText-30',
+			transparent: 'bg-transparent',
+		},
+		padding: {
+			none: 'py-0',
+			small: 'py-8',
+			medium: 'py-16',
+			large: 'py-24',
+			xlarge: 'py-6 md:py-24 xl:py-48',
+		},
+		backgroundImage: {
+			none: '',
+			ribbonOne: 'bg-ribbonOne',
+			ribbonTwo: 'bg-ribbonTwo',
+			ribbonThree: 'bg-ribbonThree',
+			ribbonFour: 'bg-ribbonFour',
+		},
+	},
+	defaultVariants: {
+		color: 'white',
+		padding: 'medium',
+		backgroundImage: 'none',
+	},
+});
+
+const container = cva('container', {
+	variants: {
+		container: {
+			none: '',
+			small: 'max-w-screen-sm',
+			medium: 'max-w-screen-md',
+			large: 'max-w-screen-lg',
+			xlarge: 'max-w-screen-xl',
+		},
+		gap: {
+			none: '',
+			small: 'gap-8',
+			medium: 'gap-16',
+			large: 'gap-24',
+			xlarge: 'gap-32',
+		},
+	},
+	defaultVariants: {
+		container: 'medium',
+		gap: 'none',
+	},
+});
+
+type Props = {
+	blok: SectionStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<section
+	class={cn(
+		section({ color: blok.color, padding: blok.padding, backgroundImage: blok.backgroundImage })
+	)}
+>
+	<div class={cn('flex flex-col', container({ gap: blok.gap, container: blok.container }))}>
+		<span class="text-lg font-semibold">{blok.component}</span>
+		{
+			blok.blocks.map((item: SectionBlockValues) => (
+				<div>
+					<Render blok={item} />
+				</div>
+			))
+		}
+	</div>
+</section>

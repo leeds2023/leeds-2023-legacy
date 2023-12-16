@@ -1,0 +1,9 @@
+---
+import type { HeroStoryblok } from '@/lib/storyblok/types';
+type Props = {
+	blok: HeroStoryblok;
+};
+const { blok } = Astro.props;
+---
+
+<div>{JSON.stringify(blok.component)}</div>

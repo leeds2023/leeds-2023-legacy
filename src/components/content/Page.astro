@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import type { SectionStoryblok, Seo } from '@/lib/storyblok/types';
+import Render from '@/lib/storyblok/Render.astro';
+type Props = {
+	blok: {
+		seo: Seo;
+		blocks: any;
+		_uid: string;
+		component: string;
+		_editable: string;
+	};
+};
+
+const { blok } = Astro.props;
+---
+
+<Layout seo={blok.seo}>
+	{blok.blocks.map((item: SectionStoryblok) => <Render blok={item} />)}
+</Layout>

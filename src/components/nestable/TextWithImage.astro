@@ -1,0 +1,14 @@
+---
+// import type { Asset } from '@/lib/storyblok';
+// import type { LinkBlock } from './ui/Link.astro';
+// type Props = {
+// 	ctas: LinkBlock[];
+// 	title: string;
+// 	description: string;
+// 	reverse: boolean;
+// 	image: Asset;
+// };
+const { blok } = Astro.props;
+---
+
+<div>{JSON.stringify(blok.component)}</div>
