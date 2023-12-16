@@ -2,6 +2,7 @@
 import { SEO } from 'astro-seo';
 import type { Seo } from '@/lib/storyblok/types';
 import '@/styles/fonts.css';
+import VideoModal from '../ui/VideoModal.astro';
 
 type Props = {
 	seo: Seo;
@@ -67,6 +68,7 @@ const { seo } = Astro.props;
 				<slot />
 			</div>
 		</div>
+		<VideoModal />
 		<style is:global>
 			html {
 				font-family: 'DM Sans', system-ui, sans-serif;

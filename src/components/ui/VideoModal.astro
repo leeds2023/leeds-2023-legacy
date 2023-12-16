@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import LogoWhite from '@assets/hero/logo-white.svg';
+import Close from '@assets/icons/Close.astro';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+---
+
+<div
+	data-element="documentary-section"
+	class="fixed left-0 top-0 z-[60] flex h-screen w-full -translate-y-full flex-col items-center justify-center gap-10 bg-brandDarkGreen-100 py-12"
+>
+	<div class="flex w-[80%] items-center justify-between">
+		<div><Image src={LogoWhite} alt="Leeds 2023" width={160} /></div>
+		<button
+			aria-label="close-documentary-modal"
+			data-element="close-documentary-btn"
+			class="flex h-12 w-12 items-center justify-center"><Close color="#FFF" /></button
+		>
+	</div>
+	<div class="flex h-[100%] w-[80%] items-center justify-center bg-gray-300">
+		<YouTube
+			id="uYLJKMTJQUw"
+			playlabel="Play the video"
+			class={'w-full h-full max-w-none'}
+			params={'autoplay=1&start=30'}
+		/>
+	</div>
+</div>

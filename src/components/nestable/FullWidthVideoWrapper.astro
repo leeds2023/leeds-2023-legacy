@@ -2,6 +2,7 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { FullWidthVideoStoryblok } from '@/lib/storyblok/types';
+import FullWidthVideo from '../react/FullWidthVideo';
 type Props = {
 	blok: FullWidthVideoStoryblok;
 };
@@ -9,5 +10,6 @@ const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)}>
-	{JSON.stringify(blok.component)}
+	asdsad
+	<FullWidthVideo client:visible blok={blok} />
 </div>

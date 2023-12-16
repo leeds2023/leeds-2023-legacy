@@ -76,7 +76,11 @@ module.exports = {
           'error',
           { argsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' },
         ],
+        '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-redundant-type-constituents': 'off',
         // You can override or add additional accessibility rules here
       },
     },

@@ -66,3 +66,29 @@ const { blok } = Astro.props;
 		</div>
 	</div>
 </div>
+
+<script>
+	import gsap from 'gsap';
+
+	function documentaryVideo() {
+		const playButton = document.querySelector('[data-element="play-documentary"]');
+		const closeBtn = document.querySelector('[data-element="close-documentary-btn"]');
+		if (!playButton || !closeBtn) return;
+		playButton.addEventListener('click', () => {
+			gsap.to('[data-element="documentary-section"]', {
+				y: '0%',
+				duration: 1,
+				ease: 'power2.inOut',
+			});
+		});
+		closeBtn.addEventListener('click', () => {
+			gsap.to('[data-element="documentary-section"]', {
+				y: '-100%',
+				duration: 1,
+				ease: 'power2.inOut',
+			});
+		});
+	}
+
+	documentaryVideo();
+</script>
