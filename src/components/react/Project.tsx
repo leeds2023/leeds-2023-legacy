@@ -95,7 +95,7 @@ export default function Project({ project }: ProjectProps) {
 										{project.content.subtitle}
 									</DialogDescription>
 								</DialogHeader>
-								<ScrollArea>
+								<ScrollArea type="always">
 									<div
 										className="prose max-h-[20vh] px-6 py-2"
 										dangerouslySetInnerHTML={{

@@ -18,7 +18,7 @@ const { blok } = Astro.props;
 ---
 
 <Layout seo={blok.seo}>
-	<main class="relative z-[-3]" {...storyblokEditable(blok)}>
+	<main class="relative z-0" {...storyblokEditable(blok)}>
 		{blok.blocks.map((item: SectionStoryblok) => <Render blok={item} />)}
 	</main>
 </Layout>

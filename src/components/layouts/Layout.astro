@@ -2,7 +2,6 @@
 import { SEO } from 'astro-seo';
 import type { Seo } from '@/lib/storyblok/types';
 import '@/styles/fonts.css';
-import VideoModal from '../ui/VideoModal.astro';
 import { fetchNavAndFooter } from '@/lib/storyblok/helpers';
 import Navigation from '@components/react/Navigation';
 import Footer from '@/components/nestable/Footer.astro';
@@ -71,13 +70,8 @@ const { seo } = Astro.props;
 	</head>
 	<body>
 		<Navigation client:load blok={nav[0]} />
-		<div class="smooth-wrapper">
-			<div class="smooth-content">
-				<slot />
-				<Footer blok={footer[0]} />
-			</div>
-		</div>
-		<VideoModal />
+		<slot />
+		<Footer blok={footer[0]} />
 		<style is:global>
 			html {
 				font-family: 'DM Sans', system-ui, sans-serif;
@@ -100,28 +94,5 @@ const { seo } = Astro.props;
 				box-sizing: border-box;
 			}
 		</style>
-
-		<script>
-			import gsap from 'gsap';
-			import ScrollTrigger from 'gsap/ScrollTrigger';
-			import ScrollSmoother from 'gsap/ScrollSmoother';
-			gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-			function setupScrollSmooth() {
-				const scrollWrapper = document.querySelector('.smooth-wrapper');
-				const scrollContent = document.querySelector('.smooth-content');
-				if (!scrollWrapper || !scrollContent) return;
-
-				ScrollSmoother.create({
-					smooth: 1,
-					effects: true,
-					smoothTouch: 0.1,
-					content: scrollContent,
-					wrapper: scrollWrapper,
-				});
-			}
-
-			setupScrollSmooth();
-		</script>
 	</body>
 </html>

@@ -29,7 +29,7 @@ export default function InteractiveStages({ blok }: Props) {
 		setStageData(currentStageData);
 	}, [stage]);
 
-	const stageStyles = cva('text-white relative h-[1100px] lg:h-[700px] flex flex-col lg:flex-row', {
+	const stageStyles = cva('text-white relative h-[970px] lg:h-[760px] flex flex-col lg:flex-row', {
 		variants: {
 			bgColor: {
 				pink: 'bg-[#EE3796]',
@@ -98,7 +98,13 @@ export default function InteractiveStages({ blok }: Props) {
 			</div>
 
 			<div className="relative flex h-full w-full flex-col overflow-hidden lg:flex-row">
-				<div className="relative z-10 flex h-full w-full flex-col items-start justify-center gap-6 pl-8 pt-8 lg:w-7/12 lg:pl-20 lg:pt-0 2xl:w-1/2">
+				<div
+					className={cn(
+						'relative z-10 flex h-full w-full flex-col items-start justify-center gap-6 pl-8 pt-0 lg:w-7/12 lg:pl-20 lg:pt-0 2xl:w-1/2',
+						step === 2 && 'w-full justify-start pt-16 lg:w-full lg:justify-center lg:pt-0',
+						step === 2 && stageData.stats && stageData.stats.length > 2 && 'justify-center pt-0'
+					)}
+				>
 					<div className="relative z-10 flex flex-col">
 						<h3
 							className={cn(
@@ -172,7 +178,7 @@ export default function InteractiveStages({ blok }: Props) {
 								{stageData.stageName} in numbers
 							</h2>
 							{stageData.stats && stageData.stats.length > 0 && (
-								<div className="flex flex-col gap-4">
+								<div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
 									{stageData.stats.map((item) => (
 										<div key={item._uid} className="flex flex-col gap-2">
 											<div className="flex gap-4">
@@ -301,27 +307,41 @@ export default function InteractiveStages({ blok }: Props) {
 					</div>
 				</div>
 
-				<div className="relative h-72 w-full lg:h-full lg:w-5/12 2xl:w-1/2">
-					<div className="h-full">
-						<img
-							src={
-								step === 0
-									? stageData.slideOneImage.filename
-									: step === 1
-									? stageData.slideTwoImage.filename
-									: stageData.slideThreeImage.filename
-							}
-							alt={
-								step === 0
-									? stageData.slideOneImage.alt
-									: step === 1
-									? stageData.slideTwoImage.alt
-									: stageData.slideThreeImage.alt
-							}
-							className="h-full w-full object-cover object-center"
-						/>
+				{step !== 2 && (
+					<div className="relative h-72 w-full lg:h-full lg:w-5/12 2xl:w-1/2">
+						<div className="h-full">
+							<img
+								src={
+									step === 0
+										? stageData.slideOneImage.filename
+										: step === 1
+										? stageData.slideTwoImage.filename
+										: stageData.slideThreeImage.filename
+								}
+								alt={
+									step === 0
+										? stageData.slideOneImage.alt
+										: step === 1
+										? stageData.slideTwoImage.alt
+										: stageData.slideThreeImage.alt
+								}
+								className="h-full w-full object-cover object-center"
+							/>
+						</div>
 					</div>
-				</div>
+				)}
+
+				{step === 2 && (
+					<div className="relative hidden h-72 w-full lg:h-full lg:w-5/12 xl:block 2xl:w-1/2">
+						<div className="h-full">
+							<img
+								src={stageData.slideThreeImage.filename}
+								alt={stageData.slideThreeImage.alt}
+								className="h-full w-full object-cover object-center"
+							/>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);

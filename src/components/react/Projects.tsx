@@ -56,7 +56,7 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 	}, [debouncedSearchQuery]);
 
 	return (
-		<div className="py-[5rem]">
+		<div>
 			<div className="mb-12 bg-white py-6">
 				<div className="mx-auto px-4 lg:max-w-[950px] lg:px-2 xl:max-w-[1150px] 2xl:max-w-[1250px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]">
 					<div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
