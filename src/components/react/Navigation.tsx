@@ -142,11 +142,13 @@ export default function Navigation({ blok }: NavigationProps) {
 		<nav
 			className={cn(
 				'relative z-50 flex h-20 items-center justify-between bg-brandDarkGreen-100 px-4 text-white lg:px-8 lg:py-3.5',
-				isMenuOpen && 'relative'
+				isMenuOpen && 'fixed left-0 top-0 w-full'
 			)}
 		>
-			<div>
+			<a href="/" id="home-link">
+				<span className="sr-only">Home</span>
 				<svg
+					aria-labelledby="home-link"
 					width="128"
 					height="48"
 					viewBox="0 0 128 48"
@@ -165,7 +167,7 @@ export default function Navigation({ blok }: NavigationProps) {
 						</clipPath>
 					</defs>
 				</svg>
-			</div>
+			</a>
 			<div>
 				<DesktopNavigation blok={blok} />
 				<MobileNavigation blok={blok} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />

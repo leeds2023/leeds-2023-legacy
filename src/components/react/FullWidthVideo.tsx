@@ -1,16 +1,19 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import type { FullWidthVideoStoryblok } from '@/lib/storyblok/types';
 import { useState } from 'react';
 import type { YouTubeProps, YouTubePlayer } from 'react-youtube';
 import { Image } from '@unpic/react';
 import YouTube from 'react-youtube';
+import { cn } from '@/lib/utils';
 
 type Props = {
 	blok: FullWidthVideoStoryblok;
+	isModal?: boolean;
 };
 
 let videoElement: YouTubePlayer | null = null;
 
-export default function FullWidthVideo({ blok }: Props) {
+export default function FullWidthVideo({ blok, isModal }: Props) {
 	const [active, setIsActive] = useState(false);
 
 	const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -66,7 +69,12 @@ export default function FullWidthVideo({ blok }: Props) {
 					</div>
 				</div>
 			) : (
-				<div className={'m-h-[20rem] relative h-[40vh] w-full sm:h-[80vh]'}>
+				<div
+					className={cn(
+						'm-h-[20rem] relative h-[40vh] w-full sm:h-[80vh]',
+						isModal && 'mediumHeight:h-64 tall:h-96 h-32 min-h-0'
+					)}
+				>
 					<Image
 						src={blok.coverImage.filename}
 						alt={blok.coverImage.alt}

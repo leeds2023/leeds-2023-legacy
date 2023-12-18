@@ -2,12 +2,17 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { ProjectsStoryblok } from '@/lib/storyblok/types';
+import Projects from '../react/Projects';
 type Props = {
 	blok: ProjectsStoryblok;
 };
+
+const res = await fetch(`${import.meta.env.SITE_URL}/projects/data.json`);
+const initialProjectsData = await res.json();
+
 const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)}>
-	{JSON.stringify(blok.component)}
+	<Projects client:load initialProjectData={initialProjectsData} blok={blok} />
 </div>

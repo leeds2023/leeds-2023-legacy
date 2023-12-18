@@ -98,6 +98,8 @@ export default {
 			screens: {
 				'3xl': '1920px',
 				'4xl': '2360px',
+				mediumHeight: { raw: '(min-height: 600px)' },
+				tall: { raw: '(min-height: 800px)' },
 			},
 		},
 	},

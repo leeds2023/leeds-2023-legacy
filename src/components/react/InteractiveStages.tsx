@@ -268,7 +268,7 @@ export default function InteractiveStages({ blok }: Props) {
 								</svg>
 							</div>
 						</button>
-						{step + 1} / 3
+						<div className="w-9 text-center">{step + 1} / 3</div>
 						<button onClick={handleIncreaseStep}>
 							<span className="sr-only" id="arrow-forward">
 								Go forward

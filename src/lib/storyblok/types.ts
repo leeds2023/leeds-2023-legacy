@@ -44,6 +44,7 @@ export type StoryResponse = ISbStory;
 export type StoryData<T> = ISbStoryData<T>;
 export type StoryWithLegacyPage = ISbStoryData<LegacyPageStoryblok>;
 export type StoryWithNavAndFooter = ISbStoryData<NavAndFooterStoryblok>;
+export type StoryWithProjectPage = ISbStoryData<ProjectStoryblok>;
 
 export type DataSource = {
 	id: number;
@@ -263,8 +264,8 @@ export interface FullWidthVideoStoryblok {
 	youtubeId?: string;
 	coverImage: AssetStoryblok;
 	useVideoAsset?: boolean;
-	_uid: string;
-	component: 'fullWidthVideo';
+	_uid?: string;
+	component?: 'fullWidthVideo';
 	[k: string]: any;
 }
 
@@ -334,7 +335,8 @@ export interface LegacyPageStoryblok {
 }
 
 export interface LegacySpacerStoryblok {
-	size?: '' | 'small' | 'medium' | 'large';
+	size: 'small' | 'medium' | 'large';
+	spacerRules?: 'desktopAndMobile' | 'desktopOnly' | 'mobileOnly';
 	_uid: string;
 	component: 'legacySpacer';
 	[k: string]: any;
@@ -505,12 +507,14 @@ export interface NavFooterLinkStoryblok {
 export interface ProjectStoryblok {
 	title: string;
 	description: RichtextStoryblok;
+	smallDescription: string;
 	image: AssetStoryblok;
+	youtubeId?: string;
 	links?: LinkStoryblok[];
 	eventDate?: string;
-	subtitle?: string;
-	associatedStage?: '' | 'awakening' | 'playing' | 'dreaming';
-	tags?: (number | string)[];
+	subtitle: string;
+	associatedStage: 'awakening' | 'playing' | 'dreaming';
+	tags?: string[];
 	_uid: string;
 	component: 'project';
 	[k: string]: any;
@@ -520,13 +524,57 @@ export interface ProjectsStoryblok {
 	topBarTitle: string;
 	mainTitle: string;
 	searchResultsTitleText: string;
-	showProjects: '' | 'all' | 'awakening' | 'playing' | 'dreaming';
+	showProjects: 'all' | 'awakening' | 'playing' | 'dreaming';
 	_uid: string;
 	component: 'projects';
 	[k: string]: any;
 }
 
 export type SectionBlockValues =
+	| AltHeroStoryblok
+	| AltHeroTwoStoryblok
+	| AltStatsStoryblok
+	| BigStatStoryblok
+	| CardsStoryblok
+	| ColumnBarStoryblok
+	| ColumnBlockStoryblok
+	| EmbedStoryblok
+	| EventStoryblok
+	| ExploreStoryblok
+	| ExploreItemStoryblok
+	| FooterContentStoryblok
+	| FullWidthVideoStoryblok
+	| HeroStoryblok
+	| ImageTextWithQuoteStoryblok
+	| InteractiveStageStoryblok
+	| InteractiveStagesStoryblok
+	| LegacyGlobalStoryblok
+	| LegacyPageStoryblok
+	| LegacySpacerStoryblok
+	| LinkStoryblok
+	| MapStoryblok
+	| MapItemStoryblok
+	| MediaLinkStoryblok
+	| MediaLinksStoryblok
+	| ModalStoryblok
+	| NavAndFooterStoryblok
+	| NavContentStoryblok
+	| NavFooterLinkStoryblok
+	| ProjectStoryblok
+	| ProjectsStoryblok
+	| SectionStoryblok
+	| StatStoryblok
+	| StatsStoryblok
+	| StoriesStoryblok
+	| StoryStoryblok
+	| TestimonialsStoryblok
+	| TextWithImageStoryblok
+	| TextWithImageAltStoryblok
+	| ThanksStoryblok
+	| ThanksItemStoryblok
+	| TitleTextCtaStoryblok;
+
+export type SectionBlock =
 	| AltHeroStoryblok
 	| AltHeroTwoStoryblok
 	| AltStatsStoryblok
@@ -631,6 +679,8 @@ export interface SectionStoryblok {
 	sectionName: string;
 	backgroundImage: 'none' | 'ribbonOne' | 'ribbonTwo' | 'ribbonThree' | 'ribbonFour';
 	gap: 'none' | 'small' | 'medium' | 'large' | 'xlarge';
+	paddingRules: 'paddingTopOnly' | 'paddingBottomOnly' | 'bothSides';
+	className?: string;
 	_uid: string;
 	component: 'section';
 	[k: string]: any;

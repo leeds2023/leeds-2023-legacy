@@ -1,12 +1,22 @@
 ---
-import { clsx } from 'clsx';
+import type { LegacySpacerStoryblok } from '@/lib/storyblok/types';
+import { cn } from '@/lib/utils';
 type Props = {
-	size?: 'small' | 'medium' | 'large';
+	blok: LegacySpacerStoryblok;
 };
-const { size = 'medium' } = Astro.props;
+const { blok } = Astro.props;
 ---
 
 <div
-	class={clsx(size === 'small' && 'h-8', size === 'medium' && 'h-16', size === 'large' && 'h-24')}
+	class={cn(
+		blok.size === 'small' && 'h-8',
+		blok.size === 'medium' && 'h-16',
+		blok.size === 'large' && 'h-24',
+		blok.spacerRules && blok.spacerRules === 'desktopOnly'
+			? 'hidden lg:block'
+			: blok.spacerRules === 'mobileOnly'
+			? 'lg:hidden'
+			: ''
+	)}
 >
 </div>

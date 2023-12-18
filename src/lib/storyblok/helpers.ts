@@ -5,6 +5,7 @@ import type {
 	StoryWithLegacyPage,
 	LegacyPageStories,
 	Link,
+	StoryWithProjectPage,
 } from './types';
 
 const storyblokApi = useStoryblokApi();
@@ -38,6 +39,22 @@ export async function fetchStories<T = StoryWithLegacyPage>(
 	});
 
 	return data;
+}
+
+export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]> {
+	const {
+		data: { stories },
+	} = await storyblokApi.get(`cdn/stories`, {
+		version: import.meta.env.STORYBLOK_ENV
+			? import.meta.env.STORYBLOK_ENV
+			: import.meta.env.DEV
+			? 'draft'
+			: 'published',
+		starts_with: 'legacy/projects/',
+		resolve_links: '1',
+	});
+
+	return stories;
 }
 
 export async function fetchNavAndFooter(): Promise<StoryWithNavAndFooter> {
@@ -97,12 +114,16 @@ export function parseStoryblokLink(link: Link): string {
 		if (link.anchor) {
 			return `/${link.story?.url ?? ''}#${link.anchor ?? ''}`.replaceAll('//', '/');
 		}
+		if (link.story.slug === 'projects-root') {
+			return '/projects/';
+		}
 		if (link.story.slug && link.story.slug !== 'legacy') {
 			return `/${link.story.slug ?? ''}`.replaceAll('//', '/');
 		}
 		if (link.story.slug === 'legacy') {
 			return '/';
 		}
+
 		return `/${link.story?.url || ''}`.replaceAll('//', '/');
 	}
 

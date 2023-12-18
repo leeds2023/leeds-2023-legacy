@@ -12,3 +12,8 @@ export function formatWithCommas(number: number | string): string {
 	}
 	return value.toLocaleString();
 }
+
+export function capitaliseFirstLetter(str: string) {
+	if (!str) return str;
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}
