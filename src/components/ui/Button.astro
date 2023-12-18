@@ -1,60 +1,104 @@
 ---
+import { parseStoryblokLink } from '@/lib/storyblok/helpers';
+import type { Link } from '@/lib/storyblok/types';
 import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-const button = cva('button', {
-	variants: {
-		size: {
-			small: 'text-base py-2 px-4',
-			medium: 'text-lg py-3 px-6',
-			large: 'text-xl py-3 px-6',
+const button = cva(
+	'button flex gap-2 justify-center items-center text-center font-display font-semibold text-white focus:ring-opacity-50',
+	{
+		variants: {
+			size: {
+				small: 'text-sm py-2 px-4',
+				medium: 'text-base py-3 px-6',
+				large: 'text-lg py-3 px-6',
+				xlarge: 'text-xl py-4 px-8',
+			},
+			color: {
+				primary:
+					'bg-buttonRed-default border-2 border-buttonRed-default hover:border-buttonRed-hover hover:bg-buttonRed-hover focus:ring-2 focus:ring-buttonRed-hover',
+				secondary: '',
+				tertiary: '',
+				darkGreen:
+					'bg-brandDarkGreen-100 hover:bg-brandDarkGreen-80 text-white border-2 border-brandDarkGreen-100 hover:border-brandDarkGreen-80 focus:ring-2 focus:ring-brandDarkGreen-80',
+				magenta:
+					'bg-brandMagenta-100 border-2 border-brandMagenta-100 hover:border-brandMagenta-80 hover:bg-brandMagenta-80 focus:ring-2 focus:ring-brandMagenta-80',
+			},
+			style: {
+				filled: '',
+				outline: 'bg-transparent hover:bg-transparent text-darkText-10 hover:text-opacity-80',
+				ghost:
+					'bg-transparent hover:bg-transparent text-buttonRed-default hover:text-buttonRed-hover border-transparent hover:border-transparent lg:px-0 lg:justify-start lg:py-1',
+			},
 		},
-		color: {
-			primary:
-				'bg-buttonRed-default text-white font-display font-semibold hover:bg-buttonRed-hover focus:ring-2 focus:ring-buttonRed-hover focus:ring-opacity-50',
-			secondary: '',
-			tertiary: '',
+		defaultVariants: {
+			size: 'medium',
+			color: 'primary',
+			style: 'filled',
 		},
-	},
-});
+	}
+);
 
 type ButtonVariants = VariantProps<typeof button>;
 
 type Props = ButtonVariants & {
 	type?: 'link' | 'button';
 	href?: string;
+	sbLink?: Link;
 	className?: string;
-	dataElementName?: string;
-	ariaLabel?: string;
+	overrideIsExternal?: boolean;
+	id: string;
 };
 
 const {
-	type = 'button',
-	href,
+	type = 'link',
+	href = '#',
+	sbLink,
+	id,
+	style = 'filled',
 	size = 'medium',
 	color = 'primary',
 	className,
-	dataElementName,
-	ariaLabel,
+	overrideIsExternal = false,
 } = Astro.props;
+
+const link = sbLink ? parseStoryblokLink(sbLink) : href;
+const isExternal = link.startsWith('http');
+const htmlAttributes = isExternal
+	? {
+			target: '_blank',
+			rel: 'noopener noreferrer',
+	  }
+	: {};
 ---
 
 {
 	type === 'link' && (
-		<a href={href} class={cn(button({ size, color }), className)}>
-			<slot />
-		</a>
-	)
-}
-
-{
-	type === 'button' && (
-		<button
-			aria-label={ariaLabel}
-			data-element={dataElementName}
-			class={cn(button({ size, color }), className)}
+		<a
+			id={id}
+			href={link}
+			{...htmlAttributes}
+			class={cn(button({ size, color, style }), className)}
 		>
-			<slot />
-		</button>
+			<slot />{' '}
+			{isExternal && !overrideIsExternal && (
+				<svg
+					aria-labelledby={id}
+					width="25"
+					height="24"
+					viewBox="0 0 25 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M13.1184 5.40606L13.0584 5.38419L13.0133 5.42929L11.7817 6.66098L11.6724 6.77027L11.8168 6.82517C12.9199 7.24432 14.5699 7.41418 15.9295 7.30054L11.5075 11.7229L11.4368 11.7936L11.5075 11.8643L12.5417 12.8985L12.6124 12.9692L12.6831 12.8985L17.1192 8.46191C17.0188 9.81642 17.2187 11.4942 17.6271 12.543L17.6827 12.6857L17.791 12.5774L18.9763 11.3922L19.0211 11.3474L18.9997 11.2877C18.4616 9.788 18.4015 8.05271 18.8181 5.69168L18.8431 5.55009L18.7017 5.57593C16.2948 6.01564 14.5598 5.93232 13.1184 5.40606Z"
+						fill="currentColor"
+						stroke="currentColor"
+						stroke-width="0.2"
+					/>
+					<path d="M9.35085 7.5H6.07812V17.5H18.0781V15" stroke="currentColor" stroke-width="2" />
+				</svg>
+			)}
+		</a>
 	)
 }

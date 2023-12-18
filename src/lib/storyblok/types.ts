@@ -290,7 +290,7 @@ export interface ImageTextWithQuoteStoryblok {
 
 export interface InteractiveStageStoryblok {
 	label: string;
-	stageName: string;
+	stageName: 'Awakening' | 'Playing' | 'Dreaming';
 	blurb: string;
 	ctaLinkTextOne?: string;
 	ctaLinkOne?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
@@ -302,7 +302,7 @@ export interface InteractiveStageStoryblok {
 	ctaLinkFour?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
 	otherLinks?: LinkStoryblok[];
 	stats?: StatStoryblok[];
-	bgColor: '' | 'pink' | 'mint' | 'rose';
+	bgColor: 'pink' | 'mint' | 'rose';
 	slideOneImage: AssetStoryblok;
 	slideTwoImage: AssetStoryblok;
 	slideThreeImage: AssetStoryblok;
@@ -312,7 +312,7 @@ export interface InteractiveStageStoryblok {
 }
 
 export interface InteractiveStagesStoryblok {
-	stages?: InteractiveStageStoryblok[];
+	stages: InteractiveStageStoryblok[];
 	_uid: string;
 	component: 'interactiveStages';
 	[k: string]: any;
@@ -345,6 +345,24 @@ export interface LinkStoryblok {
 	linkText?: string;
 	linkTitle?: string;
 	image?: AssetStoryblok;
+	_uid: string;
+	component: 'link';
+	[k: string]: any;
+}
+
+export interface CtaStoryblok {
+	link: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+	text: string;
+	style: 'filled' | 'outline' | 'ghost';
+	color: 'darkGreen' | 'magenta';
+	_uid: string;
+	component: 'cta';
+	[k: string]: any;
+}
+
+export interface ImageLinkStoryblok {
+	link: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+	image: AssetStoryblok;
 	_uid: string;
 	component: 'link';
 	[k: string]: any;
@@ -439,10 +457,8 @@ export interface ModalStoryblok {
 		| NavAndFooterStoryblok
 		| NavContentStoryblok
 		| NavFooterLinkStoryblok
-		| PartnersStoryblok
 		| ProjectStoryblok
 		| ProjectsStoryblok
-		| QuoteOnlyStoryblok
 		| SectionStoryblok
 		| StatStoryblok
 		| StatsStoryblok
@@ -484,15 +500,6 @@ export interface NavFooterLinkStoryblok {
 	[k: string]: any;
 }
 
-export interface PartnersStoryblok {
-	title?: string;
-	description: RichtextStoryblok;
-	links?: LinkStoryblok[];
-	_uid: string;
-	component: 'partners';
-	[k: string]: any;
-}
-
 export interface ProjectStoryblok {
 	title: string;
 	description: RichtextStoryblok;
@@ -514,16 +521,6 @@ export interface ProjectsStoryblok {
 	showProjects: '' | 'all' | 'awakening' | 'playing' | 'dreaming';
 	_uid: string;
 	component: 'projects';
-	[k: string]: any;
-}
-
-export interface QuoteOnlyStoryblok {
-	quote?: string;
-	author?: string;
-	authorSubtext?: string;
-	externalLink?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
-	_uid: string;
-	component: 'quoteOnly';
 	[k: string]: any;
 }
 
@@ -557,10 +554,8 @@ export type SectionBlockValues =
 	| NavAndFooterStoryblok
 	| NavContentStoryblok
 	| NavFooterLinkStoryblok
-	| PartnersStoryblok
 	| ProjectStoryblok
 	| ProjectsStoryblok
-	| QuoteOnlyStoryblok
 	| SectionStoryblok
 	| StatStoryblok
 	| StatsStoryblok
@@ -615,10 +610,8 @@ export interface SectionStoryblok {
 		| NavAndFooterStoryblok
 		| NavContentStoryblok
 		| NavFooterLinkStoryblok
-		| PartnersStoryblok
 		| ProjectStoryblok
 		| ProjectsStoryblok
-		| QuoteOnlyStoryblok
 		| SectionStoryblok
 		| StatStoryblok
 		| StatsStoryblok
@@ -692,13 +685,15 @@ export interface TestimonialsStoryblok {
 }
 
 export interface TextWithImageStoryblok {
-	ctas?: LinkStoryblok[];
 	title: string;
 	description: RichtextStoryblok;
+	image: AssetStoryblok;
 	reverse?: boolean;
-	image?: AssetStoryblok;
 	truncate?: boolean;
 	truncateCharacters?: string;
+	ctas?: CtaStoryblok[];
+	quote?: string;
+	bgColor?: 'rose' | 'mint';
 	_uid: string;
 	component: 'textWithImage';
 	[k: string]: any;
@@ -730,11 +725,16 @@ export interface ThanksItemStoryblok {
 export interface TitleTextCtaStoryblok {
 	title?: string;
 	description: RichtextStoryblok;
+	subtitle?: string;
 	ctaLink?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
 	ctaText?: string;
-	lightText?: boolean;
-	whiteBg?: boolean;
-	subtitle?: string;
+	ctaStyle?: 'filled' | 'outline' | 'ghost';
+	ctaColor?: 'darkGreen' | 'magenta';
+	bgColor: 'white' | 'rose' | 'transparent';
+	isMultiLinkVariant?: boolean;
+	multiLinks?: ImageLinkStoryblok[];
+	isScrollDownLinkVariant?: boolean;
+	scrollDownIdName?: string;
 	_uid: string;
 	component: 'titleTextCta';
 	[k: string]: any;

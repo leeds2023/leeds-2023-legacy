@@ -1,6 +1,26 @@
 ---
 import type { TitleTextCtaStoryblok } from '@/lib/storyblok/types';
+import { cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 import { storyblokEditable } from '@storyblok/astro';
+import Title from '@/components/ui/Title.astro';
+import RichText from '@/components/ui/RichText.astro';
+import Button from '@/components/ui/Button.astro';
+import { Image } from '@unpic/astro';
+import Text from '../ui/Text.astro';
+
+const titleTextCta = cva(
+	'p-8 lg:p-16 flex flex-col gap-4 lg:gap-6 text-center justify-center items-center',
+	{
+		variants: {
+			color: {
+				transparent: 'bg-transparent',
+				white: 'bg-white',
+				rose: 'bg-rose-500 text-darkText-20',
+			},
+		},
+	}
+);
 
 type Props = {
 	blok: TitleTextCtaStoryblok;
@@ -8,39 +28,93 @@ type Props = {
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>
-	<p>{JSON.stringify(blok.component)}</p>
+<div class={cn(titleTextCta({ color: blok.bgColor }))} {...storyblokEditable(blok)}>
+	<div class="flex flex-col gap-3">
+		{blok.title && blok.title !== '' && <Title size={'large'}>{blok.title}</Title>}
+		{
+			blok.subtitle && blok.subtitle !== '' && (
+				<Title type="h3" size={'small'}>
+					{blok.subtitle}
+				</Title>
+			)
+		}
+	</div>
+	<RichText className="max-w-xl" content={blok.description} />
+	{
+		blok.ctaLink &&
+			!blok.isMultiLinkVariant &&
+			!blok.isScrollDownLinkVariant &&
+			blok.ctaText &&
+			blok.ctaText !== '' && (
+				<Button
+					style={blok.ctaStyle}
+					color={blok.ctaColor}
+					id={blok.ctaLink.id}
+					sbLink={blok.ctaLink}
+				>
+					{blok.ctaText}
+				</Button>
+			)
+	}
+	{
+		blok.isMultiLinkVariant &&
+			blok.multiLinks &&
+			blok.multiLinks.length > 0 &&
+			!blok.ctaText &&
+			blok.ctaText === '' && (
+				<div class="flex flex-wrap justify-center gap-8 pt-4">
+					{blok.multiLinks.map((item) => (
+						<a class="w-28" href="https://google.com" class="underline">
+							<Image
+								alt={item.image.alt ? item.image.alt : ''}
+								layout="fullWidth"
+								src={item.image.filename}
+							/>
+						</a>
+					))}
+				</div>
+			)
+	}
+	{
+		blok.isScrollDownLinkVariant &&
+			blok.scrollDownIdName &&
+			blok.scrollDownIdName !== '' &&
+			!blok.isMultiLinkVariant &&
+			blok.ctaText !== '' && (
+				<div>
+					<a
+						href={`#${blok.scrollDownIdName}`}
+						class="flex flex-col items-center justify-center gap-4 pt-4"
+					>
+						<div class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-brandMagenta-100 p-1 text-brandMagenta-100 lg:h-11 lg:w-11 lg:p-2">
+							<svg
+								role="img"
+								aria-labelledby="scroll-down-cta"
+								width="100%"
+								height="100%"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M12 5L12 19M12 19L19 12M12 19L5 12"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</div>
+						<Text
+							customAttributes={{ id: 'scroll-down-cta' }}
+							type="span"
+							className="font-display font-medium"
+							size={'medium'}
+						>
+							{blok.ctaText}
+						</Text>
+					</a>
+				</div>
+			)
+	}
 </div>
-<!-- <div class={clsx('flex flex-col gap-4 justify-center', centered && 'text-center items-center')}>
-	{
-		title && title !== '' && (
-			<Title type="h2" color={lightText ? 'light' : 'dark'} size={'medium'}>
-				{title}
-			</Title>
-		)
-	}
-	{
-		description && description !== '' && (
-			<Text color={lightText ? 'light' : 'dark'}>{description}</Text>
-		)
-	} -->
-<!-- {
-		cta && cta.type === 'link' && (
-			<Button className="max-w-fit" type={cta.type} ariaLabel={cta.label} href={cta.link}>
-				{cta.text}
-			</Button>
-		)
-	}
-	{
-		cta && cta.type === 'button' && (
-			<Button
-				className="max-w-fit"
-				type={cta.type}
-				ariaLabel={cta.label}
-				dataElementName={cta.dataElementName}
-			>
-				{cta.text}
-			</Button>
-		)
-	} -->
-<!-- </div> -->

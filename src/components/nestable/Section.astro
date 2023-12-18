@@ -27,18 +27,10 @@ const section = cva('text-darkText-30', {
 			large: 'py-24',
 			xlarge: 'py-6 md:py-24 xl:py-48',
 		},
-		backgroundImage: {
-			none: '',
-			ribbonOne: 'bg-ribbonOne',
-			ribbonTwo: 'bg-ribbonTwo',
-			ribbonThree: 'bg-ribbonThree',
-			ribbonFour: 'bg-ribbonFour',
-		},
 	},
 	defaultVariants: {
 		color: 'white',
 		padding: 'medium',
-		backgroundImage: 'none',
 	},
 });
 
@@ -46,10 +38,14 @@ const container = cva('', {
 	variants: {
 		container: {
 			none: '',
-			small: 'mx-auto px-4 sm:px-0 sm:max-w-screen-sm',
-			medium: 'mx-auto px-4 sm:px-0 sm:max-w-screen-md',
-			large: 'mx-auto px-4 sm:px-0 sm:max-w-screen-lg',
-			xlarge: 'mx-auto px-4 sm:px-0 sm:max-w-screen-xl',
+			small:
+				'mx-auto px-4 lg:px-2 lg:max-w-[750px] 2xl:max-w-[950px] 3xl:max-w-[1150px] 4xl:max-w-[1350px]',
+			medium:
+				'mx-auto px-4 lg:px-2 lg:max-w-[950px] 2xl:max-w-[1150px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]',
+			large:
+				'mx-auto px-4 lg:px-2 lg:max-w-[1150px] 2xl:max-w-[1350px] 3xl:max-w-[1500px] 4xl:max-w-[1700px]',
+			xlarge:
+				'mx-auto px-4 lg:px-2 lg:max-w-[1350px] 2xl:max-w-[1500px] 3xl:max-w-[1700px] 4xl:max-w-[1900px]',
 		},
 		gap: {
 			none: '',
@@ -74,10 +70,30 @@ const { blok } = Astro.props;
 
 <section
 	class={cn(
-		section({ color: blok.color, padding: blok.padding, backgroundImage: blok.backgroundImage })
+		section({ color: blok.color, padding: blok.padding }),
+		`${blok.backgroundImage !== 'none' ? 'relative z-[-2]' : ''}`
 	)}
 	{...storyblokEditable(blok)}
 >
+	{
+		blok.backgroundImage !== 'none' && (
+			<div
+				class={cn(
+					'absolute inset-0 z-[-1] select-none',
+					blok.backgroundImage === 'ribbonTwo' && 'hidden  lg:flex lg:justify-end'
+				)}
+			>
+				<img
+					src={`/images/bgs/${blok.backgroundImage}.svg`}
+					alt=""
+					class={cn(
+						'h-full w-full object-cover',
+						blok.backgroundImage === 'ribbonTwo' && 'w-4/6 bg-no-repeat object-cover'
+					)}
+				/>
+			</div>
+		)
+	}
 	<div class={cn('flex flex-col', container({ gap: blok.gap, container: blok.container }))}>
 		{
 			blok.blocks.map((item: SectionBlockValues) => (

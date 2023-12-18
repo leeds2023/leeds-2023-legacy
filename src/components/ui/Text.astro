@@ -12,6 +12,7 @@ type ElementType = (typeof element)[keyof typeof element];
 const text = cva('text', {
 	variants: {
 		size: {
+			xsmall: 'text-sm',
 			small: 'text-base',
 			medium: 'text-lg',
 			large: 'text-xl',
@@ -19,10 +20,14 @@ const text = cva('text', {
 			superLarge: 'text-xl xl:text-2xl',
 		},
 		color: {
-			default: 'text-darkText-30',
+			default: '',
 			light: 'text-lightText-30',
 			dark: 'text-darkText-30',
 		},
+	},
+	defaultVariants: {
+		size: 'small',
+		color: 'default',
 	},
 });
 
@@ -31,18 +36,21 @@ type TextVariant = VariantProps<typeof text>;
 type Props = TextVariant & {
 	type?: ElementType;
 	className?: string;
+	customAttributes?: {
+		id: string;
+	};
 };
 
-const { size = 'large', color = 'default', type = 'p', className } = Astro.props;
+const { size = 'large', color = 'default', type = 'p', className, customAttributes } = Astro.props;
 ---
 
 {
 	type === 'p' ? (
-		<p class={cn(text({ size, color }), className)}>
+		<p {...customAttributes} class={cn(text({ size, color }), className)}>
 			<slot />
 		</p>
 	) : (
-		<span class={cn(text({ size, color }), className)}>
+		<span {...customAttributes} class={cn(text({ size, color }), className)}>
 			<slot />
 		</span>
 	)

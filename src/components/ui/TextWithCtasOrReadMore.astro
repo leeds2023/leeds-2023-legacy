@@ -1,0 +1,46 @@
+---
+import Title from '@/components/ui/Title.astro';
+import RichText from '@/components/ui/RichText.astro';
+import ReadMoreRichText from '@/components/react/ReadMoreRichText';
+import type { CtaStoryblok, RichText as RichTextType } from '@/lib/storyblok/types';
+import { renderRichText } from '@storyblok/astro';
+import Button from '@/components/ui/Button.astro';
+
+type Props = {
+	title: string;
+	description: RichTextType;
+	truncate?: boolean;
+	truncateChars?: number;
+	ctas?: CtaStoryblok[];
+};
+
+const { title, description, truncate = false, truncateChars = 140, ctas } = Astro.props;
+const renderedRichText = renderRichText(description);
+---
+
+{
+	!truncate && (
+		<div class="flex flex-col gap-6 bg-brandRose-100 p-8 text-center lg:text-left">
+			<Title>{title}</Title>
+			<RichText content={description} />
+			{ctas && ctas.length > 0 && (
+				<div class="flex flex-col gap-6 lg:flex-row">
+					{ctas.map((cta) => (
+						<Button id={cta._uid} color={cta.color} sbLink={cta.link} style={cta.style}>
+							{cta.text}
+						</Button>
+					))}
+				</div>
+			)}
+		</div>
+	)
+}
+
+{
+	truncate && (
+		<div class="flex flex-col gap-6 bg-brandRose-100 p-8">
+			<Title>{title}</Title>
+			<ReadMoreRichText client:visible content={renderedRichText} truncateChars={truncateChars} />
+		</div>
+	)
+}

@@ -19,6 +19,7 @@ export async function fetchStory<T = StoryWithLegacyPage>(storyId?: string): Pro
 			? 'draft'
 			: 'published',
 		token: import.meta.env.STORYBLOK_TOKEN,
+		resolve_links: '1',
 	});
 	return story;
 }
@@ -33,6 +34,7 @@ export async function fetchStories<T = StoryWithLegacyPage>(
 			? 'draft'
 			: 'published',
 		by_uuids: storyIds.join(','),
+		resolve_links: '1',
 	});
 
 	return data;
@@ -45,6 +47,7 @@ export async function fetchNavAndFooter(): Promise<StoryWithNavAndFooter> {
 			: import.meta.env.DEV
 			? 'draft'
 			: 'published',
+		resolve_links: '1',
 	});
 
 	return data;

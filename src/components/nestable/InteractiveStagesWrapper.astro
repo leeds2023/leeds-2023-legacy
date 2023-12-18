@@ -2,6 +2,7 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { InteractiveStagesStoryblok } from '@/lib/storyblok/types';
+import InteractiveStages from '@/components/react/InteractiveStages';
 
 type Props = {
 	blok: InteractiveStagesStoryblok;
@@ -9,6 +10,6 @@ type Props = {
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>
-	{JSON.stringify(blok.component)}
+<div id="interactiveStages" {...storyblokEditable(blok)}>
+	<InteractiveStages client:visible blok={blok} />
 </div>

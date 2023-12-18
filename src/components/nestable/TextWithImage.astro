@@ -1,5 +1,9 @@
 ---
+import type { TextWithImageStoryblok } from '@/lib/storyblok/types';
 import { storyblokEditable } from '@storyblok/astro';
+import { Image } from '@unpic/astro';
+import TextWithCtasOrReadMore from '../ui/TextWithCtasOrReadMore.astro';
+
 // import type { Asset } from '@/lib/storyblok';
 // import type { LinkBlock } from './ui/Link.astro';
 // type Props = {
@@ -9,7 +13,30 @@ import { storyblokEditable } from '@storyblok/astro';
 // 	reverse: boolean;
 // 	image: Asset;
 // };
+
+type Props = {
+	blok: TextWithImageStoryblok;
+};
+
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>{JSON.stringify(blok.component)}</div>
+<div {...storyblokEditable(blok)} class="relative flex flex-col lg:flex-row">
+	<div class="lg:w-1/2">
+		<Image
+			src={blok.image.filename}
+			alt={blok.image.alt ? blok.image.alt : ''}
+			height={550}
+			layout="fullWidth"
+		/>
+	</div>
+	<div class="flex items-center lg:-ml-12 lg:w-1/2">
+		<TextWithCtasOrReadMore
+			title={blok.title}
+			description={blok.description}
+			ctas={blok.ctas}
+			truncate={blok.truncate}
+			truncateChars={blok.truncateCharacters ? parseInt(blok.truncateCharacters) : undefined}
+		/>
+	</div>
+</div>

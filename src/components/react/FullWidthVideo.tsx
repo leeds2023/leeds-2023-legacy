@@ -38,7 +38,7 @@ export default function FullWidthVideo({ blok }: Props) {
 						opts={opts}
 						iframeClassName={'w-full h-full absolute top-0 left-0'}
 						onReady={onPlayerReady}
-						className={'relative mb-[50px] h-[0] w-full overflow-hidden pb-[56.25%]'}
+						className={'relative h-[0] w-full overflow-hidden pb-[56.25%]'}
 					></YouTube>
 					<div>
 						<button
@@ -66,7 +66,7 @@ export default function FullWidthVideo({ blok }: Props) {
 					</div>
 				</div>
 			) : (
-				<div className={'m-h-[20rem] relative h-[80vh] w-full'}>
+				<div className={'m-h-[20rem] relative h-[40vh] w-full sm:h-[80vh]'}>
 					<Image
 						src={blok.coverImage.filename}
 						alt={blok.coverImage.alt}
@@ -77,10 +77,10 @@ export default function FullWidthVideo({ blok }: Props) {
 						onClick={() => setIsActive(true)}
 						className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center gap-4 rounded-md  px-4 py-2 text-white"
 					>
-						<div className="flex h-20 w-20 items-center justify-center rounded-full bg-brandMagenta-100 pl-[5px]">
+						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-brandMagenta-100 pl-[5px]">
 							<svg
-								width="32"
-								height="32"
+								width="25"
+								height="25"
 								viewBox="0 0 24 24"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ export default function FullWidthVideo({ blok }: Props) {
 								/>
 							</svg>
 						</div>
-						<span className="text-2xl">Play Video</span>
+						<span className="text-xl">Play Video</span>
 					</button>
 				</div>
 			)}

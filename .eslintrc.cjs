@@ -5,11 +5,7 @@ module.exports = {
     es2022: true,
     browser: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:astro/recommended',
-    'plugin:jsx-a11y/recommended', // Add the recommended accessibility rules
-  ],
+  extends: ['eslint:recommended', 'plugin:astro/recommended', 'plugin:jsx-a11y/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -20,13 +16,10 @@ module.exports = {
   settings: {
     react: {
       pragma: 'h',
-      version: 'detect', // Changed to 'detect' to auto-detect React version
+      version: 'detect',
     },
   },
-  plugins: [
-    // Add 'jsx-a11y' to the plugins array
-    'jsx-a11y',
-  ],
+  plugins: ['jsx-a11y'],
   overrides: [
     {
       files: ['*.astro'],
@@ -58,7 +51,7 @@ module.exports = {
     {
       files: ['*.tsx'],
       parser: '@typescript-eslint/parser',
-      plugins: ['react', '@typescript-eslint', 'jsx-a11y'], // Ensure 'jsx-a11y' is included for .tsx files
+      plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
       parserOptions: {
         tsconfigRootDir: __dirname,
         project: ['./tsconfig.json'],
@@ -69,7 +62,7 @@ module.exports = {
         'plugin:react/jsx-runtime',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:jsx-a11y/recommended', // Ensure 'jsx-a11y' recommended rules are included for .tsx files
+        'plugin:jsx-a11y/recommended',
       ],
       rules: {
         '@typescript-eslint/no-unused-vars': [
@@ -81,12 +74,10 @@ module.exports = {
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/no-redundant-type-constituents': 'off',
-        // You can override or add additional accessibility rules here
+        'no-mixed-spaces-and-tabs': 'off',
       },
     },
     {
-      // Define the configuration for `<script>` tag.
-      // Script in `<script>` is assigned a virtual file name with the `.js` extension.
       files: ['**/*.astro/*.js', '*.astro/*.js'],
       parser: '@typescript-eslint/parser',
     },

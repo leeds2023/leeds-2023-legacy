@@ -79,6 +79,26 @@ export default {
 					hover: '#8C014A',
 				},
 			},
+			backgroundImage: {
+				ribbonOne: "url('/images/bgs/ribbonOne.svg')",
+			},
+			keyframes: {
+				leftToRight: {
+					'0%': {
+						transform: 'translateX(0%)',
+					},
+					'100%': {
+						transform: 'translateX(-50%)',
+					},
+				},
+			},
+			animation: {
+				scrollingText: 'leftToRight 10s linear infinite',
+			},
+			screens: {
+				'3xl': '1920px',
+				'4xl': '2360px',
+			},
 		},
 	},
 	plugins: [],

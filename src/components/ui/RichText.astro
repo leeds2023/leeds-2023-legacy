@@ -1,0 +1,15 @@
+---
+import type { RichText } from '@/lib/storyblok/types';
+import { cn } from '@/lib/utils';
+import { renderRichText } from '@storyblok/astro';
+
+type Props = {
+	content: RichText;
+	className?: string;
+};
+
+const { content, className } = Astro.props;
+const renderedRichText = renderRichText(content);
+---
+
+<div class={cn('prose', className)} set:html={renderedRichText} />
