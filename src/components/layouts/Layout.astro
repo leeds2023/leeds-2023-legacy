@@ -3,10 +3,17 @@ import { SEO } from 'astro-seo';
 import type { Seo } from '@/lib/storyblok/types';
 import '@/styles/fonts.css';
 import VideoModal from '../ui/VideoModal.astro';
+import { fetchNavAndFooter } from '@/lib/storyblok/helpers';
+import Navigation from '@components/react/Navigation';
+import Footer from '@/components/nestable/Footer.astro';
 
 type Props = {
 	seo: Seo;
 };
+
+const {
+	content: { nav, footer },
+} = await fetchNavAndFooter();
 
 const { seo } = Astro.props;
 ---
@@ -63,16 +70,18 @@ const { seo } = Astro.props;
 		/>
 	</head>
 	<body>
+		<Navigation client:load blok={nav[0]} />
 		<div class="smooth-wrapper">
 			<div class="smooth-content">
 				<slot />
+				<Footer blok={footer[0]} />
 			</div>
 		</div>
 		<VideoModal />
 		<style is:global>
 			html {
 				font-family: 'DM Sans', system-ui, sans-serif;
-				@apply 3xl:text-[20px] 4xl:text-[22px] text-[18px];
+				@apply text-[18px] 3xl:text-[20px] 4xl:text-[22px];
 			}
 
 			code {

@@ -167,7 +167,7 @@ export default function InteractiveStages({ blok }: Props) {
 					)}
 
 					{step === 2 && (
-						<div className="flex flex-col gap-4 lg:gap-8">
+						<div className=" relative z-30 flex flex-col gap-4 lg:gap-8">
 							<h2 className="font-display text-3xl lg:text-5xl">
 								{stageData.stageName} in numbers
 							</h2>
@@ -183,7 +183,12 @@ export default function InteractiveStages({ blok }: Props) {
 												)}
 												<span
 													aria-describedby={item._uid}
-													className="font-display text-4xl font-semibold lg:text-6xl"
+													className={cn(
+														'font-display text-4xl font-semibold',
+														stageData && stageData.stats && stageData.stats.length > 2
+															? 'lg:text-4xl'
+															: 'lg:text-6xl'
+													)}
 												>
 													{formatWithCommas(item.statValue)}
 												</span>
@@ -221,7 +226,7 @@ export default function InteractiveStages({ blok }: Props) {
 					)}
 
 					<div className="absolute bottom-4 right-0 z-10 flex flex-col">
-						<div className=" -mr-[4rem] inline-block w-[55rem] opacity-5 sm:w-[80rem]  lg:-mr-[6rem] lg:w-[100rem] 2xl:-mr-[8rem] 2xl:w-[110rem]">
+						<div className=" -mr-[4rem] inline-block w-[55rem] select-none opacity-5 sm:w-[80rem]  lg:-mr-[6rem] lg:w-[100rem] 2xl:-mr-[8rem] 2xl:w-[110rem]">
 							<img src="/images/nowPlaying.svg" width="100%" height="100%" alt="" />
 						</div>
 					</div>

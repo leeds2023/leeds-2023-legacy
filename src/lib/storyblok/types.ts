@@ -193,7 +193,7 @@ export interface CardsStoryblok {
 export interface ColumnBarStoryblok {
 	fullWidth?: boolean;
 	columns: ColumnBlockStoryblok[];
-	bgColor?: '' | 'white' | 'mint' | 'transparent';
+	bgColor?: 'white' | 'mint' | 'transparent';
 	negativeMargin?: boolean;
 	_uid: string;
 	component: 'columnBar';
@@ -408,6 +408,8 @@ export interface MediaLinkStoryblok {
 
 export interface MediaLinksStoryblok {
 	links: MediaLinkStoryblok[];
+	title: string;
+	description: string;
 	_uid: string;
 	component: 'mediaLinks';
 	[k: string]: any;
@@ -494,7 +496,7 @@ export interface NavContentStoryblok {
 
 export interface NavFooterLinkStoryblok {
 	linkText?: string;
-	link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+	link: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
 	_uid: string;
 	component: 'navFooterLink';
 	[k: string]: any;

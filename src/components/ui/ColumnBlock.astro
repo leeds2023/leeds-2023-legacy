@@ -2,6 +2,9 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { ColumnBlockStoryblok } from '@/lib/storyblok/types';
+import { Image } from '@unpic/astro';
+import Text from '@/components/ui/Text.astro';
+import { parseStoryblokLink } from '@/lib/storyblok/helpers';
 
 export type ColumnBlock = Props;
 
@@ -10,8 +13,28 @@ type Props = {
 };
 
 const { blok } = Astro.props;
+
+const link = blok.ctaLink ? parseStoryblokLink(blok.ctaLink) : '#';
+const isExternal = link.startsWith('http');
+const htmlAttributes = isExternal
+	? {
+			target: '_blank',
+			rel: 'noopener noreferrer',
+	  }
+	: {};
 ---
 
-<div {...storyblokEditable(blok)}>
-	<p>{JSON.stringify(blok.component)}</p>
-</div>
+<a
+	id={blok._uid}
+	href={link}
+	{...htmlAttributes}
+	class="flex w-full items-center gap-6"
+	{...storyblokEditable(blok)}
+>
+	<div class="h-16 w-16 flex-shrink-0 rounded-full bg-white p-4">
+		<Image src={blok.image.filename} layout="fullWidth" alt="" aria-labelledby={blok._uid} />
+	</div>
+	<Text size={'small'} className="font-display">
+		{blok.text}
+	</Text>
+</a>

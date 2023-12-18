@@ -41,7 +41,9 @@ export async function fetchStories<T = StoryWithLegacyPage>(
 }
 
 export async function fetchNavAndFooter(): Promise<StoryWithNavAndFooter> {
-	const { data } = await storyblokApi.get(`cdn/stories/legacy/globals/footer-and-navigation`, {
+	const {
+		data: { story },
+	} = await storyblokApi.get(`cdn/stories/legacy/globals/footer-and-navigation`, {
 		version: import.meta.env.STORYBLOK_ENV
 			? import.meta.env.STORYBLOK_ENV
 			: import.meta.env.DEV
@@ -50,7 +52,7 @@ export async function fetchNavAndFooter(): Promise<StoryWithNavAndFooter> {
 		resolve_links: '1',
 	});
 
-	return data;
+	return story;
 }
 
 export async function fetchDataSources(dataSourceId: string): Promise<DataSourceResponse> {
@@ -94,6 +96,12 @@ export function parseStoryblokLink(link: Link): string {
 	if (link.story) {
 		if (link.anchor) {
 			return `/${link.story?.url ?? ''}#${link.anchor ?? ''}`.replaceAll('//', '/');
+		}
+		if (link.story.slug && link.story.slug !== 'legacy') {
+			return `/${link.story.slug ?? ''}`.replaceAll('//', '/');
+		}
+		if (link.story.slug === 'legacy') {
+			return '/';
 		}
 		return `/${link.story?.url || ''}`.replaceAll('//', '/');
 	}

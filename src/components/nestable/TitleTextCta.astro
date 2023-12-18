@@ -6,8 +6,8 @@ import { storyblokEditable } from '@storyblok/astro';
 import Title from '@/components/ui/Title.astro';
 import RichText from '@/components/ui/RichText.astro';
 import Button from '@/components/ui/Button.astro';
-import { Image } from '@unpic/astro';
 import Text from '../ui/Text.astro';
+import ImageLink from '../ui/ImageLink.astro';
 
 const titleTextCta = cva(
 	'p-8 lg:p-16 flex flex-col gap-4 lg:gap-6 text-center justify-center items-center',
@@ -64,13 +64,7 @@ const { blok } = Astro.props;
 			blok.ctaText === '' && (
 				<div class="flex flex-wrap justify-center gap-8 pt-4">
 					{blok.multiLinks.map((item) => (
-						<a class="w-28" href="https://google.com" class="underline">
-							<Image
-								alt={item.image.alt ? item.image.alt : ''}
-								layout="fullWidth"
-								src={item.image.filename}
-							/>
-						</a>
+						<ImageLink sbLink={item.link} image={item.image} />
 					))}
 				</div>
 			)

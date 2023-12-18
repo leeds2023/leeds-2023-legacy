@@ -1,0 +1,24 @@
+---
+import { parseStoryblokLink } from '@/lib/storyblok/helpers';
+import type { Asset, Link } from '@/lib/storyblok/types';
+import { Image } from '@unpic/astro';
+type Props = {
+	sbLink: Link;
+	image: Asset;
+};
+
+const { sbLink, image } = Astro.props;
+
+const link = sbLink ? parseStoryblokLink(sbLink) : '#';
+const isExternal = link.startsWith('http');
+const htmlAttributes = isExternal
+	? {
+			target: '_blank',
+			rel: 'noopener noreferrer',
+	  }
+	: {};
+---
+
+<a {...htmlAttributes} class="w-28" href={link} class="underline">
+	<Image alt={image.alt ? image.alt : ''} layout="fullWidth" src={image.filename} />
+</a>

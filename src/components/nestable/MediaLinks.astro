@@ -2,12 +2,20 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { MediaLinksStoryblok } from '@/lib/storyblok/types';
+import MediaLink from '@/components/ui/MediaLink.astro';
+import Title from '../ui/Title.astro';
 type Props = {
 	blok: MediaLinksStoryblok;
 };
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>
-	{JSON.stringify(blok.component)}
+<div class="flex flex-col items-center justify-center gap-8" {...storyblokEditable(blok)}>
+	<div class="flex flex-col gap-4">
+		{blok.title && blok.title !== '' && <Title size={'large'}>{blok.title}</Title>}
+		{blok.description && blok.description !== '' && <p>{blok.description}</p>}
+	</div>
+	<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
+		{blok.links.map((item) => <MediaLink blok={item} />)}
+	</div>
 </div>

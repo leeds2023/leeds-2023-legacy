@@ -2,13 +2,41 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { ColumnBarStoryblok } from '@/lib/storyblok/types';
+import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
+import Title from '@components/ui/Title.astro';
+import ColumnBlock from '@components/ui/ColumnBlock.astro';
 type Props = {
 	blok: ColumnBarStoryblok;
 };
 
+const columnBar = cva('flex flex-col justify-center items-center gap-8 p-8', {
+	variants: {
+		color: {
+			white: 'bg-white text-darkText-30',
+			mint: 'bg-brandMint-100 text-darkText-30',
+			transparent: 'bg-transparent',
+		},
+		negativeMargin: {
+			true: '-mt-24 mb-16',
+			false: '',
+		},
+	},
+	defaultVariants: {
+		color: 'transparent',
+		negativeMargin: false,
+	},
+});
+
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>
-	{JSON.stringify(blok.component)}
+<div
+	class={cn(columnBar({ color: blok.bgColor, negativeMargin: blok.negativeMargin }))}
+	{...storyblokEditable(blok)}
+>
+	<Title size={'large'}>Explore our site</Title>
+	<div class="flex w-full flex-col gap-8 md:flex-row md:justify-between">
+		{blok.columns.map((item) => <ColumnBlock blok={item} />)}
+	</div>
 </div>

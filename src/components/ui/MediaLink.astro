@@ -2,6 +2,9 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { MediaLinkStoryblok } from '@/lib/storyblok/types';
+import { Image } from '@unpic/astro';
+import Text from '@/components/ui/Text.astro';
+import Button from '@/components/ui/Button.astro';
 
 export type MediaLinkBlock = Props;
 type Props = {
@@ -11,6 +14,23 @@ type Props = {
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>
-	<p>{JSON.stringify(blok.component)}</p>
+<div {...storyblokEditable(blok)} class="flex w-full flex-col gap-4 bg-white p-8">
+	<div class="w-36">
+		<Image src={blok.image.filename} alt={blok.alt} layout="fullWidth" />
+	</div>
+	{
+		blok.title && (
+			<Text className="font-display" size={'extraLarge'}>
+				{blok.title}
+			</Text>
+		)
+	}
+	<Button
+		sbLink={blok.link}
+		id={blok._uid}
+		style={'ghost'}
+		className="justify-start px-0 text-left text-sm"
+	>
+		{blok.linkText}
+	</Button>
 </div>
