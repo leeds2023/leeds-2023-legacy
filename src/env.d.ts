@@ -5,6 +5,7 @@ interface ImportMetaEnv {
 	STORYBLOK_TOKEN: string;
 	STORYBLOK_ENV: 'draft' | 'published';
 	OUTPUT_STRATEGY: 'hybrid' | 'static' | 'server';
+	SITE_URL: string;
 }
 
 interface ImportMeta {
