@@ -11,8 +11,6 @@ type TagsListProps = {
 export default function TagsList({ stage, tags, threshold = 2, disableThreshold }: TagsListProps) {
 	const displayedTags = disableThreshold ? tags : tags.slice(0, threshold);
 
-	console.log(stage, 'stage');
-
 	return (
 		<div className="flex items-center gap-2">
 			<span

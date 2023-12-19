@@ -1,0 +1,27 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+import type { AltHeroTwoStoryblok } from '@/lib/storyblok/types';
+import Title from '../ui/Title.astro';
+import { cn } from '@/lib/utils';
+import Text from '../ui/Text.astro';
+type Props = {
+	blok: AltHeroTwoStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	<div class={cn('flex max-w-lg flex-col gap-4', blok.hasRibbonBg && 'pb-16 lg:pb-0')}>
+		<span class={cn('font-display text-base uppercase')}>
+			{blok.label}
+		</span>
+		<Title type="h1" size={'extraLarge'}>
+			{blok.title}
+		</Title>
+		<Text>
+			{blok.blurb}
+		</Text>
+	</div>
+</div>

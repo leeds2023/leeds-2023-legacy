@@ -98,7 +98,9 @@ const { blok } = Astro.props;
 			<div
 				class={cn(
 					'absolute inset-0 z-[-1] select-none',
-					blok.backgroundImage === 'ribbonTwo' && 'hidden  lg:flex lg:justify-end'
+					blok.backgroundImage === 'ribbonTwo' && 'hidden  lg:flex lg:justify-end',
+					blok.backgroundImage === 'ribbonThree' && '-bottom-24 left-auto right-0 lg:bottom-0',
+					blok.backgroundImage === 'ribbonFour' && 'bottom-auto left-auto right-0 top-0 '
 				)}
 			>
 				<img
@@ -106,7 +108,11 @@ const { blok } = Astro.props;
 					alt=""
 					class={cn(
 						'h-full w-full object-cover',
-						blok.backgroundImage === 'ribbonTwo' && 'w-4/6 bg-no-repeat object-cover'
+						blok.backgroundImage === 'ribbonTwo' && 'w-4/6 bg-no-repeat object-cover',
+						blok.backgroundImage === 'ribbonThree' &&
+							'w-[30rem] bg-no-repeat object-contain object-right-bottom lg:w-[25rem] xl:w-[30rem] 2xl:w-[50rem]',
+						blok.backgroundImage === 'ribbonFour' &&
+							'w-[35rem] bg-no-repeat object-contain object-right-bottom opacity-50'
 					)}
 				/>
 			</div>

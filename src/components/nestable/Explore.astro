@@ -1,0 +1,55 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+import type { ExploreStoryblok } from '@/lib/storyblok/types';
+import Title from '../ui/Title.astro';
+import Text from '../ui/Text.astro';
+import Button from '../ui/Button.astro';
+import { Image } from '@unpic/astro';
+type Props = {
+	blok: ExploreStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	<div class="flex flex-col gap-12">
+		<div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
+			<div class="flex flex-col gap-4">
+				<Title size={'large'}>{blok.title}</Title>
+				<Text className="max-w-md" size={'small'}>{blok.description}</Text>
+			</div>
+			<div>
+				<Button style={'filled'} color={'primary'} id={blok._uid} sbLink={blok.ctaLink}>
+					{blok.ctaText}
+				</Button>
+			</div>
+		</div>
+
+		<div class="grid grid-cols-1 gap-2 lg:grid-cols-3">
+			{
+				blok.items.map((item) => (
+					<div class="flex flex-col bg-[#EE3796] text-white">
+						<Image src={item.image.filename} alt={item.image.alt} width={985.5} height={562.5} />
+						<div class="flex flex-col items-center justify-center gap-6 p-6 text-center">
+							<div class="flex flex-col gap-1">
+								<span class="font-display text-sm uppercase">{item.label}</span>
+								<Title size={'medium'}>{item.title}</Title>
+							</div>
+							<Button
+								className="text-white w-full"
+								style={'outline'}
+								color={'white'}
+								id="1"
+								sbLink={item.ctaLink}
+							>
+								{item.ctaText}
+							</Button>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>

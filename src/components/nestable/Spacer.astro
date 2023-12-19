@@ -1,6 +1,7 @@
 ---
 import type { LegacySpacerStoryblok } from '@/lib/storyblok/types';
 import { cn } from '@/lib/utils';
+import { storyblokEditable } from '@storyblok/astro';
 type Props = {
 	blok: LegacySpacerStoryblok;
 };
@@ -19,4 +20,5 @@ const { blok } = Astro.props;
 			: ''
 	)}
 >
+	{storyblokEditable(blok)}
 </div>

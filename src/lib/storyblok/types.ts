@@ -135,6 +135,7 @@ export interface AltHeroTwoStoryblok {
 	title: string;
 	label: string;
 	blurb: string;
+	hasRibbonBg: boolean;
 	_uid: string;
 	component: 'altHeroTwo';
 	[k: string]: any;
@@ -247,7 +248,6 @@ export interface ExploreItemStoryblok {
 	ctaText: string;
 	_uid: string;
 	component: 'exploreItem';
-	[k: string]: any;
 }
 
 export interface FooterContentStoryblok {
@@ -710,14 +710,14 @@ export interface StoriesStoryblok {
 }
 
 export interface StoryStoryblok {
-	coverImage: AssetStoryblok;
+	portraitImage: AssetStoryblok;
 	youtubeId: string;
+	videoLandscapeThumbnail: AssetStoryblok;
 	title: string;
 	subtitle: string;
 	body: RichtextStoryblok;
 	_uid: string;
 	component: 'story';
-	[k: string]: any;
 }
 
 export interface TestimonialStoryblok {

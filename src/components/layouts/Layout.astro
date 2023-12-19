@@ -93,6 +93,37 @@ const { seo } = Astro.props;
 			* {
 				box-sizing: border-box;
 			}
+
+			.embla {
+				--slide-spacing: 1rem;
+				--slide-size: 22%;
+				--slide-height: 19rem;
+				padding: 1.6rem;
+			}
+			.embla__viewport {
+				overflow: hidden;
+			}
+			.embla__container {
+				backface-visibility: hidden;
+				display: flex;
+				touch-action: pan-y;
+				margin-left: calc(var(--slide-spacing) * -1);
+			}
+			.embla__slide {
+				min-width: 0;
+				padding-left: var(--slide-spacing);
+				position: relative;
+			}
+
+			.embla__slide {
+				@apply flex-[0_0_75%] sm:flex-[0_0_55%] md:flex-[0_0_40%] lg:flex-[0_0_30%] xl:flex-[0_0_22%];
+			}
+			.embla__slide__img {
+				display: block;
+				height: var(--slide-height);
+				width: 100%;
+				object-fit: cover;
+			}
 		</style>
 	</body>
 </html>

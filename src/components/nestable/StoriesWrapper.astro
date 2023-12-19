@@ -1,0 +1,15 @@
+---
+import type { StoriesStoryblok } from '@/lib/storyblok/types';
+import { storyblokEditable } from '@storyblok/astro';
+import Stories from '../react/Stories';
+
+type Props = {
+	blok: StoriesStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	<Stories client:load blok={blok} />
+</div>
