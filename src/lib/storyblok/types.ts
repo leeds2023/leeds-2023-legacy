@@ -727,6 +727,7 @@ export interface StoryStoryblok {
 	body: RichtextStoryblok;
 	_uid: string;
 	component: 'story';
+	[k: string]: any;
 }
 
 export interface TestimonialStoryblok {
