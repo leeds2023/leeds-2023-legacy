@@ -18,7 +18,7 @@ const htmlAttributes = isExternal
 	  }
 	: {};
 
-const dimensions = extractDimensions(image.filename);
+const dimensions = extractDimensions(image.filename, 500);
 ---
 
 <a {...htmlAttributes} class="w-28" href={link} class="underline">

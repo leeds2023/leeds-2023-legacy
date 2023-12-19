@@ -103,14 +103,32 @@ function isValidFullSlug(link: Link) {
 	return typeof link === 'string' && link[0] !== '/';
 }
 
-export function extractDimensions(url: string): { width: number; height: number } | null {
-	// takes a cdn url and returns the width and height
+type DimensionType = 'width' | 'height';
+
+export function extractDimensions(
+	url: string,
+	maxDimension?: number,
+	dimensionType: DimensionType = 'width'
+): { width: number; height: number } | null {
+	// Takes a CDN URL and returns the width and height, scaled if necessary
 	const regex = /\/(\d+)x(\d+)\//;
 	const match = url.match(regex);
 
 	if (match && match.length === 3) {
-		const width = parseInt(match[1], 10);
-		const height = parseInt(match[2], 10);
+		let width = parseInt(match[1], 10);
+		let height = parseInt(match[2], 10);
+
+		const aspectRatio = width / height;
+
+		if (maxDimension) {
+			if (dimensionType === 'width' && width > maxDimension) {
+				width = maxDimension;
+				height = Math.round(width / aspectRatio);
+			} else if (dimensionType === 'height' && height > maxDimension) {
+				height = maxDimension;
+				width = Math.round(height * aspectRatio);
+			}
+		}
 
 		return { width, height };
 	}
