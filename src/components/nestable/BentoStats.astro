@@ -14,7 +14,7 @@ const { blok } = Astro.props;
 		blok.stats && blok.stats.length === 4 && !blok.isReversed && (
 			<div
 				class={cn(
-					'flex flex-wrap items-center gap-4 lg:flex-nowrap',
+					'flex flex-wrap items-center gap-8 lg:flex-nowrap',
 					blok.isTwoColumns && 'md:grid-cols-1 lg:grid-cols-2'
 				)}
 			>
@@ -36,7 +36,7 @@ const { blok } = Astro.props;
 		blok.stats && blok.stats.length === 4 && blok.isReversed && (
 			<div
 				class={cn(
-					'flex flex-wrap items-center gap-4 lg:flex-nowrap',
+					'flex flex-wrap items-center gap-8 lg:flex-nowrap',
 					blok.isTwoColumns && 'md:grid-cols-1 lg:grid-cols-2'
 				)}
 			>

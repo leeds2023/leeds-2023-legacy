@@ -699,6 +699,8 @@ export interface StatStoryblok {
 	subtext: string;
 	statValue: string;
 	linkText?: string;
+	isLarger?: boolean;
+	isShort?: boolean;
 	link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
 	icon?: AssetStoryblok;
 	_uid: string;

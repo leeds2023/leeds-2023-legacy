@@ -24,8 +24,8 @@ const dimensions = blok.icon ? extractDimensions(blok.icon.filename, 2000) : nul
 			'p-8 flex flex-col gap-4 h-52 justify-between',
 			isInBox && 'border-2 border-brandMagenta-80 rounded-md',
 			isWide && 'h-40',
-			isLarger && 'h-48',
-			isShort && 'h-32'
+			(isLarger || blok.isLarger) && 'h-48',
+			(isShort || blok.isShort) && 'h-32'
 		)}
 	>
 		<div class="flex items-center gap-4">
@@ -53,7 +53,11 @@ const dimensions = blok.icon ? extractDimensions(blok.icon.filename, 2000) : nul
 					</div>
 				)
 			}
-			<Title size={isLarger ? 'larger' : 'large'} className="font-semibold" type="span">
+			<Title
+				size={isLarger || blok.isLarger ? 'larger' : 'large'}
+				className="font-semibold"
+				type="span"
+			>
 				{blok.statValue}
 			</Title>
 		</div>
