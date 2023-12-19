@@ -130,7 +130,7 @@ export default function Project({ project }: ProjectProps) {
 					aria-labelledby={project.uuid + '-expand'}
 				>
 					<span id={project.uuid + '-expand'} className="sr-only">
-						Expand
+						Expand {project.content.title}
 					</span>
 					<Image src="/images/icons/chevron.svg" alt="" height={30} background="auto" width={30} />
 				</button>
