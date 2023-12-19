@@ -16,7 +16,7 @@ const { blok } = Astro.props;
 const dimensions = extractDimensions(blok.image.filename, 500);
 ---
 
-<div {...storyblokEditable(blok)} class="flex w-full flex-col gap-4 bg-white p-8">
+<div {...storyblokEditable(blok)} class="flex w-full flex-col justify-between gap-4 bg-white p-8">
 	<div class="w-36">
 		{
 			dimensions ? (
@@ -39,19 +39,21 @@ const dimensions = extractDimensions(blok.image.filename, 500);
 			)
 		}
 	</div>
-	{
-		blok.title && (
-			<Text className="font-display" size={'extraLarge'}>
-				{blok.title}
-			</Text>
-		)
-	}
-	<Button
-		sbLink={blok.link}
-		id={blok._uid}
-		style={'ghost'}
-		className="justify-start px-0 text-left text-sm"
-	>
-		{blok.linkText}
-	</Button>
+	<div>
+		{
+			blok.title && (
+				<Text className="font-display" size={'extraLarge'}>
+					{blok.title}
+				</Text>
+			)
+		}
+		<Button
+			sbLink={blok.link}
+			id={blok._uid}
+			style={'ghost'}
+			className="justify-start px-0 text-left text-sm"
+		>
+			{blok.linkText}
+		</Button>
+	</div>
 </div>
