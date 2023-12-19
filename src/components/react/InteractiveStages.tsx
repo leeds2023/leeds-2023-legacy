@@ -72,7 +72,7 @@ export default function InteractiveStages({ blok }: Props) {
 					stage === 'Dreaming' ? 'border-darkText-30' : ' border-white'
 				)}
 			>
-				<div className="flex h-full w-full flex-row-reverse items-center justify-center gap-3 py-4 sm:gap-6 lg:w-24 lg:flex-col-reverse lg:gap-[4.5rem] lg:py-0 ">
+				<div className="flex h-full w-full flex-row items-center justify-center gap-3 py-4 sm:gap-6 lg:w-24 lg:flex-col lg:gap-[4.5rem] lg:py-0 ">
 					{blok.stages.map((item) => (
 						<button
 							className={cn(
