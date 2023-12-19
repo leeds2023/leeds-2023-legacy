@@ -79,6 +79,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 						src={blok.coverImage.filename}
 						alt={blok.coverImage.alt}
 						layout="fullWidth"
+						background="auto"
 						className="absolute left-0 top-0 h-full w-full"
 					/>
 					<button

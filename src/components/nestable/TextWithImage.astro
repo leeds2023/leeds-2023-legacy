@@ -26,8 +26,10 @@ const { blok } = Astro.props;
 		<Image
 			src={blok.image.filename}
 			alt={blok.image.alt ? blok.image.alt : ''}
-			height={550}
-			layout="fullWidth"
+			height={1328}
+			width={1100}
+			class="w-full object-cover"
+			background="auto"
 		/>
 	</div>
 	<div class="flex items-center lg:-ml-12 lg:w-1/2">

@@ -1,5 +1,5 @@
 ---
-import { parseStoryblokLink } from '@/lib/storyblok/helpers';
+import { parseStoryblokLink, extractDimensions } from '@/lib/storyblok/helpers';
 import type { Asset, Link } from '@/lib/storyblok/types';
 import { Image } from '@unpic/astro';
 type Props = {
@@ -17,8 +17,29 @@ const htmlAttributes = isExternal
 			rel: 'noopener noreferrer',
 	  }
 	: {};
+
+const dimensions = extractDimensions(image.filename);
 ---
 
 <a {...htmlAttributes} class="w-28" href={link} class="underline">
-	<Image alt={image.alt ? image.alt : ''} layout="fullWidth" src={image.filename} />
+	{
+		dimensions ? (
+			<Image
+				src={image.filename}
+				class="w-full object-contain"
+				alt={image.alt ? image.alt : ''}
+				background="auto"
+				width={dimensions.width}
+				height={dimensions.height}
+			/>
+		) : (
+			<Image
+				src={image.filename}
+				class="w-full object-contain"
+				alt={image.alt ? image.alt : ''}
+				background="auto"
+				layout="fullWidth"
+			/>
+		)
+	}
 </a>

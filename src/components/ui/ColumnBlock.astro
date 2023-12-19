@@ -4,7 +4,7 @@ import { storyblokEditable } from '@storyblok/astro';
 import type { ColumnBlockStoryblok } from '@/lib/storyblok/types';
 import { Image } from '@unpic/astro';
 import Text from '@/components/ui/Text.astro';
-import { parseStoryblokLink } from '@/lib/storyblok/helpers';
+import { extractDimensions, parseStoryblokLink } from '@/lib/storyblok/helpers';
 
 export type ColumnBlock = Props;
 
@@ -22,6 +22,7 @@ const htmlAttributes = isExternal
 			rel: 'noopener noreferrer',
 	  }
 	: {};
+const dimensions = extractDimensions(blok.image.filename);
 ---
 
 <a
@@ -32,7 +33,28 @@ const htmlAttributes = isExternal
 	{...storyblokEditable(blok)}
 >
 	<div class="h-16 w-16 flex-shrink-0 rounded-full bg-white p-4">
-		<Image src={blok.image.filename} layout="fullWidth" alt="" aria-labelledby={blok._uid} />
+		{
+			dimensions ? (
+				<Image
+					src={blok.image.filename}
+					class="w-full object-contain"
+					alt={blok.image.alt ? blok.image.alt : ''}
+					background="auto"
+					width={dimensions.width}
+					height={dimensions.height}
+					aria-labelledby={blok._uid}
+				/>
+			) : (
+				<Image
+					src={blok.image.filename}
+					class="w-full object-contain"
+					alt={blok.image.alt ? blok.image.alt : ''}
+					background="auto"
+					layout="fullWidth"
+					aria-labelledby={blok._uid}
+				/>
+			)
+		}
 	</div>
 	<Text size={'small'} className="font-display">
 		{blok.text}

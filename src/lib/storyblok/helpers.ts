@@ -103,6 +103,21 @@ function isValidFullSlug(link: Link) {
 	return typeof link === 'string' && link[0] !== '/';
 }
 
+export function extractDimensions(url: string): { width: number; height: number } | null {
+	// takes a cdn url and returns the width and height
+	const regex = /\/(\d+)x(\d+)\//;
+	const match = url.match(regex);
+
+	if (match && match.length === 3) {
+		const width = parseInt(match[1], 10);
+		const height = parseInt(match[2], 10);
+
+		return { width, height };
+	}
+
+	return null;
+}
+
 export function parseStoryblokLink(link: Link): string {
 	const NULL_LINK = '#';
 

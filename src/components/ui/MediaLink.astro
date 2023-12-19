@@ -5,6 +5,7 @@ import type { MediaLinkStoryblok } from '@/lib/storyblok/types';
 import { Image } from '@unpic/astro';
 import Text from '@/components/ui/Text.astro';
 import Button from '@/components/ui/Button.astro';
+import { extractDimensions } from '@/lib/storyblok/helpers';
 
 export type MediaLinkBlock = Props;
 type Props = {
@@ -12,11 +13,31 @@ type Props = {
 };
 
 const { blok } = Astro.props;
+const dimensions = extractDimensions(blok.image.filename);
 ---
 
 <div {...storyblokEditable(blok)} class="flex w-full flex-col gap-4 bg-white p-8">
 	<div class="w-36">
-		<Image src={blok.image.filename} alt={blok.alt} layout="fullWidth" />
+		{
+			dimensions ? (
+				<Image
+					src={blok.image.filename}
+					class="w-full object-contain"
+					alt={blok.image.alt ? blok.image.alt : ''}
+					background="auto"
+					width={dimensions.width}
+					height={dimensions.height}
+				/>
+			) : (
+				<Image
+					src={blok.image.filename}
+					class="w-full object-contain"
+					alt={blok.image.alt ? blok.image.alt : ''}
+					background="auto"
+					layout="fullWidth"
+				/>
+			)
+		}
 	</div>
 	{
 		blok.title && (

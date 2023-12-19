@@ -79,6 +79,7 @@ export default function Project({ project }: ProjectProps) {
 												alt={project.content.title}
 												layout="fullWidth"
 												className="h-full object-cover"
+												background="auto"
 											/>
 										</div>
 									)}
