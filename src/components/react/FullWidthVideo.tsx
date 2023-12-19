@@ -47,7 +47,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 					></YouTube>
 					<div>
 						<button
-							className="absolute right-0 top-1/2 z-10 flex h-20 w-20 -translate-y-1/2 transform flex-col items-center gap-4 bg-brandMagenta-100 px-4 py-2 text-white"
+							className="absolute right-0 top-1/2 z-10 flex h-20 w-20 -translate-y-1/2 transform flex-col items-center gap-4 bg-brandMagenta-100 px-4 py-2 text-white hover:bg-brandMagenta-80"
 							onClick={() => {
 								videoElement?.pauseVideo();
 								setIsActive(false);
@@ -99,7 +99,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 						onClick={() => setIsActive(true)}
 						className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center gap-4 rounded-md  px-4 py-2 text-white"
 					>
-						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-brandMagenta-100 pl-[5px]">
+						<div className="flex h-16 w-16 items-center justify-center rounded-full bg-brandMagenta-100 pl-[5px] hover:bg-brandMagenta-80">
 							<svg
 								width="25"
 								height="25"

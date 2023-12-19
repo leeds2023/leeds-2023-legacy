@@ -677,7 +677,14 @@ export interface SectionStoryblok {
 	padding: 'none' | 'small' | 'medium' | 'large' | 'xlarge';
 	container: 'none' | 'small' | 'medium' | 'large' | 'xlarge';
 	sectionName: string;
-	backgroundImage: 'none' | 'ribbonOne' | 'ribbonTwo' | 'ribbonThree' | 'ribbonFour';
+	backgroundImage:
+		| 'none'
+		| 'ribbonOne'
+		| 'ribbonTwo'
+		| 'ribbonThree'
+		| 'ribbonFour'
+		| 'ribbonFive'
+		| 'ribbonSix';
 	gap: 'none' | 'small' | 'medium' | 'large' | 'xlarge';
 	paddingRules: 'paddingTopOnly' | 'paddingBottomOnly' | 'bothSides';
 	className?: string;
@@ -752,9 +759,9 @@ export interface TextWithImageStoryblok {
 }
 
 export interface TextWithImageAltStoryblok {
-	title?: string;
-	body?: RichtextStoryblok;
-	image?: AssetStoryblok;
+	title: string;
+	body: RichtextStoryblok;
+	image: AssetStoryblok;
 	_uid: string;
 	component: 'Text With Image Alt';
 	[k: string]: any;

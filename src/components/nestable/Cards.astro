@@ -1,0 +1,38 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+import type { CardsStoryblok } from '@/lib/storyblok/types';
+import Title from '../ui/Title.astro';
+import Text from '../ui/Text.astro';
+import RichText from '../ui/RichText.astro';
+type Props = {
+	blok: CardsStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	<div class="flex flex-col gap-12">
+		<div class="flex flex-col gap-4">
+			<Title size={'large'}>{blok.title}</Title>
+			<Text className="max-w-md" size={'small'}>{blok.description}</Text>
+		</div>
+
+		<div class="grid grid-cols-1 gap-6 xl:grid-cols-3">
+			{
+				blok.cards.map((item) => (
+					<div class="flex flex-col bg-white text-darkText-30">
+						<div class="flex flex-col gap-4 p-8 text-left">
+							<div class="flex flex-col gap-2">
+								<span class="font-display text-sm uppercase">{item.label}</span>
+								<Title size={'medium'}>{item.title}</Title>
+							</div>
+							<RichText content={item.description} />
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>

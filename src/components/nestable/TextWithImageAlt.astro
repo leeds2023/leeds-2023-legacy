@@ -1,0 +1,47 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+import type { TextWithImageAltStoryblok } from '@/lib/storyblok/types';
+import Title from '../ui/Title.astro';
+import RichText from '../ui/RichText.astro';
+import { Image } from '@unpic/astro';
+import { extractDimensions } from '@/lib/storyblok/helpers';
+type Props = {
+	blok: TextWithImageAltStoryblok;
+};
+const { blok } = Astro.props;
+const dimensions = extractDimensions(blok.image.filename, 2000);
+---
+
+<div {...storyblokEditable(blok)}>
+	<div class="flex flex-col lg:flex-row lg:gap-12 xl:items-center xl:justify-center 2xl:pb-24">
+		<div class="self-start xl:w-1/2">
+			{
+				dimensions ? (
+					<Image
+						src={blok.image.filename}
+						class="hidden h-[30rem] w-full object-contain object-right-bottom xl:block 2xl:h-full 2xl:!max-h-[45rem]"
+						alt=""
+						width={dimensions.width}
+						height={dimensions.height}
+						aria-labelledby={blok._uid}
+					/>
+				) : (
+					<Image
+						src={blok.image.filename}
+						class="hidden h-[30rem] w-full object-contain object-right-bottom  lg:block 2xl:h-full"
+						alt=""
+						layout="fullWidth"
+						aria-labelledby={blok._uid}
+					/>
+				)
+			}
+		</div>
+		<div
+			class="flex flex-col gap-4 p-8 pr-24 text-left md:px-16 lg:py-16 lg:pr-12 xl:w-1/2 xl:px-8 xl:py-24 xl:pr-24 2xl:pt-48"
+		>
+			<Title size={'extraLarge'}>{blok.title}</Title>
+			<RichText content={blok.body} />
+		</div>
+	</div>
+</div>

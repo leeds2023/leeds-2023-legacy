@@ -100,7 +100,10 @@ const { blok } = Astro.props;
 					'absolute inset-0 z-[-1] select-none',
 					blok.backgroundImage === 'ribbonTwo' && 'hidden  lg:flex lg:justify-end',
 					blok.backgroundImage === 'ribbonThree' && '-bottom-24 left-auto right-0 lg:bottom-0',
-					blok.backgroundImage === 'ribbonFour' && 'bottom-auto left-auto right-0 top-0 '
+					blok.backgroundImage === 'ribbonFour' && 'bottom-auto left-auto right-0 top-0 ',
+					blok.backgroundImage === 'ribbonFive' &&
+						'-right-72 bottom-auto left-auto top-0 h-full sm:-right-20 lg:right-0',
+					blok.backgroundImage === 'ribbonSix' && 'bottom-auto left-auto right-0 top-0'
 				)}
 			>
 				<img
@@ -112,7 +115,10 @@ const { blok } = Astro.props;
 						blok.backgroundImage === 'ribbonThree' &&
 							'w-[30rem] bg-no-repeat object-contain object-right-bottom lg:w-[25rem] xl:w-[30rem] 2xl:w-[50rem]',
 						blok.backgroundImage === 'ribbonFour' &&
-							'w-[35rem] bg-no-repeat object-contain object-right-bottom opacity-50'
+							'w-[35rem] bg-no-repeat object-contain object-right-bottom opacity-50',
+						blok.backgroundImage === 'ribbonFive' && 'h-full bg-no-repeat object-cover',
+						blok.backgroundImage === 'ribbonSix' &&
+							'w-[10rem] bg-no-repeat object-contain object-right-bottom opacity-50 md:w-[35rem]'
 					)}
 				/>
 			</div>

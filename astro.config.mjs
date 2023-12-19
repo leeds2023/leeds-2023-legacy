@@ -31,6 +31,8 @@ export default defineConfig({
 				altHeroTwo: 'components/nestable/AltHeroTwo',
 				stories: 'components/nestable/StoriesWrapper',
 				explore: 'components/nestable/Explore',
+				cards: 'components/nestable/Cards',
+				textWithImageAlt: 'components/nestable/TextWithImageAlt',
 			},
 			apiOptions: {
 				region: 'eu',
