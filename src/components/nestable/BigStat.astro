@@ -2,12 +2,77 @@
 import type { BigStatStoryblok } from '@/lib/storyblok/types';
 import { cn } from '@/lib/utils';
 import { storyblokEditable } from '@storyblok/astro';
+import Title from '../ui/Title.astro';
+import Text from '../ui/Text.astro';
 type Props = {
 	blok: BigStatStoryblok;
 };
 const { blok } = Astro.props;
+const valueToArray = blok.value.split('');
 ---
 
 <div {...storyblokEditable(blok)}>
-	<div class={cn()}></div>
+	{
+		!blok.reverse ? (
+			<div class={cn('flex flex-wrap items-center gap-8  py-8 lg:flex-nowrap lg:gap-0 lg:pb-36')}>
+				<div class="relative w-full lg:w-1/2">
+					<div class="absolute -left-16 bottom-0 hidden h-36 w-full lg:block">
+						<img
+							src={'/images/bgs/ribbonEleven.svg'}
+							alt=""
+							class={cn('w-full select-none object-cover')}
+						/>
+					</div>
+					<div class="relative z-10 flex justify-center gap-2 text-white lg:justify-start">
+						{valueToArray.map((item) => (
+							<div class="bg-[#EE3796] p-4">
+								<Title className="font-display font-bold " size={'superLarge'} type="span">
+									{item}
+								</Title>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="relative w-full lg:w-1/2">
+					<div class="relative z-10 flex flex-col justify-center gap-2 text-center lg:justify-start lg:text-left">
+						<Title>{blok.title}</Title>
+						<Text>{blok.description}</Text>
+					</div>
+					<div class="absolute -left-32 -top-12 hidden h-52 w-[90rem] bg-brandMint-100 lg:block" />
+				</div>
+			</div>
+		) : (
+			<div
+				class={cn(
+					'flex flex-col-reverse flex-wrap items-center  gap-8 py-8 lg:flex-row   lg:flex-nowrap lg:gap-0 lg:pb-24'
+				)}
+			>
+				<div class="relative w-full lg:w-1/2">
+					<div class="relative z-10 flex flex-col justify-center gap-2 text-center lg:justify-start lg:text-left">
+						<Title>{blok.title}</Title>
+						<Text>{blok.description}</Text>
+					</div>
+					<div class="absolute -right-32 -top-12 hidden h-52 w-[90rem] bg-brandMint-100 lg:block" />
+				</div>
+				<div class="relative w-full lg:w-1/2">
+					<div class="absolute -right-96 bottom-24 hidden h-36 w-full lg:block">
+						<img
+							src={'/images/bgs/ribbonTen.svg'}
+							alt=""
+							class={cn('w-full select-none object-cover')}
+						/>
+					</div>
+					<div class="relative z-10 flex justify-center gap-2 text-white lg:justify-start">
+						{valueToArray.map((item) => (
+							<div class="bg-[#EE3796] p-4">
+								<Title className="font-display font-bold " size={'superLarge'} type="span">
+									{item}
+								</Title>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		)
+	}
 </div>

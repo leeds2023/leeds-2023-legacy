@@ -28,7 +28,7 @@ export default function TagsList({ stage, tags, threshold = 2, disableThreshold 
 					<div
 						key={index}
 						className={cn(
-							'flex items-center justify-center rounded-full border-2 border-slate-200 px-3 py-1.5 font-display text-[13px] font-medium'
+							'flex items-center justify-center rounded-full border-2 border-slate-200 px-3 py-1.5 font-display text-[11px] font-medium xl:text-[13px]'
 						)}
 					>
 						{capitaliseFirstLetter(tag.replace(/_/g, ' '))}

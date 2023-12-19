@@ -42,8 +42,8 @@ export default function Project({ project }: ProjectProps) {
 				<Image
 					src={project.content.image.filename}
 					alt={project.content.title}
-					width={424}
-					height={181}
+					width={954}
+					height={407.25}
 					background="auto"
 					className="h-full object-cover"
 				/>

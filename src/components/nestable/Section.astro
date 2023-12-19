@@ -67,7 +67,7 @@ const container = cva('', {
 		gap: {
 			none: '',
 			small: 'gap-8',
-			medium: 'gap-16',
+			medium: 'gap-8 lg:gap-16',
 			large: 'gap-24',
 			xlarge: 'gap-32',
 		},
@@ -88,6 +88,7 @@ const { blok } = Astro.props;
 <section
 	class={cn(
 		section({ color: blok.color, padding: blok.padding, rules: blok.paddingRules }),
+		'overflow-hidden',
 		`${blok.backgroundImage !== 'none' ? 'relative z-[-2]' : ''}`,
 		blok.className && blok.className
 	)}

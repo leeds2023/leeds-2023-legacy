@@ -78,7 +78,7 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 					</div>
 				</div>
 			</div>
-			<div className="mx-auto px-4 lg:max-w-[950px] lg:px-2 xl:max-w-[1150px] 2xl:max-w-[1250px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]">
+			<div className="mx-auto min-h-[50vh] px-4 lg:max-w-[1000px] lg:px-2 xl:max-w-[1200px] 2xl:max-w-[1250px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]">
 				<div className="flex flex-col gap-10">
 					<h1 className="font-display text-2xl lg:text-4xl">
 						{(!debouncedSearchQuery || debouncedSearchQuery === '') &&
@@ -95,6 +95,14 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 							<Project key={project.uuid} project={project} />
 						))}
 					</div>
+					{results.length === 0 && (
+						<div className="flex flex-col items-center justify-center gap-2">
+							<h3 className="font-display text-2xl">No results found</h3>
+							<p className="text-center">
+								Please try a different search term or clear your search query
+							</p>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
