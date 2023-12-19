@@ -50,7 +50,7 @@ export default function Project({ project }: ProjectProps) {
 			</div>
 			<div className="relative flex flex-col gap-2 p-4">
 				<div className="flex flex-col gap-1 pb-2">
-					<h3 className="font-display text-xl">{project.content.title}</h3>
+					<h2 className="font-display text-xl">{project.content.title}</h2>
 					<span className="text-sm">{project.content.subtitle}</span>
 				</div>
 				<TagsList
@@ -134,7 +134,7 @@ export default function Project({ project }: ProjectProps) {
 					<Image
 						aria-labelledby={project.uuid + '-expand'}
 						src="/images/icons/chevron.svg"
-						alt="arrow"
+						alt={`Expand ${project.content.title}`}
 						height={30}
 						background="auto"
 						width={30}

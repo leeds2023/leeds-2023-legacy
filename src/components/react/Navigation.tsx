@@ -80,7 +80,11 @@ export function MobileNavigation({
 			<button
 				onClick={() => setIsMenuOpen(!isMenuOpen)}
 				className="flex h-8 w-8 items-center gap-8"
+				aria-labelledby="menu-button"
 			>
+				<span id="menu-button" className="sr-only">
+					Menu
+				</span>
 				{isMenuOpen ? (
 					<svg
 						width="100%"
