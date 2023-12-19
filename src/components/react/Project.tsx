@@ -1,4 +1,4 @@
-import type { Project } from '@/pages/projects/data.json';
+import type { Project } from '@/pages/programme/data.json';
 import { Image } from '@unpic/react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -65,59 +65,61 @@ export default function Project({ project }: ProjectProps) {
 								Read More
 							</DialogTrigger>
 							<DialogContent className="w-[50rem] max-w-[90vw] overflow-hidden rounded-md border-0 bg-white px-0 pt-0">
-								{project.content.youtubeId && project.content.youtubeId !== '' && (
-									<FullWidthVideo
-										blok={{
-											youtubeId: project.content.youtubeId,
-											coverImage: project.content.image,
-										}}
-										isModal
-									/>
-								)}
-
-								{project.content.image.filename &&
-									(!project.content.youtubeId || project.content.youtubeId === '') && (
-										<div className="mediumHeight:h-64 tall:h-96 h-32">
-											{dimensions ? (
-												<Image
-													src={project.content.image.filename}
-													className="h-full !max-h-none !max-w-none object-cover"
-													alt={project.content.title ? project.content.title : ''}
-													background="auto"
-													width={dimensions.width}
-													height={dimensions.height}
-												/>
-											) : (
-												<Image
-													src={project.content.image.filename}
-													className="h-full !max-h-none !max-w-none object-cover"
-													alt={project.content.title ? project.content.title : ''}
-													background="auto"
-													layout="fullWidth"
-												/>
-											)}
-										</div>
-									)}
-								<DialogHeader className="flex flex-col gap-1.5 px-6 pt-6">
-									<TagsList
-										stage={project.content.associatedStage}
-										tags={project.content.tags ? project.content.tags : []}
-										disableThreshold
-									/>
-									<DialogTitle className="text-left font-display text-4xl font-normal">
-										{project.content.title}
-									</DialogTitle>
-									<DialogDescription className="text-left">
-										{project.content.subtitle}
-									</DialogDescription>
-								</DialogHeader>
 								<ScrollArea type="always">
-									<div
-										className="prose max-h-[20vh] px-6 py-2"
-										dangerouslySetInnerHTML={{
-											__html: renderRichText(project.content.description),
-										}}
-									/>
+									<div className="max-h-[90vh]">
+										{project.content.youtubeId && project.content.youtubeId !== '' && (
+											<FullWidthVideo
+												blok={{
+													youtubeId: project.content.youtubeId,
+													coverImage: project.content.image,
+												}}
+												isModal
+											/>
+										)}
+
+										{project.content.image.filename &&
+											(!project.content.youtubeId || project.content.youtubeId === '') && (
+												<div className="mediumHeight:h-64 tall:h-96 h-32">
+													{dimensions ? (
+														<Image
+															src={project.content.image.filename}
+															className="h-full !max-h-none !max-w-none object-cover"
+															alt={project.content.title ? project.content.title : ''}
+															background="auto"
+															width={dimensions.width}
+															height={dimensions.height}
+														/>
+													) : (
+														<Image
+															src={project.content.image.filename}
+															className="h-full !max-h-none !max-w-none object-cover"
+															alt={project.content.title ? project.content.title : ''}
+															background="auto"
+															layout="fullWidth"
+														/>
+													)}
+												</div>
+											)}
+										<DialogHeader className="flex flex-col gap-1.5 px-6 pt-6">
+											<TagsList
+												stage={project.content.associatedStage}
+												tags={project.content.tags ? project.content.tags : []}
+												disableThreshold
+											/>
+											<DialogTitle className="text-left font-display text-4xl font-normal">
+												{project.content.title}
+											</DialogTitle>
+											<DialogDescription className="text-left">
+												{project.content.subtitle}
+											</DialogDescription>
+										</DialogHeader>
+										<div
+											className="prose px-6 py-2"
+											dangerouslySetInnerHTML={{
+												__html: renderRichText(project.content.description),
+											}}
+										/>
+									</div>
 								</ScrollArea>
 							</DialogContent>
 						</Dialog>

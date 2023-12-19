@@ -1,7 +1,7 @@
 ---
 import Render from '@/lib/storyblok/Render.astro';
 import { fetchStory } from '@/lib/storyblok/helpers';
-const { content } = await fetchStory('23-and-me');
+const { content } = await fetchStory('stories');
 ---
 
 <Render blok={content} />

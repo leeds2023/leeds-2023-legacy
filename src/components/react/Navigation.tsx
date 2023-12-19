@@ -125,7 +125,7 @@ export function MobileNavigation({
 				)}
 			</button>
 			{isMenuOpen && (
-				<div className="z-1 fixed left-0 top-20 flex h-[calc(100vh-5rem)] w-full flex-col items-center justify-center gap-8 bg-brandDarkGreen-100 pb-[5rem]">
+				<div className="z-1 fixed left-0 top-20 flex h-[calc(100vh-4rem)] w-full flex-col items-center justify-center gap-8 bg-brandDarkGreen-100 pb-[4rem]">
 					{blok.links.map((item) => (
 						<NavLink
 							key={item._uid}
@@ -145,7 +145,7 @@ export default function Navigation({ blok }: NavigationProps) {
 	return (
 		<nav
 			className={cn(
-				'relative z-50 flex h-20 items-center justify-between bg-brandDarkGreen-100 px-4 text-white lg:px-8 lg:py-3.5',
+				'fixed z-50 flex h-16 w-full items-center justify-between bg-brandDarkGreen-100 px-4 text-white lg:px-8 lg:py-3.5',
 				isMenuOpen && 'fixed left-0 top-0 w-full'
 			)}
 		>

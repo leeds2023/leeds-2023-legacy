@@ -1,6 +1,6 @@
 import { useDebounce } from '@/lib/hooks/useDebounce';
 import type { ProjectsStoryblok } from '@/lib/storyblok/types';
-import type { Project as ProjectType, ProjectsApiResponse } from '@/pages/projects/data.json';
+import type { Project as ProjectType, ProjectsApiResponse } from '@/pages/programme/data.json';
 import Project from './Project';
 import { useEffect, useState } from 'react';
 import { Input } from './ui/Input';

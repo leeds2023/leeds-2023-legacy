@@ -70,6 +70,7 @@ const { seo } = Astro.props;
 	</head>
 	<body>
 		<Navigation client:load blok={nav[0]} />
+		<div class="pb-16"></div>
 		<slot />
 		<Footer blok={footer[0]} />
 		<style is:global>

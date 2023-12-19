@@ -1,7 +1,6 @@
 import type { StoryStoryblok } from '@/lib/storyblok/types';
 import { cn } from '@/lib/utils';
 import { Image } from '@unpic/react';
-import { useState } from 'react';
 import {
 	Dialog,
 	DialogContent,
@@ -23,17 +22,12 @@ export default function Story({ blok }: StoryProps) {
 	storyblokInit({
 		accessToken: import.meta.env.STORYBLOK_TOKEN,
 	});
-	const [isHovered, setIsHovered] = useState(false);
 	const dimensions = extractDimensions(blok.portraitImage.filename, 2000);
 
 	return (
 		<Dialog>
 			<DialogTrigger className="">
-				<div
-					className="flex w-full flex-col gap-4 text-left"
-					onMouseEnter={() => setIsHovered(true)}
-					onMouseLeave={() => setIsHovered(false)}
-				>
+				<div className="flex w-full flex-col gap-4 text-left">
 					<div className="overflow-hidden rounded-xl">
 						<Image
 							width={300}
@@ -44,7 +38,7 @@ export default function Story({ blok }: StoryProps) {
 						/>
 					</div>
 					<div className="flex flex-col gap-2">
-						<h3 className={cn('font-display text-3xl', isHovered && 'underline')}>{blok.title}</h3>
+						<h3 className={cn('font-display text-3xl underline')}>{blok.title}</h3>
 						<h4 className="text-sm">{blok.subtitle}</h4>
 					</div>
 				</div>

@@ -148,7 +148,7 @@ export function parseStoryblokLink(link: Link): string {
 			return `/${link.story?.url ?? ''}#${link.anchor ?? ''}`.replaceAll('//', '/');
 		}
 		if (link.story.slug === 'projects-root') {
-			return '/projects/';
+			return '/programme/';
 		}
 		if (link.story.slug && link.story.slug !== 'legacy') {
 			return `/${link.story.slug ?? ''}`.replaceAll('//', '/');
