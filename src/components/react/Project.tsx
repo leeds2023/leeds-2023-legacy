@@ -127,18 +127,12 @@ export default function Project({ project }: ProjectProps) {
 				<button
 					className={cn('absolute right-4 top-4', expanded ? 'rotate-180 transform' : '')}
 					onClick={() => setExpanded(!expanded)}
+					aria-labelledby={project.uuid + '-expand'}
 				>
 					<span id={project.uuid + '-expand'} className="sr-only">
 						Expand
 					</span>
-					<Image
-						aria-labelledby={project.uuid + '-expand'}
-						src="/images/icons/chevron.svg"
-						alt=""
-						height={30}
-						background="auto"
-						width={30}
-					/>
+					<Image src="/images/icons/chevron.svg" alt="" height={30} background="auto" width={30} />
 				</button>
 			</div>
 		</div>
