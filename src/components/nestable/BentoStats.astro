@@ -1,0 +1,56 @@
+---
+import type { BentoStatsStoryblok } from '@/lib/storyblok/types';
+import { cn } from '@/lib/utils';
+import { storyblokEditable } from '@storyblok/astro';
+import Stat from '../ui/Stat.astro';
+type Props = {
+	blok: BentoStatsStoryblok;
+};
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	{
+		blok.stats && blok.stats.length === 4 && !blok.isReversed && (
+			<div
+				class={cn(
+					'flex flex-wrap items-center gap-4 lg:flex-nowrap',
+					blok.isTwoColumns && 'md:grid-cols-1 lg:grid-cols-2'
+				)}
+			>
+				<div class="w-full lg:w-5/12">
+					<Stat blok={blok.stats[0]} isInBox={false} isShort isLarger />
+				</div>
+				<div class="flex flex-col gap-4">
+					<div class="flex w-full flex-wrap gap-4 md:flex-nowrap">
+						<Stat blok={blok.stats[1]} isLarger />
+						<Stat blok={blok.stats[2]} isLarger />
+					</div>
+					<Stat blok={blok.stats[3]} isLarger />
+				</div>
+			</div>
+		)
+	}
+
+	{
+		blok.stats && blok.stats.length === 4 && blok.isReversed && (
+			<div
+				class={cn(
+					'flex flex-wrap items-center gap-4 lg:flex-nowrap',
+					blok.isTwoColumns && 'md:grid-cols-1 lg:grid-cols-2'
+				)}
+			>
+				<div class="flex flex-col gap-4">
+					<div class="flex w-full flex-wrap gap-4  md:flex-nowrap">
+						<Stat blok={blok.stats[1]} isLarger />
+						<Stat blok={blok.stats[2]} isLarger />
+					</div>
+					<Stat blok={blok.stats[3]} isLarger />
+				</div>
+				<div class="w-full lg:w-5/12">
+					<Stat blok={blok.stats[0]} isInBox={false} isShort isLarger />
+				</div>
+			</div>
+		)
+	}
+</div>

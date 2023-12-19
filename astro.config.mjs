@@ -35,6 +35,7 @@ export default defineConfig({
 				textWithImageAlt: 'components/nestable/TextWithImageAlt',
 				stats: 'components/nestable/Stats',
 				bigStat: 'components/nestable/BigStat',
+				bentoStats: 'components/nestable/BentoStats',
 			},
 			apiOptions: {
 				region: 'eu',

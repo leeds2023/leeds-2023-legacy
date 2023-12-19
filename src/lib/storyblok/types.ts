@@ -698,6 +698,8 @@ export interface SectionStoryblok {
 export interface StatStoryblok {
 	subtext: string;
 	statValue: string;
+	linkText?: string;
+	link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
 	icon?: AssetStoryblok;
 	_uid: string;
 	component: 'stat';
@@ -706,8 +708,17 @@ export interface StatStoryblok {
 
 export interface StatsStoryblok {
 	stats: StatStoryblok[];
+	isTwoColumns?: boolean;
 	_uid: string;
 	component: 'stats';
+	[k: string]: any;
+}
+
+export interface BentoStatsStoryblok {
+	stats: StatStoryblok[];
+	isReversed?: boolean;
+	_uid: string;
+	component: 'bentoStats';
 	[k: string]: any;
 }
 

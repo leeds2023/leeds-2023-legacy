@@ -10,15 +10,12 @@ const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)}>
-	{
-		blok.isBento ? (
-			<div class={cn()} />
-		) : (
-			<div class="flex gap-6">
-				{blok.stats.map((item) => (
-					<Stat blok={item} />
-				))}
-			</div>
-		)
-	}
+	<div
+		class={cn(
+			'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3',
+			blok.isTwoColumns && 'md:grid-cols-1 lg:grid-cols-2'
+		)}
+	>
+		{blok.stats.map((item) => <Stat blok={item} isWide={blok.isTwoColumns ? true : false} />)}
+	</div>
 </div>
