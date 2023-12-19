@@ -14,6 +14,7 @@ import {
 } from '@/components/react/ui/Dialog';
 import FullWidthVideo from './FullWidthVideo';
 import { ScrollArea } from './ui/ScrollArea';
+import { extractDimensions } from '@/lib/storyblok/helpers';
 
 type ProjectProps = {
 	project: Project;
@@ -33,14 +34,17 @@ export default function Project({ project }: ProjectProps) {
 	});
 
 	const [expanded, setExpanded] = useState(false);
-	console.log(renderRichText(project.content.description));
+	const dimensions = extractDimensions(project.content.image.filename, 2000);
+
 	return (
 		<div className="flex flex-col overflow-hidden rounded-md bg-white shadow">
 			<div className="h-36 bg-slate-300">
 				<Image
 					src={project.content.image.filename}
 					alt={project.content.title}
-					layout="fullWidth"
+					width={424}
+					height={181}
+					background="auto"
 					className="h-full object-cover"
 				/>
 			</div>
@@ -74,13 +78,24 @@ export default function Project({ project }: ProjectProps) {
 								{project.content.image.filename &&
 									(!project.content.youtubeId || project.content.youtubeId === '') && (
 										<div className="mediumHeight:h-64 tall:h-96 h-32">
-											<Image
-												src={project.content.image.filename}
-												alt={project.content.title}
-												layout="fullWidth"
-												className="h-full object-cover"
-												background="auto"
-											/>
+											{dimensions ? (
+												<Image
+													src={project.content.image.filename}
+													className="h-full !max-h-none !max-w-none object-cover"
+													alt={project.content.title ? project.content.title : ''}
+													background="auto"
+													width={dimensions.width}
+													height={dimensions.height}
+												/>
+											) : (
+												<Image
+													src={project.content.image.filename}
+													className="h-full !max-h-none !max-w-none object-cover"
+													alt={project.content.title ? project.content.title : ''}
+													background="auto"
+													layout="fullWidth"
+												/>
+											)}
 										</div>
 									)}
 								<DialogHeader className="flex flex-col gap-1.5 px-6 pt-6">
@@ -121,6 +136,7 @@ export default function Project({ project }: ProjectProps) {
 						src="/images/icons/chevron.svg"
 						alt="arrow"
 						height={30}
+						background="auto"
 						width={30}
 					/>
 				</button>
