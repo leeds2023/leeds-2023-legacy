@@ -134,7 +134,7 @@ export default function Project({ project }: ProjectProps) {
 					<Image
 						aria-labelledby={project.uuid + '-expand'}
 						src="/images/icons/chevron.svg"
-						alt={`Expand ${project.content.title}`}
+						alt=""
 						height={30}
 						background="auto"
 						width={30}
