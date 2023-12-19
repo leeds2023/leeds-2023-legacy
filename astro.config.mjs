@@ -33,6 +33,8 @@ export default defineConfig({
 				explore: 'components/nestable/Explore',
 				cards: 'components/nestable/Cards',
 				textWithImageAlt: 'components/nestable/TextWithImageAlt',
+				stats: 'components/nestable/Stats',
+				bigStat: 'components/nestable/BigStat',
 			},
 			apiOptions: {
 				region: 'eu',

@@ -684,7 +684,9 @@ export interface SectionStoryblok {
 		| 'ribbonThree'
 		| 'ribbonFour'
 		| 'ribbonFive'
-		| 'ribbonSix';
+		| 'ribbonSix'
+		| 'ribbonSeven'
+		| 'ribbonEight';
 	gap: 'none' | 'small' | 'medium' | 'large' | 'xlarge';
 	paddingRules: 'paddingTopOnly' | 'paddingBottomOnly' | 'bothSides';
 	className?: string;

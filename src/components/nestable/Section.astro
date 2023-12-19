@@ -103,7 +103,9 @@ const { blok } = Astro.props;
 					blok.backgroundImage === 'ribbonFour' && 'bottom-auto left-auto right-0 top-0 ',
 					blok.backgroundImage === 'ribbonFive' &&
 						'-right-72 bottom-auto left-auto top-0 h-full sm:-right-20 lg:right-0',
-					blok.backgroundImage === 'ribbonSix' && 'bottom-auto left-auto right-0 top-0'
+					blok.backgroundImage === 'ribbonSix' && 'bottom-auto left-auto right-0 top-0',
+					blok.backgroundImage === 'ribbonSeven' &&
+						'-right-72 bottom-0 left-auto top-auto sm:-right-64 lg:right-0'
 				)}
 			>
 				<img
@@ -118,7 +120,9 @@ const { blok } = Astro.props;
 							'w-[35rem] bg-no-repeat object-contain object-right-bottom opacity-50',
 						blok.backgroundImage === 'ribbonFive' && 'h-full bg-no-repeat object-cover',
 						blok.backgroundImage === 'ribbonSix' &&
-							'w-[10rem] bg-no-repeat object-contain object-right-bottom opacity-50 md:w-[35rem]'
+							'w-[10rem] bg-no-repeat object-contain object-right-bottom opacity-50 md:w-[35rem]',
+						blok.backgroundImage === 'ribbonSeven' &&
+							'w-[37rem] bg-no-repeat object-contain object-right-bottom opacity-50 sm:opacity-100 xl:w-[44rem] 2xl:w-[55rem]'
 					)}
 				/>
 			</div>
