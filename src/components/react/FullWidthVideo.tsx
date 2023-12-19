@@ -5,6 +5,7 @@ import type { YouTubeProps, YouTubePlayer } from 'react-youtube';
 import { Image } from '@unpic/react';
 import YouTube from 'react-youtube';
 import { cn } from '@/lib/utils';
+import { extractDimensions } from '@/lib/storyblok/helpers';
 
 type Props = {
 	blok: FullWidthVideoStoryblok;
@@ -15,6 +16,7 @@ let videoElement: YouTubePlayer | null = null;
 
 export default function FullWidthVideo({ blok, isModal }: Props) {
 	const [active, setIsActive] = useState(false);
+	const dimensions = extractDimensions(blok.coverImage.filename, 2000);
 
 	const onPlayerReady: YouTubeProps['onReady'] = (event) => {
 		videoElement = event.target;
@@ -75,13 +77,24 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 						isModal && 'mediumHeight:h-64 tall:h-96 h-32 min-h-0'
 					)}
 				>
-					<Image
-						src={blok.coverImage.filename}
-						alt={blok.coverImage.alt}
-						layout="fullWidth"
-						background="auto"
-						className="absolute left-0 top-0 h-full w-full"
-					/>
+					{dimensions ? (
+						<Image
+							src={blok.coverImage.filename}
+							className="absolute left-0 top-0 h-full !max-h-none w-full !max-w-none object-cover"
+							alt={blok.coverImage.alt ? blok.coverImage.alt : ''}
+							background="auto"
+							width={dimensions.width}
+							height={dimensions.height}
+						/>
+					) : (
+						<Image
+							src={blok.coverImage.filename}
+							className="absolute left-0 top-0 h-full !max-h-none w-full !max-w-none object-cover"
+							alt={blok.coverImage.alt ? blok.coverImage.alt : ''}
+							background="auto"
+							layout="fullWidth"
+						/>
+					)}
 					<button
 						onClick={() => setIsActive(true)}
 						className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center gap-4 rounded-md  px-4 py-2 text-white"
