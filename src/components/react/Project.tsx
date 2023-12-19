@@ -66,7 +66,7 @@ export default function Project({ project }: ProjectProps) {
 							</DialogTrigger>
 							<DialogContent className="w-[50rem] max-w-[90vw] overflow-hidden rounded-md border-0 bg-white px-0 pt-0">
 								<ScrollArea type="always">
-									<div className="max-h-[90vh]">
+									<div className="tall:max-h-[80vh] max-h-[70vh]">
 										{project.content.youtubeId && project.content.youtubeId !== '' && (
 											<FullWidthVideo
 												blok={{
