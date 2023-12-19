@@ -9,6 +9,7 @@ const headings = {
 	h4: 'h4',
 	h5: 'h5',
 	h6: 'h6',
+	span: 'span',
 } as const;
 
 const title = cva('title', {
@@ -89,5 +90,12 @@ const { className, type = 'h2', size = 'large', color = 'default', dataElementNa
 		<h6 data-element={dataElementName} class={cn(title({ size, color }), className)}>
 			<slot />
 		</h6>
+	)
+}
+{
+	type === 'span' && (
+		<span data-element={dataElementName} class={cn(title({ size, color }), className)}>
+			<slot />
+		</span>
 	)
 }

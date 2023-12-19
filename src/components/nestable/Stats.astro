@@ -2,6 +2,7 @@
 import type { StatsStoryblok } from '@/lib/storyblok/types';
 import { cn } from '@/lib/utils';
 import { storyblokEditable } from '@storyblok/astro';
+import Stat from '../ui/Stat.astro';
 type Props = {
 	blok: StatsStoryblok;
 };
@@ -9,5 +10,15 @@ const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)}>
-	<div class={cn()}></div>
+	{
+		blok.isBento ? (
+			<div class={cn()} />
+		) : (
+			<div class="flex gap-6">
+				{blok.stats.map((item) => (
+					<Stat blok={item} />
+				))}
+			</div>
+		)
+	}
 </div>

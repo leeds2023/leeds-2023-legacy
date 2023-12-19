@@ -29,7 +29,7 @@ const dimensions = extractDimensions(blok.image.filename, 2000);
 				) : (
 					<Image
 						src={blok.image.filename}
-						class="hidden h-[30rem] w-full object-contain object-right-bottom  lg:block 2xl:h-full"
+						class="hidden h-[30rem] w-full object-contain object-right-bottom xl:block 2xl:h-full 2xl:!max-h-[45rem]"
 						alt=""
 						layout="fullWidth"
 						aria-labelledby={blok._uid}

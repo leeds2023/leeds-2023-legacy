@@ -2,12 +2,54 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { StatStoryblok } from '@/lib/storyblok/types';
+import { Image } from '@unpic/astro';
+import { extractDimensions } from '@/lib/storyblok/helpers';
+import { cn } from '@/lib/utils';
+import Title from './Title.astro';
 type Props = {
 	blok: StatStoryblok;
+	isInBox?: boolean;
 };
-const { blok } = Astro.props;
+const { blok, isInBox = true } = Astro.props;
+const dimensions = blok.icon ? extractDimensions(blok.icon.filename, 2000) : null;
 ---
 
 <div {...storyblokEditable(blok)}>
-	<p>{JSON.stringify(blok.component)}</p>
+	<div
+		class={cn(
+			'p-8 flex flex-col justify-center',
+			isInBox && 'border-[3px] border-brandMagenta-80 rounded-lg'
+		)}
+	>
+		<div class="flex items-center gap-4">
+			{
+				blok.icon && (
+					<div class="h-9">
+						{dimensions ? (
+							<Image
+								src={blok.icon.filename}
+								class="h-full object-cover"
+								alt=""
+								width={dimensions.width}
+								height={dimensions.height}
+								aria-labelledby={blok._uid}
+							/>
+						) : (
+							<Image
+								src={blok.icon.filename}
+								class="h-full object-cover"
+								alt=""
+								layout="fullWidth"
+								aria-labelledby={blok._uid}
+							/>
+						)}
+					</div>
+				)
+			}
+			<Title size={'large'} className="font-semibold" type="span">{blok.statValue}</Title>
+		</div>
+		<h3>
+			{blok.subtext}
+		</h3>
+	</div>
 </div>
