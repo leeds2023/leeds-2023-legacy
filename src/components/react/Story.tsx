@@ -44,51 +44,55 @@ export default function Story({ blok }: StoryProps) {
 				</div>
 			</DialogTrigger>
 			<DialogContent className="w-[50rem] max-w-[90vw] overflow-hidden rounded-md border-0 bg-white px-0 pt-0">
-				{blok.youtubeId && blok.youtubeId !== '' && (
-					<FullWidthVideo
-						blok={{
-							youtubeId: blok.youtubeId,
-							coverImage: blok.videoLandscapeThumbnail,
-						}}
-						isModal
-					/>
-				)}
-
-				{blok.videoLandscapeThumbnail.filename && (!blok.youtubeId || blok.youtubeId === '') && (
-					<div className="mediumHeight:h-64 tall:h-96 h-32">
-						{dimensions ? (
-							<Image
-								src={blok.videoLandscapeThumbnail.filename}
-								className="h-full !max-h-none !max-w-none object-cover"
-								alt={blok.title ? blok.title : ''}
-								background="auto"
-								width={dimensions.width}
-								height={dimensions.height}
-							/>
-						) : (
-							<Image
-								src={blok.videoLandscapeThumbnail.filename}
-								className="h-full !max-h-none !max-w-none object-cover"
-								alt={blok.title ? blok.title : ''}
-								background="auto"
-								layout="fullWidth"
+				<ScrollArea type="always">
+					<div className="max-h-[90vh]">
+						{blok.youtubeId && blok.youtubeId !== '' && (
+							<FullWidthVideo
+								blok={{
+									youtubeId: blok.youtubeId,
+									coverImage: blok.videoLandscapeThumbnail,
+								}}
+								isModal
 							/>
 						)}
+
+						{blok.videoLandscapeThumbnail.filename &&
+							(!blok.youtubeId || blok.youtubeId === '') && (
+								<div className="mediumHeight:h-64 tall:h-96 h-32">
+									{dimensions ? (
+										<Image
+											src={blok.videoLandscapeThumbnail.filename}
+											className="h-full !max-h-none !max-w-none object-cover"
+											alt={blok.title ? blok.title : ''}
+											background="auto"
+											width={dimensions.width}
+											height={dimensions.height}
+										/>
+									) : (
+										<Image
+											src={blok.videoLandscapeThumbnail.filename}
+											className="h-full !max-h-none !max-w-none object-cover"
+											alt={blok.title ? blok.title : ''}
+											background="auto"
+											layout="fullWidth"
+										/>
+									)}
+								</div>
+							)}
+						<DialogHeader className="flex flex-col gap-1.5 px-6 pt-6">
+							<DialogTitle className="text-left font-display text-4xl font-normal">
+								{blok.title}
+							</DialogTitle>
+							<DialogDescription className="text-left">{blok.subtitle}</DialogDescription>
+						</DialogHeader>
+
+						<div
+							className="prose px-6 py-2"
+							dangerouslySetInnerHTML={{
+								__html: renderRichText(blok.body),
+							}}
+						/>
 					</div>
-				)}
-				<DialogHeader className="flex flex-col gap-1.5 px-6 pt-6">
-					<DialogTitle className="text-left font-display text-4xl font-normal">
-						{blok.title}
-					</DialogTitle>
-					<DialogDescription className="text-left">{blok.subtitle}</DialogDescription>
-				</DialogHeader>
-				<ScrollArea type="always">
-					<div
-						className="prose max-h-[20vh] px-6 py-2"
-						dangerouslySetInnerHTML={{
-							__html: renderRichText(blok.body),
-						}}
-					/>
 				</ScrollArea>
 			</DialogContent>
 		</Dialog>
