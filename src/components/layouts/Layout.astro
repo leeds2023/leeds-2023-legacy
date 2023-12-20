@@ -5,6 +5,7 @@ import '@/styles/fonts.css';
 import { fetchNavAndFooter } from '@/lib/storyblok/helpers';
 import Navigation from '@components/react/Navigation';
 import Footer from '@/components/nestable/Footer.astro';
+import { ViewTransitions } from "astro:transitions";
 
 type Props = {
 	seo: Seo;
@@ -21,6 +22,7 @@ const { seo } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<ViewTransitions />
 		<SEO
 			title={seo.title && seo.title !== '' ? seo.title : 'Leeds 2023'}
 			description={seo.description && seo.description !== ''
