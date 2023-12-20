@@ -9,6 +9,7 @@ const { STORYBLOK_TOKEN, OUTPUT_STRATEGY } = loadEnv('', process.cwd(), '');
 // https://astro.build/config
 export default defineConfig({
 	output: OUTPUT_STRATEGY ? OUTPUT_STRATEGY : 'hybrid',
+	trailingSlash: 'always',
 	integrations: [
 		tailwind(),
 		react(),
