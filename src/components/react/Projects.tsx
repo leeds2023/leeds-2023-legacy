@@ -91,8 +91,8 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 						)}
 					</h1>
 					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-						{results.map((project) => (
-							<Project key={project.uuid} project={project} />
+						{results.map((project, index) => (
+							<Project key={project.uuid} project={project} index={index} />
 						))}
 					</div>
 					{results.length === 0 && (
