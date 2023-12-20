@@ -22,3 +22,4 @@ pnpm-debug.log*
 .vercel
 .localhost.pem
 .localhost-key.pem
+/src/lib/generateBlurhashes.ts

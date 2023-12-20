@@ -9,6 +9,8 @@ import type {
 	StoryWithProjectPage,
 } from './types';
 import type { Project } from '@/pages/programme/data.json';
+import { encode } from 'blurhash';
+import { getPixels } from '@unpic/pixels';
 
 const storyblokApi = useStoryblokApi();
 
@@ -62,6 +64,10 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 export async function fetchAllProjectsTransformed(): Promise<Project[]> {
 	const data = await fetchAllProjects();
 	const mappedData = data.map((project) => {
+		const blurhashValue = project.content.blocks[0].blocks.find(
+			(blok: SectionBlock) => blok.component === 'project'
+		).image.blurhash;
+
 		return {
 			uuid: project.uuid,
 			content:
@@ -69,6 +75,7 @@ export async function fetchAllProjectsTransformed(): Promise<Project[]> {
 					(blok: SectionBlock) => blok.component === 'project'
 				) ?? {},
 			slug: project.slug,
+			blurhash: blurhashValue ? blurhashValue : '',
 			tags:
 				project.content.blocks[0].blocks.find((blok: SectionBlock) => blok.component === 'project')
 					.tags ?? {},
@@ -82,6 +89,14 @@ export async function fetchAllProjectsTransformed(): Promise<Project[]> {
 	});
 
 	return mappedData;
+}
+
+export async function generateBlurhash(imageUrl: string) {
+	const pixels = await getPixels(imageUrl);
+	const data = Uint8ClampedArray.from(pixels.data);
+	const { width, height } = pixels;
+	const blurhash = encode(data, width, height, 4, 4);
+	return blurhash;
 }
 
 export async function fetchProjectDataFromEndpoint(): Promise<Project[]> {
