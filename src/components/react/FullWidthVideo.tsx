@@ -16,7 +16,7 @@ let videoElement: YouTubePlayer | null = null;
 
 export default function FullWidthVideo({ blok, isModal }: Props) {
 	const [active, setIsActive] = useState(false);
-	const dimensions = extractDimensions(blok.coverImage.filename, 2000);
+	const dimensions = extractDimensions(blok.coverImage.filename, 1000, 'width');
 
 	const onPlayerReady: YouTubeProps['onReady'] = (event) => {
 		videoElement = event.target;
@@ -74,7 +74,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 				<div
 					className={cn(
 						'm-h-[20rem] relative h-[40vh] w-full sm:h-[80vh]',
-						isModal && 'mediumHeight:h-64 tall:h-96 h-32 min-h-0'
+						isModal && 'h-32 min-h-0 mediumHeight:h-64 tall:h-96'
 					)}
 				>
 					{dimensions ? (

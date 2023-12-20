@@ -34,7 +34,7 @@ export default function Project({ project }: ProjectProps) {
 	});
 
 	const [expanded, setExpanded] = useState(false);
-	const dimensions = extractDimensions(project.content.image.filename, 2000);
+	const dimensions = extractDimensions(project.content.image.filename, 1000, 'width');
 
 	return (
 		<div className="flex flex-col overflow-hidden rounded-md bg-white shadow">
@@ -66,7 +66,7 @@ export default function Project({ project }: ProjectProps) {
 							</DialogTrigger>
 							<DialogContent className="w-[50rem] max-w-[90vw] overflow-hidden rounded-md border-0 bg-white px-0 pt-0">
 								<ScrollArea type="always">
-									<div className="tall:max-h-[80vh] max-h-[70vh]">
+									<div className="max-h-[70vh] tall:max-h-[80vh]">
 										{project.content.youtubeId && project.content.youtubeId !== '' && (
 											<FullWidthVideo
 												blok={{
@@ -79,7 +79,7 @@ export default function Project({ project }: ProjectProps) {
 
 										{project.content.image.filename &&
 											(!project.content.youtubeId || project.content.youtubeId === '') && (
-												<div className="mediumHeight:h-64 tall:h-96 h-32">
+												<div className="h-32 mediumHeight:h-64 tall:h-96">
 													{dimensions ? (
 														<Image
 															src={project.content.image.filename}
