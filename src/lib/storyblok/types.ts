@@ -342,6 +342,13 @@ export interface LegacySpacerStoryblok {
 	[k: string]: any;
 }
 
+export interface FullWidthImageStoryblok {
+	image: AssetStoryblok;
+	_uid: string;
+	component: 'legacySpacer';
+	[k: string]: any;
+}
+
 export interface LinkStoryblok {
 	link: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
 	linkText?: string;
@@ -370,32 +377,30 @@ export interface ImageLinkStoryblok {
 	[k: string]: any;
 }
 
+export interface MapTooltipItemStoryblok {
+	title: string;
+	description: string;
+	link?: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+	linkText?: string;
+	_uid: string;
+	component: 'mapTooltipItem';
+}
+
 export interface MapStoryblok {
 	title: string;
 	description: string;
-	items: MapItemStoryblok[];
+	items: MapTooltipStoryblok[];
 	_uid: string;
 	component: 'map';
 	[k: string]: any;
 }
-
-export interface MapItemStoryblok {
-	country: string;
-	continent:
-		| ''
-		| 'asia'
-		| 'africa'
-		| 'north-america'
-		| 'south-america'
-		| 'antarctica'
-		| 'europe'
-		| 'australia';
-	description: string;
-	ctaLink: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
-	ctaText: string;
+export interface MapTooltipStoryblok {
+	name: string;
+	tooltipItems: MapTooltipItemStoryblok[];
+	lon: string;
+	lat: string;
 	_uid: string;
-	component: 'mapItem';
-	[k: string]: any;
+	component: 'mapTooltip';
 }
 
 export interface MediaLinkStoryblok {
@@ -454,7 +459,6 @@ export interface ModalStoryblok {
 		| LegacySpacerStoryblok
 		| LinkStoryblok
 		| MapStoryblok
-		| MapItemStoryblok
 		| MediaLinkStoryblok
 		| MediaLinksStoryblok
 		| ModalStoryblok
@@ -553,7 +557,6 @@ export type SectionBlockValues =
 	| LegacySpacerStoryblok
 	| LinkStoryblok
 	| MapStoryblok
-	| MapItemStoryblok
 	| MediaLinkStoryblok
 	| MediaLinksStoryblok
 	| ModalStoryblok
@@ -597,7 +600,6 @@ export type SectionBlock =
 	| LegacySpacerStoryblok
 	| LinkStoryblok
 	| MapStoryblok
-	| MapItemStoryblok
 	| MediaLinkStoryblok
 	| MediaLinksStoryblok
 	| ModalStoryblok
@@ -653,7 +655,6 @@ export interface SectionStoryblok {
 		| LegacySpacerStoryblok
 		| LinkStoryblok
 		| MapStoryblok
-		| MapItemStoryblok
 		| MediaLinkStoryblok
 		| MediaLinksStoryblok
 		| ModalStoryblok

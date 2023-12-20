@@ -12,8 +12,8 @@ export default function Button({
 }: {
 	sbLink: Link;
 	linkText: string;
-	color: 'white' | 'darkGreen';
-	style?: 'outline' | 'filled';
+	color: 'white' | 'darkGreen' | 'primary';
+	style?: 'outline' | 'filled' | 'ghost';
 	className?: string;
 }) {
 	const button = cva(
@@ -25,10 +25,14 @@ export default function Button({
 						'bg-white hover:bg-gray-200 hover:text-opacity-80 border-2 border-white hover:border-bg-gray-200 focus:ring-2 focus:ring-white',
 					darkGreen:
 						'bg-brandDarkGreen-100 hover:bg-brandDarkGreen-80 text-white border-2 border-brandDarkGreen-100 hover:border-brandDarkGreen-80 focus:ring-2 focus:ring-brandDarkGreen-80',
+					primary:
+						'bg-buttonRed-default border-2 border-buttonRed-default hover:border-buttonRed-hover hover:bg-buttonRed-hover focus:ring-2 focus:ring-buttonRed-hover',
 				},
 				style: {
 					filled: '',
 					outline: 'bg-transparent hover:bg-transparent text-darkText-10 hover:text-opacity-80',
+					ghost:
+						'bg-transparent hover:bg-transparent text-buttonRed-default hover:text-buttonRed-hover border-transparent hover:border-transparent lg:px-0 lg:justify-start lg:py-1',
 				},
 			},
 			defaultVariants: {

@@ -1,0 +1,15 @@
+---
+import type { FullWidthImageStoryblok } from '@/lib/storyblok/types';
+import { storyblokEditable } from '@storyblok/astro';
+import { Image } from '@unpic/astro';
+type Props = {
+	blok: FullWidthImageStoryblok;
+};
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	<div class="max-h-[65vh]">
+		<Image src={blok.image.filename} alt={blok.image.alt} layout="fullWidth" background="auto" />
+	</div>
+</div>

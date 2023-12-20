@@ -1,0 +1,14 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+import type { MapStoryblok } from '@/lib/storyblok/types';
+import Map from '../react/Map';
+type Props = {
+	blok: MapStoryblok;
+};
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	<Map client:visible blok={blok} />
+</div>

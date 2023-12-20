@@ -36,6 +36,8 @@ export default defineConfig({
 				stats: 'components/nestable/Stats',
 				bigStat: 'components/nestable/BigStat',
 				bentoStats: 'components/nestable/BentoStats',
+				fullWidthImage: 'components/nestable/FullWidthImage',
+				map: 'components/nestable/MapWrapper',
 			},
 			apiOptions: {
 				region: 'eu',

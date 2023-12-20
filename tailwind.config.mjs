@@ -91,9 +91,16 @@ export default {
 						transform: 'translateX(-50%)',
 					},
 				},
+				pulseCoordinate: {
+					'50%': {
+						opacity: 0.3,
+						scale: 1.5,
+					},
+				},
 			},
 			animation: {
 				scrollingText: 'leftToRight 10s linear infinite',
+				pulseCoordinate: 'pulseCoordinate 1.5s ease-in-out infinite',
 			},
 			screens: {
 				'3xl': '1920px',
