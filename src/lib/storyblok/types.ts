@@ -807,6 +807,7 @@ export interface TitleTextCtaStoryblok {
 	ctaStyle?: 'filled' | 'outline' | 'ghost';
 	ctaColor?: 'darkGreen' | 'magenta';
 	bgColor: 'white' | 'rose' | 'transparent';
+	reducePadding?: boolean;
 	isMultiLinkVariant?: boolean;
 	multiLinks?: ImageLinkStoryblok[];
 	isScrollDownLinkVariant?: boolean;
