@@ -1,3 +1,5 @@
+export const prerender = true;
+
 import { fetchAllProjects } from '@/lib/storyblok/helpers';
 import type { ProjectStoryblok, SectionBlock } from '@/lib/storyblok/types';
 import type { APIRoute } from 'astro';
