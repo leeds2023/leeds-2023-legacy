@@ -15,7 +15,6 @@ import {
 import FullWidthVideo from './FullWidthVideo';
 import { ScrollArea } from './ui/ScrollArea';
 import { extractDimensions } from '@/lib/storyblok/helpers';
-import useScreenSize from '@/lib/hooks/useScreenSize';
 
 type ProjectProps = {
 	project: Project;
