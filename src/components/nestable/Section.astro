@@ -24,7 +24,7 @@ const section = cva('text-darkText-30', {
 			none: 'py-0',
 			small: 'py-8',
 			medium: 'py-16',
-			large: 'py-24',
+			large: 'py-16 lg:py-24',
 			xlarge: 'py-6 md:py-24 xl:py-48',
 		},
 		rules: {
@@ -106,7 +106,11 @@ const { blok } = Astro.props;
 						'-right-72 bottom-auto left-auto top-0 h-full sm:-right-20 lg:right-0',
 					blok.backgroundImage === 'ribbonSix' && 'bottom-auto left-auto right-0 top-0',
 					blok.backgroundImage === 'ribbonSeven' &&
-						'-right-72 bottom-0 left-auto top-auto sm:-right-64 lg:right-0'
+						'-right-72 bottom-0 left-auto top-auto sm:-right-64 lg:right-0',
+					blok.backgroundImage === 'ribbonEleven' &&
+						'bottom-24 left-72 right-auto top-auto hidden lg:block',
+					blok.backgroundImage === 'ribbonTwelve' &&
+						'bottom-auto left-auto right-72 top-24 hidden lg:block'
 				)}
 			>
 				<img

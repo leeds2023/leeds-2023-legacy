@@ -687,7 +687,11 @@ export interface SectionStoryblok {
 		| 'ribbonFive'
 		| 'ribbonSix'
 		| 'ribbonSeven'
-		| 'ribbonEight';
+		| 'ribbonEight'
+		| 'ribbonNine'
+		| 'ribbonTen'
+		| 'ribbonEleven'
+		| 'ribbonTwelve';
 	gap: 'none' | 'small' | 'medium' | 'large' | 'xlarge';
 	paddingRules: 'paddingTopOnly' | 'paddingBottomOnly' | 'bothSides';
 	className?: string;
@@ -762,6 +766,7 @@ export interface TestimonialsStoryblok {
 
 export interface TextWithImageStoryblok {
 	title: string;
+	subtitle?: string;
 	description: RichtextStoryblok;
 	image: AssetStoryblok;
 	reverse?: boolean;

@@ -5,23 +5,48 @@ import ReadMoreRichText from '@/components/react/ReadMoreRichText';
 import type { CtaStoryblok, RichText as RichTextType } from '@/lib/storyblok/types';
 import { renderRichText } from '@storyblok/astro';
 import Button from '@/components/ui/Button.astro';
+import { cn } from '@/lib/utils';
 
 type Props = {
 	title: string;
+	subtitle?: string;
 	description: RichTextType;
 	truncate?: boolean;
 	truncateChars?: number;
 	ctas?: CtaStoryblok[];
+	color?: 'mint' | 'rose';
 };
 
-const { title, description, truncate = false, truncateChars = 140, ctas } = Astro.props;
+const {
+	title,
+	description,
+	truncate = false,
+	truncateChars = 140,
+	ctas,
+	subtitle,
+	color = 'rose',
+} = Astro.props;
+
+console.log(color);
 const renderedRichText = renderRichText(description);
 ---
 
 {
 	!truncate && (
-		<div class="flex flex-col gap-6 bg-brandRose-100 p-8 text-center lg:text-left">
-			<Title>{title}</Title>
+		<div
+			class={cn(
+				' flex flex-col gap-4 bg-brandRose-100 p-8 text-center lg:text-left',
+				color === 'mint' && 'bg-brandMint-100'
+			)}
+		>
+			<div class="flex flex-col gap-2">
+				<Title>{title}</Title>
+				{subtitle && subtitle !== '' && (
+					<Title size={'small'} type="h3">
+						{subtitle}
+					</Title>
+				)}
+			</div>
 			<RichText content={description} />
 			{ctas && ctas.length > 0 && (
 				<div class="flex flex-col gap-6 lg:flex-row">
@@ -38,8 +63,17 @@ const renderedRichText = renderRichText(description);
 
 {
 	truncate && (
-		<div class="flex flex-col gap-6 bg-brandRose-100 p-8">
-			<Title>{title}</Title>
+		<div
+			class={cn('flex flex-col gap-4 bg-brandRose-100 p-8', color === 'mint' && 'bg-brandMint-100')}
+		>
+			<div class="flex flex-col gap-2">
+				<Title>{title}</Title>
+				{subtitle && subtitle !== '' && (
+					<Title size={'small'} type="h3">
+						{subtitle}
+					</Title>
+				)}
+			</div>
 			<ReadMoreRichText client:visible content={renderedRichText} truncateChars={truncateChars} />
 		</div>
 	)
