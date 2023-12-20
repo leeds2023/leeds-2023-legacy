@@ -18,6 +18,7 @@ import { extractDimensions } from '@/lib/storyblok/helpers';
 
 type ProjectProps = {
 	project: Project;
+	index: number;
 };
 
 const stages = {
@@ -28,7 +29,7 @@ const stages = {
 
 export type Stage = keyof typeof stages;
 
-export default function Project({ project }: ProjectProps) {
+export default function Project({ project, index }: ProjectProps) {
 	storyblokInit({
 		accessToken: import.meta.env.STORYBLOK_TOKEN,
 	});
@@ -45,6 +46,7 @@ export default function Project({ project }: ProjectProps) {
 					width={954}
 					height={407.25}
 					background="auto"
+					priority={index < 7}
 					className="h-full object-cover"
 				/>
 			</div>
