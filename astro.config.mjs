@@ -46,5 +46,10 @@ export default defineConfig({
 			enableFallbackComponent: true,
 		}),
 	],
+	vite: {
+		build: {
+			sourcemap: true,
+		},
+	},
 	adapter: vercel(),
 });
