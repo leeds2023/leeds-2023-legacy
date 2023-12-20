@@ -37,7 +37,6 @@ export default function Project({ project, index }: ProjectProps) {
 
 	const [expanded, setExpanded] = useState(false);
 	const dimensions = extractDimensions(project.content.image.filename, 1000, 'width');
-	const screenSize = useScreenSize();
 
 	return (
 		<div className="flex flex-col overflow-hidden rounded-md bg-white shadow">
@@ -48,15 +47,7 @@ export default function Project({ project, index }: ProjectProps) {
 					width={954}
 					height={407.25}
 					background="auto"
-					priority={
-						screenSize.width < 768 && index < 3
-							? true
-							: screenSize.width < 1280 && index < 5
-							? true
-							: screenSize.width >= 1280 && index < 7
-							? true
-							: false
-					}
+					priority={index < 7}
 					className="h-full object-cover"
 				/>
 			</div>
