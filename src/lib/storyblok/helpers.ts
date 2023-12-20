@@ -60,7 +60,7 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 
 export async function fetchProjectDataFromEndpoint(): Promise<Project[]> {
 	let initialProjectsData = [];
-	const res = await fetch(`${import.meta.env.SITE_URL}/programme-data.json`);
+	const res = await fetch('/programme-data.json');
 	initialProjectsData = await res.json();
 	return initialProjectsData;
 }
