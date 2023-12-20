@@ -7,7 +7,10 @@ type Props = {
 	blok: ProjectsStoryblok;
 };
 
-const res = await fetch(`${import.meta.env.SITE_URL}/programme/data.json`);
+const res =
+	process.env.ENV_NAME && process.env.ENV_NAME === 'production'
+		? await fetch(`${import.meta.env.SITE_URL}/programme/data`)
+		: await fetch(`${import.meta.env.SITE_URL}/programme/data.json`);
 const initialProjectsData = await res.json();
 
 const { blok } = Astro.props;
