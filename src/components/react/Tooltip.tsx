@@ -45,13 +45,13 @@ export default function Tooltip({ blok }: TooltipProps) {
 			</PopoverTrigger>
 			<PopoverContent
 				sideOffset={20}
-				className="w-80 rounded-none border-2 border-[#EE3796] bg-white shadow"
+				className="w-80 rounded-md border-2 border-[#EE3796] bg-white shadow-md"
 			>
 				<div className="flex flex-col gap-4">
-					{blok.tooltipItems.map((item) => (
+					{blok.tooltipItems.map((item, index) => (
 						<div key={item._uid} className="flex flex-col gap-3">
 							<div className="flex flex-col gap-2">
-								<div className="font-display text-2xl">{item.title}</div>
+								<div className="py-1.5 font-display text-xl">{item.title}</div>
 								<div className="text-base text-[#2A545C] opacity-80">{item.description}</div>
 							</div>
 							{item.link && item.linkText && (
@@ -60,9 +60,10 @@ export default function Tooltip({ blok }: TooltipProps) {
 									linkText={item.linkText}
 									color={'primary'}
 									style={'ghost'}
-									className="justify-start pl-0 text-left"
+									className="w-fit justify-start pl-0 text-left"
 								/>
 							)}
+							{index !== blok.tooltipItems.length - 1 && <hr className="mt-1.5 border-slate-300" />}
 						</div>
 					))}
 				</div>

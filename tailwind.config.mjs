@@ -97,10 +97,20 @@ export default {
 						scale: 1.5,
 					},
 				},
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
+				},
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
 			},
 			animation: {
 				scrollingText: 'leftToRight 10s linear infinite',
 				pulseCoordinate: 'pulseCoordinate 1.5s ease-in-out infinite',
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 			screens: {
 				'3xl': '1920px',
