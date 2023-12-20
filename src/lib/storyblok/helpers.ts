@@ -7,6 +7,7 @@ import type {
 	Link,
 	StoryWithProjectPage,
 } from './types';
+import type { Project } from '@/pages/programme/data.json';
 
 const storyblokApi = useStoryblokApi();
 
@@ -55,6 +56,16 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 	});
 
 	return stories;
+}
+
+export async function fetchProjectDataFromEndpoint(): Promise<Project[]> {
+	let initialProjectsData = [];
+	const res =
+		process.env.ENV_NAME && process.env.ENV_NAME === 'production'
+			? await fetch(`${import.meta.env.SITE_URL}/programme/data`)
+			: await fetch(`${import.meta.env.SITE_URL}/programme/data.json`);
+	initialProjectsData = await res.json();
+	return initialProjectsData;
 }
 
 export async function fetchNavAndFooter(): Promise<StoryWithNavAndFooter> {

@@ -3,25 +3,16 @@ import { storyblokEditable } from '@storyblok/astro';
 
 import type { ProjectsStoryblok } from '@/lib/storyblok/types';
 import Projects from '../react/Projects';
+import { fetchProjectDataFromEndpoint } from '@/lib/storyblok/helpers';
 type Props = {
 	blok: ProjectsStoryblok;
 };
 
-let initialProjectsData = [];
-
-try {
-	const res =
-		process.env.ENV_NAME && process.env.ENV_NAME === 'production'
-			? await fetch(`${import.meta.env.SITE_URL}/programme/data`)
-			: await fetch(`${import.meta.env.SITE_URL}/programme/data.json`);
-	initialProjectsData = await res.json();
-} catch (error) {
-	console.log(error);
-}
+const data = await fetchProjectDataFromEndpoint();
 
 const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)}>
-	<Projects client:load initialProjectData={initialProjectsData} blok={blok} />
+	<Projects client:load initialProjectData={data} blok={blok} />
 </div>
