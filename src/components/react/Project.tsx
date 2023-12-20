@@ -1,4 +1,4 @@
-import type { Project } from '@/pages/programme/data.json';
+import type { Project } from '@/pages/programme-data.json';
 import { Image } from '@unpic/react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
