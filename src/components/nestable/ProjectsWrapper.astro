@@ -13,5 +13,5 @@ const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)}>
-	<Projects client:load initialProjectData={data} blok={blok} />
+	<Projects client:only initialProjectData={data} blok={blok} />
 </div>
