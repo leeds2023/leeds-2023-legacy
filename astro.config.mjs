@@ -38,6 +38,7 @@ export default defineConfig({
 				bentoStats: 'components/nestable/BentoStats',
 				fullWidthImage: 'components/nestable/FullWidthImage',
 				map: 'components/nestable/MapWrapper',
+				testimonials: 'components/nestable/TestimonialsWrapper',
 			},
 			apiOptions: {
 				region: 'eu',

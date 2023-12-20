@@ -1,0 +1,15 @@
+---
+import type { TestimonialsStoryblok } from '@/lib/storyblok/types';
+import { storyblokEditable } from '@storyblok/astro';
+import Testimonials from '../react/Testimonials';
+
+type Props = {
+	blok: TestimonialsStoryblok;
+};
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+	<Testimonials client:visible blok={blok} />
+</div>
