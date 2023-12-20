@@ -49,9 +49,9 @@ export default function Project({ project, index }: ProjectProps) {
 					height={407.25}
 					background="auto"
 					priority={
-						screenSize.width < 1280 && index < 5
+						screenSize.width < 768 && index < 3
 							? true
-							: screenSize.width < 768 && index < 3
+							: screenSize.width < 1280 && index < 5
 							? true
 							: screenSize.width >= 1280 && index < 7
 							? true
