@@ -1,14 +1,13 @@
 ---
 import { storyblokEditable } from '@storyblok/astro';
-
 import type { ProjectsStoryblok } from '@/lib/storyblok/types';
 import Projects from '../react/Projects';
-import { fetchProjectDataFromEndpoint } from '@/lib/storyblok/helpers';
+import { fetchAllProjectsTransformed } from '@/lib/storyblok/helpers';
 type Props = {
 	blok: ProjectsStoryblok;
 };
 
-const data = await fetchProjectDataFromEndpoint();
+const data = await fetchAllProjectsTransformed();
 
 const { blok } = Astro.props;
 ---

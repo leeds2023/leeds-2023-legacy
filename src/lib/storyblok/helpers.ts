@@ -5,9 +5,10 @@ import type {
 	StoryWithLegacyPage,
 	LegacyPageStories,
 	Link,
+	SectionBlock,
 	StoryWithProjectPage,
 } from './types';
-import type { Project } from '@/pages/programme-data.json';
+import type { Project } from '@/pages/programme/data.json';
 
 const storyblokApi = useStoryblokApi();
 
@@ -58,9 +59,34 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 	return stories;
 }
 
+export async function fetchAllProjectsTransformed(): Promise<Project[]> {
+	const data = await fetchAllProjects();
+	const mappedData = data.map((project) => {
+		return {
+			uuid: project.uuid,
+			content:
+				project.content.blocks[0].blocks.find(
+					(blok: SectionBlock) => blok.component === 'project'
+				) ?? {},
+			slug: project.slug,
+			tags:
+				project.content.blocks[0].blocks.find((blok: SectionBlock) => blok.component === 'project')
+					.tags ?? {},
+			category:
+				project.content.blocks[0].blocks.find((blok: SectionBlock) => blok.component === 'project')
+					.associatedStage ?? '',
+			title:
+				project.content.blocks[0].blocks.find((blok: SectionBlock) => blok.component === 'project')
+					.title ?? '',
+		};
+	});
+
+	return mappedData;
+}
+
 export async function fetchProjectDataFromEndpoint(): Promise<Project[]> {
 	let initialProjectsData = [];
-	const res = await fetch('/programme-data.json');
+	const res = await fetch(`${import.meta.env.SITE_URL}/programme/data.json`);
 	initialProjectsData = await res.json();
 	return initialProjectsData;
 }
