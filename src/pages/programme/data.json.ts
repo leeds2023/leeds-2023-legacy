@@ -4,12 +4,18 @@ import { fetchAllProjectsTransformed } from '@/lib/storyblok/helpers';
 import type { ProjectStoryblok } from '@/lib/storyblok/types';
 import type { APIRoute } from 'astro';
 
+type Blurhash = {
+	value: string;
+	css: string;
+};
+
 export type Project = {
 	uuid: string;
 	content: ProjectStoryblok;
 	slug: string;
 	tags: string[];
 	category: string;
+	blurhash: Blurhash | null | undefined;
 	title: string;
 };
 

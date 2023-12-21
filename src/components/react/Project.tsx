@@ -39,13 +39,13 @@ export default function Project({ project, index }: ProjectProps) {
 
 	return (
 		<div className="flex flex-col overflow-hidden rounded-md bg-white shadow">
-			<div className="h-36 bg-slate-300">
+			<div className="h-36">
 				<Image
 					src={project.content.image.filename}
 					alt={project.content.title}
 					width={954}
 					height={407.25}
-					background="auto"
+					background={project.blurhash ? project.blurhash.css : 'auto'}
 					priority={index < 7}
 					className="h-full object-cover"
 				/>
@@ -75,6 +75,7 @@ export default function Project({ project, index }: ProjectProps) {
 													youtubeId: project.content.youtubeId,
 													coverImage: project.content.image,
 												}}
+												blurhashCss={project.blurhash ? project.blurhash.css : undefined}
 												isModal
 											/>
 										)}
@@ -87,7 +88,7 @@ export default function Project({ project, index }: ProjectProps) {
 															src={project.content.image.filename}
 															className="h-full !max-h-none !max-w-none object-cover"
 															alt={project.content.title ? project.content.title : ''}
-															background="auto"
+															background={project.blurhash ? project.blurhash.css : 'auto'}
 															width={dimensions.width}
 															height={dimensions.height}
 														/>
@@ -96,7 +97,7 @@ export default function Project({ project, index }: ProjectProps) {
 															src={project.content.image.filename}
 															className="h-full !max-h-none !max-w-none object-cover"
 															alt={project.content.title ? project.content.title : ''}
-															background="auto"
+															background={project.blurhash ? project.blurhash.css : 'auto'}
 															layout="fullWidth"
 														/>
 													)}

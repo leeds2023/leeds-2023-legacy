@@ -9,6 +9,7 @@ import type {
 	StoryWithProjectPage,
 } from './types';
 import type { Project } from '@/pages/programme/data.json';
+import { blurhashes } from './blurhashes';
 
 const storyblokApi = useStoryblokApi();
 
@@ -62,9 +63,13 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 export async function fetchAllProjectsTransformed(): Promise<Project[]> {
 	const data = await fetchAllProjects();
 	const mappedData = data.map((project) => {
-		const blurhashValue = project.content.blocks[0].blocks.find(
+		const imageId = project.content.blocks[0].blocks.find(
 			(blok: SectionBlock) => blok.component === 'project'
-		).image.blurhash;
+		).image.id;
+
+		const blurhash = blurhashes.find((blurhash) => blurhash.id === imageId)
+			? blurhashes.find((blurhash) => blurhash.id === imageId)?.blurhash
+			: null;
 
 		return {
 			uuid: project.uuid,
@@ -73,7 +78,7 @@ export async function fetchAllProjectsTransformed(): Promise<Project[]> {
 					(blok: SectionBlock) => blok.component === 'project'
 				) ?? {},
 			slug: project.slug,
-			blurhash: blurhashValue ? blurhashValue : '',
+			blurhash,
 			tags:
 				project.content.blocks[0].blocks.find((blok: SectionBlock) => blok.component === 'project')
 					.tags ?? {},

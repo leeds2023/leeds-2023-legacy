@@ -10,6 +10,7 @@ import { extractDimensions } from '@/lib/storyblok/helpers';
 type Props = {
 	blok: FullWidthVideoStoryblok;
 	isModal?: boolean;
+	blurhashCss?: string;
 };
 
 let videoElement: YouTubePlayer | null = null;
@@ -82,7 +83,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 							src={blok.coverImage.filename}
 							className="absolute left-0 top-0 h-full !max-h-none w-full !max-w-none object-cover"
 							alt={blok.coverImage.alt ? blok.coverImage.alt : ''}
-							background="auto"
+							background={blok.blurhashCss ? blok.blurhashCss : 'auto'}
 							width={dimensions.width}
 							height={dimensions.height}
 						/>
@@ -91,7 +92,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 							src={blok.coverImage.filename}
 							className="absolute left-0 top-0 h-full !max-h-none w-full !max-w-none object-cover"
 							alt={blok.coverImage.alt ? blok.coverImage.alt : ''}
-							background="auto"
+							background={blok.blurhashCss ? blok.blurhashCss : 'auto'}
 							layout="fullWidth"
 						/>
 					)}
