@@ -15,7 +15,7 @@ type Props = {
 
 let videoElement: YouTubePlayer | null = null;
 
-export default function FullWidthVideo({ blok, isModal }: Props) {
+export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 	const [active, setIsActive] = useState(false);
 	const dimensions = extractDimensions(blok.coverImage.filename, 1000, 'width');
 
@@ -83,7 +83,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 							src={blok.coverImage.filename}
 							className="absolute left-0 top-0 h-full !max-h-none w-full !max-w-none object-cover"
 							alt={blok.coverImage.alt ? blok.coverImage.alt : ''}
-							background={blok.blurhashCss ? blok.blurhashCss : 'auto'}
+							background={blurhashCss ? blurhashCss : 'auto'}
 							width={dimensions.width}
 							height={dimensions.height}
 						/>
@@ -92,7 +92,7 @@ export default function FullWidthVideo({ blok, isModal }: Props) {
 							src={blok.coverImage.filename}
 							className="absolute left-0 top-0 h-full !max-h-none w-full !max-w-none object-cover"
 							alt={blok.coverImage.alt ? blok.coverImage.alt : ''}
-							background={blok.blurhashCss ? blok.blurhashCss : 'auto'}
+							background={blurhashCss ? blurhashCss : 'auto'}
 							layout="fullWidth"
 						/>
 					)}
