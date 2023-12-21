@@ -1,6 +1,6 @@
 {
   "functions": {
-    "src/pages/api/blurhash/*": {
+    "/api/blurhash/*": {
       "memory": 3008,
       "maxDuration": 60
     }
