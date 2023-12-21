@@ -1,10 +1,9 @@
-import { defineConfig, sharpImageService } from 'astro/config';
+import { defineConfig, squooshImageService } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/serverless';
 import storyblok from '@storyblok/astro';
 import { loadEnv } from 'vite';
-import sharp from 'sharp';
 const { STORYBLOK_TOKEN, OUTPUT_STRATEGY } = loadEnv('', process.cwd(), '');
 
 // https://astro.build/config
@@ -48,7 +47,7 @@ export default defineConfig({
 		}),
 	],
 	image: {
-		service: sharpImageService(),
+		service: squooshImageService(),
 	},
 	adapter: vercel(),
 });
