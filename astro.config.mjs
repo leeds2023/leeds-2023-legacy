@@ -1,4 +1,4 @@
-import { defineConfig, squooshImageService } from 'astro/config';
+import { defineConfig, sharpImageService, squooshImageService } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/serverless';
@@ -47,7 +47,8 @@ export default defineConfig({
 		}),
 	],
 	image: {
-		service: squooshImageService(),
+		service:
+			OUTPUT_STRATEGY && OUTPUT_STRATEGY === 'server' ? squooshImageService() : sharpImageService(),
 	},
 	adapter: vercel(),
 });
