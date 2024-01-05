@@ -1,7 +1,7 @@
 import type { StoriesStoryblok } from '@/lib/storyblok/types';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaOptionsType } from 'embla-carousel-react';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import Story from './Story';
 
 type StoriesProps = {
@@ -13,8 +13,6 @@ export default function Stories({ blok }: StoriesProps) {
 		slidesToScroll: 'auto',
 		containScroll: 'trimSnaps',
 	};
-
-	const [isHovering, setIsHovering] = useState(false);
 
 	const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
 
@@ -42,11 +40,7 @@ export default function Stories({ blok }: StoriesProps) {
 					<img src="/images/icons/arrow.svg" className="rotate-180" alt="Next" />
 				</button>
 			</div>
-			<div
-				className="embla relative !overflow-y-visible"
-				onMouseEnter={() => setIsHovering(true)}
-				onMouseLeave={() => setIsHovering(false)}
-			>
+			<div className="embla relative !overflow-y-visible">
 				<div className="embla__viewport" ref={emblaRef}>
 					<div className="embla__container">
 						{blok.stories.map((item) => (
