@@ -263,6 +263,7 @@ export interface FullWidthVideoStoryblok {
 	videoAsset?: AssetStoryblok;
 	youtubeId?: string;
 	coverImage: AssetStoryblok;
+	ctaButtonText?: string;
 	useVideoAsset?: boolean;
 	_uid?: string;
 	component?: 'fullWidthVideo';

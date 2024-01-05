@@ -5,9 +5,10 @@ import { Image } from '@unpic/astro';
 type Props = {
 	sbLink: Link;
 	image: Asset;
+	background?: boolean;
 };
 
-const { sbLink, image } = Astro.props;
+const { sbLink, image, background = true } = Astro.props;
 
 const link = sbLink ? parseStoryblokLink(sbLink) : '#';
 const isExternal = link.startsWith('http');
@@ -28,7 +29,7 @@ const dimensions = extractDimensions(image.filename, 500);
 				src={image.filename}
 				class="w-full object-contain"
 				alt={image.alt ? image.alt : ''}
-				background="auto"
+				background={background ? 'auto' : 'none'}
 				width={dimensions.width}
 				height={dimensions.height}
 			/>
@@ -37,7 +38,7 @@ const dimensions = extractDimensions(image.filename, 500);
 				src={image.filename}
 				class="w-full object-contain"
 				alt={image.alt ? image.alt : ''}
-				background="auto"
+				background={background ? 'auto' : 'none'}
 				layout="fullWidth"
 			/>
 		)
