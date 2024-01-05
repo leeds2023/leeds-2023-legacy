@@ -90,8 +90,6 @@ async function main() {
 		ids.push(item.id);
 		items.push(blurhash);
 	}
-
-	console.log(items);
 }
 
 main();

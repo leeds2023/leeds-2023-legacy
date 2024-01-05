@@ -1,6 +1,5 @@
 import type { Project } from '@/pages/programme/data.json';
 import { Image } from '@unpic/react';
-import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import TagsList from './ui/TagsList';
 import { renderRichText, storyblokInit } from '@storyblok/react';
@@ -37,44 +36,6 @@ export default function Project({ project, index }: ProjectProps) {
 	const dimensions = extractDimensions(project.content.image.filename, 1000, 'width');
 
 	return (
-		// <div className="flex flex-col overflow-hidden rounded-md bg-white shadow">
-		// 	<div className="h-36">
-		// 		<Image
-		// 			src={project.content.image.filename}
-		// 			alt={project.content.title}
-		// 			width={954}
-		// 			height={407.25}
-		// 			background={project.blurhash ? project.blurhash.css : 'auto'}
-		// 			priority={index < 7}
-		// 			className="h-full object-cover"
-		// 		/>
-		// 	</div>
-		// 	<div className="relative flex h-full flex-col justify-between gap-2 p-4">
-		// 		<span
-		// 			className={cn(
-		// 				'absolute right-4 top-4 h-6 w-6 flex-shrink-0 rounded-full',
-		// 				project.content.associatedStage === 'awakening'
-		// 					? 'bg-[#EE3796]'
-		// 					: project.content.associatedStage === 'playing'
-		// 					? 'bg-brandTeal-100'
-		// 					: 'bg-brandRose-100'
-		// 			)}
-		// 		/>
-		// 		<div>
-		// 			<div className="flex flex-col gap-1 pb-2">
-		// 				<h2 className="max-w-[calc(100%-2rem)] font-display text-xl">
-		// 					{project.content.title}
-		// 				</h2>
-		// 				<span className="pb-1.5 text-sm">{project.content.subtitle}</span>
-		// 			</div>
-		// 			<TagsList
-		// 				stage={project.content.associatedStage}
-		// 				tags={project.content.tags ? project.content.tags : []}
-		// 				disableThreshold
-		// 			/>
-		// 			<p className="py-4 text-sm">{project.content.smallDescription}</p>
-		// 		</div>
-		// 		<div>
 		<Dialog>
 			<DialogTrigger>
 				<div className="flex h-full flex-col overflow-hidden rounded-md bg-white text-left shadow">
