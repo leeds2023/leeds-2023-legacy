@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Input } from './ui/Input';
 import Fuse from 'fuse.js';
 import { cn } from '@/lib/utils';
+import { navigate } from 'astro:transitions/client';
 type ProjectsProps = {
 	initialProjectData: ProjectsApiResponse;
 	blok: ProjectsStoryblok;
@@ -55,17 +56,24 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 			setResults(results);
 		}
 	}, [debouncedSearchQuery]);
-	// project.content.associatedStage === 'awakening'
-	// ? 'bg-[#EE3796]'
-	// : project.content.associatedStage === 'playing'
-	// ? 'bg-brandTeal-100'
-	// : 'bg-brandRose-100'
+
+	function handlePressInput() {
+		if (window.location.pathname !== '/programme/') {
+			navigate('/programme/');
+		}
+	}
 	return (
 		<div className="pb-16 lg:pb-24">
-			<div className="mb-12 bg-white py-6">
+			<div
+				className={cn(
+					'mb-12 bg-white py-6',
+					blok.showProjects !== 'all' &&
+						'fixed left-0 top-16 z-[101] w-full border-b-2 border-slate-200 shadow-sm'
+				)}
+			>
 				<div className="mx-auto px-4 lg:max-w-[950px] lg:px-2 xl:max-w-[1150px] 2xl:max-w-[1250px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]">
 					<div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
-						<h2 className="w-full font-display text-2xl lg:w-5/12">Programme</h2>
+						<h2 className="hidden w-full font-display text-2xl lg:block lg:w-5/12">Programme</h2>
 						<div className="flex w-full flex-col justify-end gap-6 lg:w-7/12 lg:flex-row lg:items-center">
 							<div className="text-display flex gap-4 text-base">
 								{(Object.keys(stages) as (keyof typeof stages)[]).map((stage, index) => (
@@ -100,6 +108,7 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 								placeholder="Search"
 								className="w-full focus-visible:ring-brandDarkGreen-100 focus-visible:ring-opacity-50"
 								onChange={(e) => setSearchQuery(e.target.value)}
+								onClick={handlePressInput}
 							/>
 						</div>
 					</div>
@@ -107,16 +116,18 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 			</div>
 			<div className="mx-auto min-h-[50vh] px-4 lg:max-w-[1000px] lg:px-2 xl:max-w-[1200px] 2xl:max-w-[1250px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]">
 				<div className="flex flex-col gap-10">
-					<h1 className="font-display text-2xl lg:text-4xl">
-						{(!debouncedSearchQuery || debouncedSearchQuery === '') &&
-							blok.mainTitle &&
-							blok.mainTitle}
-						{debouncedSearchQuery && debouncedSearchQuery !== '' && (
-							<>
-								Search results for <span className="underline">{debouncedSearchQuery}</span>
-							</>
-						)}
-					</h1>
+					{blok.showProjects === 'all' && (
+						<h1 className="font-display text-2xl lg:text-4xl">
+							{(!debouncedSearchQuery || debouncedSearchQuery === '') &&
+								blok.mainTitle &&
+								blok.mainTitle}
+							{debouncedSearchQuery && debouncedSearchQuery !== '' && (
+								<>
+									Search results for <span className="underline">{debouncedSearchQuery}</span>
+								</>
+							)}
+						</h1>
+					)}
 					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
 						{results.map((project, index) => (
 							<Project key={project.uuid} project={project} index={index} />

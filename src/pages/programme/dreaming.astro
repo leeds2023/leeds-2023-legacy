@@ -1,0 +1,7 @@
+---
+import Render from '@/lib/storyblok/Render.astro';
+import { fetchStory } from '@/lib/storyblok/helpers';
+const { content } = await fetchStory('projects-dreaming');
+---
+
+<Render blok={content} />

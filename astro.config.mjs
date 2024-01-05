@@ -28,6 +28,7 @@ export default defineConfig({
 				projects: 'components/nestable/ProjectsWrapper',
 				anotherOne: 'components/nestable/AltStats',
 				legacySpacer: 'components/nestable/Spacer',
+				altHero: 'components/nestable/AltHero',
 				altHeroTwo: 'components/nestable/AltHeroTwo',
 				stories: 'components/nestable/StoriesWrapper',
 				explore: 'components/nestable/Explore',
