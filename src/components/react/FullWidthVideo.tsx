@@ -117,7 +117,7 @@ export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 								/>
 							</svg>
 						</div>
-						<span className="text-xl">Play Video</span>
+						<span className="text-xl">Play video</span>
 					</button>
 				</div>
 			)}
