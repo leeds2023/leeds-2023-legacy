@@ -8,22 +8,14 @@ type TagsListProps = {
 	disableThreshold?: boolean;
 };
 
-export default function TagsList({ stage, tags, threshold = 2, disableThreshold }: TagsListProps) {
+export default function TagsList({ tags, threshold = 2, disableThreshold }: TagsListProps) {
 	const displayedTags = disableThreshold ? tags : tags.slice(0, threshold);
 
 	return (
-		<div className="flex items-center gap-2">
-			<span
-				className={cn(
-					'h-6 w-6 flex-shrink-0 rounded-full',
-					stage === 'awakening'
-						? 'bg-[#EE3796]'
-						: stage === 'playing'
-						? 'bg-brandTeal-100'
-						: 'bg-brandRose-100'
-				)}
-			/>
-			<div className={cn('flex flex-wrap  gap-2 md:flex-nowrap')}>
+		<div className={cn('flex items-center gap-4', disableThreshold && '')}>
+			<div
+				className={cn('flex flex-wrap  gap-2 md:flex-nowrap', disableThreshold && 'md:flex-wrap')}
+			>
 				{displayedTags.map((tag, index) => (
 					<div
 						key={index}

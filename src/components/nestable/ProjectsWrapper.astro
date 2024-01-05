@@ -8,10 +8,13 @@ type Props = {
 };
 
 const data = await fetchAllProjectsTransformed();
-
 const { blok } = Astro.props;
+const filteredData =
+	blok.showProjects.toLowerCase() === 'all'
+		? data
+		: data.filter((project) => project.category === blok.showProjects.toLowerCase());
 ---
 
 <div {...storyblokEditable(blok)}>
-	<Projects client:load initialProjectData={data} blok={blok} />
+	<Projects client:only initialProjectData={filteredData} blok={blok} />
 </div>

@@ -263,6 +263,7 @@ export interface FullWidthVideoStoryblok {
 	videoAsset?: AssetStoryblok;
 	youtubeId?: string;
 	coverImage: AssetStoryblok;
+	ctaButtonText?: string;
 	useVideoAsset?: boolean;
 	_uid?: string;
 	component?: 'fullWidthVideo';
@@ -773,6 +774,8 @@ export interface TextWithImageStoryblok {
 	truncate?: boolean;
 	truncateCharacters?: string;
 	ctas?: CtaStoryblok[];
+	modalContent?: RichtextStoryblok;
+	modalBtnText?: string;
 	quote?: string;
 	bgColor?: 'rose' | 'mint';
 	_uid: string;

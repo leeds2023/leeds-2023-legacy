@@ -53,6 +53,9 @@ const { blok } = Astro.props;
 			truncateChars={blok.truncateCharacters ? parseInt(blok.truncateCharacters) : undefined}
 			color={blok.bgColor}
 			subtitle={blok.subtitle}
+			modal={blok.modalContent && blok.modalBtnText && blok.modalBtnText !== '' ? true : false}
+			modalContent={blok.modalContent}
+			modalBtnText={blok.modalBtnText}
 		/>
 	</div>
 </div>

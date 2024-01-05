@@ -145,7 +145,7 @@ export default function Navigation({ blok }: NavigationProps) {
 	return (
 		<nav
 			className={cn(
-				'fixed z-[100] flex h-16 w-full items-center justify-between bg-brandDarkGreen-100 px-4 text-white lg:px-8 lg:py-3.5',
+				'fixed z-50 flex h-16 w-full items-center justify-between bg-brandDarkGreen-100 px-4 text-white lg:px-8 lg:py-3.5',
 				isMenuOpen && 'fixed left-0 top-0 w-full'
 			)}
 		>

@@ -2,6 +2,10 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { AltHeroStoryblok } from '@/lib/storyblok/types';
+import { Image } from '@unpic/astro';
+import AltHeroBg from '../ui/AltHeroBg.astro';
+import Title from '../ui/Title.astro';
+import Button from '../ui/Button.astro';
 type Props = {
 	blok: AltHeroStoryblok;
 };
@@ -9,6 +13,54 @@ type Props = {
 const { blok } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>
-	<p>{JSON.stringify(blok.component)}</p>
+<div class="pt-[7rem] md:pt-[5.5rem]" {...storyblokEditable(blok)}>
+	<div class="relative h-[35rem] md:h-[40rem]">
+		<div class="absolute h-[35rem] w-full bg-[#EE3796]">
+			<div class="absolute right-0 top-0">
+				<AltHeroBg />
+			</div>
+		</div>
+		<div class="absolute left-0 z-10 h-full w-[60%]">
+			<Image
+				src={blok.image.filename}
+				alt={blok.image.alt}
+				width={1400}
+				height={900}
+				background="auto"
+				class={'h-full w-full object-cover !max-w-full hidden md:block'}
+			/>
+			<div
+				class="absolute left-10 right-auto top-1/2 flex w-[80vw] -translate-y-1/2 flex-col gap-6 bg-brandCream-100 p-8 lg:-right-80 lg:left-auto lg:max-w-md"
+			>
+				<Title type="h1" size={'large'}>{blok.title}</Title>
+				<p class="opacity-80">{blok.description}</p>
+				{
+					(blok.ctaLinkOne || blok.ctaLinkTwo) && (
+						<div class="flex flex-wrap gap-4 pt-4 lg:flex-nowrap">
+							{blok.ctaLinkOne && blok.ctaLinkTextOne && (
+								<Button
+									style={'filled'}
+									color={'darkGreen'}
+									id={'altHeroOne'}
+									sbLink={blok.ctaLinkOne}
+								>
+									{blok.ctaLinkTextOne}
+								</Button>
+							)}
+							{blok.ctaLinkTwo && blok.ctaLinkTextTwo && (
+								<Button
+									style={'outline'}
+									color={'darkGreen'}
+									id={'altHeroTwo'}
+									sbLink={blok.ctaLinkTwo}
+								>
+									{blok.ctaLinkTextTwo}
+								</Button>
+							)}
+						</div>
+					)
+				}
+			</div>
+		</div>
+	</div>
 </div>

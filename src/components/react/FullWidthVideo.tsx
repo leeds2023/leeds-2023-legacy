@@ -117,7 +117,9 @@ export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 								/>
 							</svg>
 						</div>
-						<span className="text-xl">Play Video</span>
+						<span className="text-xl">
+							{blok.ctaButtonText && blok.ctaButtonText !== '' ? blok.ctaButtonText : 'Play video'}
+						</span>
 					</button>
 				</div>
 			)}

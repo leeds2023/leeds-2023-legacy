@@ -25,17 +25,8 @@ export default function Stories({ blok }: StoriesProps) {
 	}, [emblaApi]);
 
 	return (
-		<div className="embla relative">
-			<div className="embla__viewport" ref={emblaRef}>
-				<div className="embla__container">
-					{blok.stories.map((item) => (
-						<div className="embla__slide" key={item._uid}>
-							<Story blok={item} />
-						</div>
-					))}
-				</div>
-			</div>
-			<div className="absolute -top-8 right-8 flex gap-4">
+		<div className="relative pt-12">
+			<div className="absolute right-8 top-2 flex gap-4">
 				<button
 					className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-darkText-10"
 					onClick={scrollPrev}
@@ -48,6 +39,17 @@ export default function Stories({ blok }: StoriesProps) {
 				>
 					<img src="/images/icons/arrow.svg" className="rotate-180" alt="Next" />
 				</button>
+			</div>
+			<div className="embla relative !overflow-y-visible">
+				<div className="embla__viewport" ref={emblaRef}>
+					<div className="embla__container">
+						{blok.stories.map((item) => (
+							<div className="embla__slide" key={item._uid}>
+								<Story blok={item} />
+							</div>
+						))}
+					</div>
+				</div>
 			</div>
 		</div>
 	);

@@ -67,7 +67,7 @@ const { blok } = Astro.props;
 			blok.ctaText === '' && (
 				<div class="flex flex-wrap justify-center gap-8 pt-4">
 					{blok.multiLinks.map((item) => (
-						<ImageLink sbLink={item.link} image={item.image} />
+						<ImageLink sbLink={item.link} image={item.image} background={false} />
 					))}
 				</div>
 			)
