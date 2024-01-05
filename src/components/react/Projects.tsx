@@ -5,6 +5,7 @@ import Project from './Project';
 import { useEffect, useState } from 'react';
 import { Input } from './ui/Input';
 import Fuse from 'fuse.js';
+import { cn } from '@/lib/utils';
 type ProjectsProps = {
 	initialProjectData: ProjectsApiResponse;
 	blok: ProjectsStoryblok;
@@ -14,19 +15,19 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 	const stages = {
 		all: {
 			text: 'All',
-			link: '/projects',
+			link: '/programme/',
 		},
 		awakening: {
 			text: 'Awakening',
-			link: '/projects/awakening',
+			link: '/programme/awakening',
 		},
 		playing: {
 			text: 'Playing',
-			link: '/projects/playing',
+			link: '/programme/playing',
 		},
 		dreaming: {
 			text: 'Dreaming',
-			link: '/projects/dreaming',
+			link: '/programme/dreaming',
 		},
 	};
 
@@ -54,7 +55,11 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 			setResults(results);
 		}
 	}, [debouncedSearchQuery]);
-
+	// project.content.associatedStage === 'awakening'
+	// ? 'bg-[#EE3796]'
+	// : project.content.associatedStage === 'playing'
+	// ? 'bg-brandTeal-100'
+	// : 'bg-brandRose-100'
 	return (
 		<div className="pb-16 lg:pb-24">
 			<div className="mb-12 bg-white py-6">
@@ -64,7 +69,29 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 						<div className="flex w-full flex-col justify-end gap-6 lg:w-7/12 lg:flex-row lg:items-center">
 							<div className="text-display flex gap-4 text-base">
 								{(Object.keys(stages) as (keyof typeof stages)[]).map((stage, index) => (
-									<a key={index} href={stages[stage].link}>
+									<a
+										key={index}
+										href={stages[stage].link}
+										className={cn(
+											'flex items-center justify-center rounded-full border-2 border-slate-200 px-4 py-1 font-display text-sm font-medium',
+											stages[stage].text === 'All' && '',
+											stages[stage].text === 'All' &&
+												blok.showProjects === 'all' &&
+												' border-slate-200 bg-slate-200',
+											stages[stage].text === 'Awakening' && 'border-brandMagenta-40',
+											stages[stage].text === 'Awakening' &&
+												blok.showProjects === 'awakening' &&
+												'border-[#ee3796] bg-[#EE3796] text-white',
+											stages[stage].text === 'Playing' && 'border-brandTeal-20',
+											stages[stage].text === 'Playing' &&
+												blok.showProjects === 'playing' &&
+												'border-brandTeal-100 bg-brandTeal-100',
+											stages[stage].text === 'Dreaming' && 'border-brandRose-60',
+											stages[stage].text === 'Dreaming' &&
+												blok.showProjects === 'dreaming' &&
+												'border-brandRose-100 bg-brandRose-100'
+										)}
+									>
 										{stages[stage].text}
 									</a>
 								))}
