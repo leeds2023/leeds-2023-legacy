@@ -26,7 +26,7 @@ export default function Stories({ blok }: StoriesProps) {
 
 	return (
 		<div className="relative pt-12">
-			<div className="absolute right-8 top-2 z-50 z-[200] flex gap-4">
+			<div className="absolute right-8 top-2 flex gap-4">
 				<button
 					className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-darkText-10"
 					onClick={scrollPrev}

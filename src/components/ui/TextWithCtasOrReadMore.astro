@@ -6,6 +6,7 @@ import type { CtaStoryblok, RichText as RichTextType } from '@/lib/storyblok/typ
 import { renderRichText } from '@storyblok/astro';
 import Button from '@/components/ui/Button.astro';
 import { cn } from '@/lib/utils';
+import ModalButton from '../react/ModalButton';
 
 type Props = {
 	title: string;
@@ -13,6 +14,9 @@ type Props = {
 	description: RichTextType;
 	truncate?: boolean;
 	truncateChars?: number;
+	modal: boolean;
+	modalContent?: RichTextType;
+	modalBtnText?: string;
 	ctas?: CtaStoryblok[];
 	color?: 'mint' | 'rose';
 };
@@ -24,14 +28,19 @@ const {
 	truncateChars = 140,
 	ctas,
 	subtitle,
+	modalContent,
+	modalBtnText,
 	color = 'rose',
+	modal = false,
 } = Astro.props;
 
 const renderedRichText = renderRichText(description);
+
+console.log(modal);
 ---
 
 {
-	!truncate && (
+	!truncate && !modal && (
 		<div
 			class={cn(
 				' flex flex-col gap-4 bg-brandRose-100 p-8 text-center lg:text-left',
@@ -61,7 +70,7 @@ const renderedRichText = renderRichText(description);
 }
 
 {
-	truncate && (
+	truncate && !modal && (
 		<div
 			class={cn('flex flex-col gap-4 bg-brandRose-100 p-8', color === 'mint' && 'bg-brandMint-100')}
 		>
@@ -74,6 +83,25 @@ const renderedRichText = renderRichText(description);
 				)}
 			</div>
 			<ReadMoreRichText client:visible content={renderedRichText} truncateChars={truncateChars} />
+		</div>
+	)
+}
+
+{
+	modal && modalContent && (
+		<div
+			class={cn('flex flex-col gap-4 bg-brandRose-100 p-8', color === 'mint' && 'bg-brandMint-100')}
+		>
+			<div class="flex flex-col gap-2">
+				<Title>{title}</Title>
+				{subtitle && subtitle !== '' && (
+					<Title size={'small'} type="h3">
+						{subtitle}
+					</Title>
+				)}
+			</div>
+			<RichText content={description} />
+			<ModalButton client:visible modalContent={modalContent} modalBtnText={modalBtnText} />
 		</div>
 	)
 }
