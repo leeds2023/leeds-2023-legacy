@@ -27,7 +27,7 @@ export default function Story({ blok }: StoryProps) {
 	return (
 		<Dialog>
 			<DialogTrigger className="">
-				<div className="flex w-full flex-col gap-4 text-left">
+				<div className="relative flex w-full flex-col gap-4 text-left">
 					<div className="overflow-hidden rounded-xl">
 						<Image
 							width={300}
@@ -41,11 +41,29 @@ export default function Story({ blok }: StoryProps) {
 						<h3 className={cn('font-display text-3xl underline')}>{blok.title}</h3>
 						<h4 className="text-sm">{blok.subtitle}</h4>
 					</div>
+					<div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-md bg-brandMagenta-100 p-1 text-white">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						>
+							<polyline points="15 3 21 3 21 9" />
+							<polyline points="9 21 3 21 3 15" />
+							<line x1="21" x2="14" y1="3" y2="10" />
+							<line x1="3" x2="10" y1="21" y2="14" />
+						</svg>
+					</div>
 				</div>
 			</DialogTrigger>
 			<DialogContent className="w-[50rem] max-w-[90vw] overflow-hidden rounded-md border-0 bg-white px-0 pt-0">
 				<ScrollArea type="always">
-					<div className="tall:max-h-[80vh] max-h-[70vh]">
+					<div className="max-h-[70vh] tall:max-h-[80vh]">
 						{blok.youtubeId && blok.youtubeId !== '' && (
 							<FullWidthVideo
 								blok={{
@@ -58,7 +76,7 @@ export default function Story({ blok }: StoryProps) {
 
 						{blok.videoLandscapeThumbnail.filename &&
 							(!blok.youtubeId || blok.youtubeId === '') && (
-								<div className="mediumHeight:h-64 tall:h-96 h-32">
+								<div className="h-32 mediumHeight:h-64 tall:h-96">
 									{dimensions ? (
 										<Image
 											src={blok.videoLandscapeThumbnail.filename}

@@ -1,7 +1,7 @@
 import type { StoriesStoryblok } from '@/lib/storyblok/types';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaOptionsType } from 'embla-carousel-react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import Story from './Story';
 
 type StoriesProps = {
@@ -14,6 +14,8 @@ export default function Stories({ blok }: StoriesProps) {
 		containScroll: 'trimSnaps',
 	};
 
+	const [isHovering, setIsHovering] = useState(false);
+
 	const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
 
 	const scrollPrev = useCallback(() => {
@@ -25,17 +27,8 @@ export default function Stories({ blok }: StoriesProps) {
 	}, [emblaApi]);
 
 	return (
-		<div className="embla relative">
-			<div className="embla__viewport" ref={emblaRef}>
-				<div className="embla__container">
-					{blok.stories.map((item) => (
-						<div className="embla__slide" key={item._uid}>
-							<Story blok={item} />
-						</div>
-					))}
-				</div>
-			</div>
-			<div className="absolute -top-8 right-8 flex gap-4">
+		<div className="relative pt-12">
+			<div className="absolute right-8 top-2 z-50 z-[200] flex gap-4">
 				<button
 					className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-darkText-10"
 					onClick={scrollPrev}
@@ -48,6 +41,21 @@ export default function Stories({ blok }: StoriesProps) {
 				>
 					<img src="/images/icons/arrow.svg" className="rotate-180" alt="Next" />
 				</button>
+			</div>
+			<div
+				className="embla relative !overflow-y-visible"
+				onMouseEnter={() => setIsHovering(true)}
+				onMouseLeave={() => setIsHovering(false)}
+			>
+				<div className="embla__viewport" ref={emblaRef}>
+					<div className="embla__container">
+						{blok.stories.map((item) => (
+							<div className="embla__slide" key={item._uid}>
+								<Story blok={item} />
+							</div>
+						))}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
