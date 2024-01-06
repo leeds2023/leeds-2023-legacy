@@ -142,10 +142,40 @@ export default function Project({ project, index }: ProjectProps) {
 								__html: renderRichText(project.content.description),
 							}}
 						/>
+						{project.content.links && project.content.links.length > 0 && (
+							<div className="px-6 py-2">
+								<div className="flex flex-col gap-2 bg-brandMint-100 p-6">
+									<ul className="flex gap-8">
+										{project.content.links.map((link, index) => (
+											<li key={index}>
+												<a
+													href={parseStoryblokLink(link.link)}
+													rel="noreferrer"
+													target="_blank"
+													className="flex items-center gap-4 font-display font-semibold"
+												>
+													{link.image && (
+														<div className="flex h-14 w-14 items-center justify-center rounded-full bg-white p-4">
+															<Image
+																src={link.image.filename}
+																width={24}
+																height={24}
+																className="h-full w-full object-contain"
+															/>
+														</div>
+													)}
+													{link.linkText || 'Link'}
+												</a>
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+						)}
 						{project.content.credits && project.content.credits.length > 0 && (
 							<div className="px-6 py-2">
-								<div className="flex flex-col gap-2 bg-brandCream-80 p-6">
-									<h3 className="font-display text-xl">Credits</h3>
+								<div className="flex flex-col gap-2 bg-brandCream-60 p-6">
+									<h3 className="font-display text-2xl">Credits</h3>
 									{project.content.credits.map((creditCategory, index) => (
 										<div key={index} className="flex flex-wrap items-center gap-2">
 											<h4 className="font-display text-lg">{creditCategory.title}</h4>
