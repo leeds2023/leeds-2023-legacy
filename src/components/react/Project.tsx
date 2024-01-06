@@ -147,11 +147,10 @@ export default function Project({ project, index }: ProjectProps) {
 								<div className="flex flex-col gap-2 bg-brandCream-80 p-6">
 									<h3 className="font-display text-xl">Credits</h3>
 									{project.content.credits.map((creditCategory, index) => (
-										<div key={index} className="flex items-center gap-2">
+										<div key={index} className="flex flex-wrap items-center gap-2">
 											<h4 className="font-display text-lg">{creditCategory.title}</h4>
-											<ul className="flex list-none gap-2">
+											<ul className="flex list-none flex-wrap gap-2">
 												{creditCategory.credits.map((creditItem, index) => {
-													console.log(creditItem);
 													return (
 														<>
 															{creditItem.creditLink && creditItem.creditLink.cached_url !== '' ? (
