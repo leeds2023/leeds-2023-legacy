@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { cva } from 'class-variance-authority';
 import Button from '@/components/react/ui/Button';
 import OtherLink from '@/components/react/ui/OtherLink';
+import { Image } from '@unpic/react';
 
 type Props = {
 	blok: InteractiveStagesStoryblok;
@@ -310,7 +311,10 @@ export default function InteractiveStages({ blok }: Props) {
 				{step !== 2 && (
 					<div className="relative h-72 w-full lg:h-full lg:w-5/12 2xl:w-1/2">
 						<div className="h-full">
-							<img
+							<Image
+								background="auto"
+								width={900}
+								height={500}
 								src={
 									step === 0
 										? stageData.slideOneImage.filename
@@ -325,9 +329,26 @@ export default function InteractiveStages({ blok }: Props) {
 										? stageData.slideTwoImage.alt
 										: stageData.slideThreeImage.alt
 								}
-								className="h-full w-full object-cover object-center"
+								className="h-full !max-h-full w-full !max-w-full object-cover object-center"
 							/>
 						</div>
+						{((step === 0 &&
+							stageData.slideOneImage.copyright &&
+							stageData.slideOneImage.copyright !== '') ||
+							(step === 1 &&
+								stageData.slideTwoImage.copyright &&
+								stageData.slideTwoImage.copyright !== '') ||
+							(step === 2 &&
+								stageData.slideThreeImage.copyright &&
+								stageData.slideThreeImage.copyright !== '')) && (
+							<figcaption className="absolute bottom-0 right-0 z-20 flex items-center justify-center bg-brandDarkGreen-100 px-4 py-2 text-[14px] text-white">
+								{step === 0
+									? stageData.slideOneImage.copyright
+									: step === 1
+									? stageData.slideTwoImage.copyright
+									: stageData.slideThreeImage.copyright}
+							</figcaption>
+						)}
 					</div>
 				)}
 

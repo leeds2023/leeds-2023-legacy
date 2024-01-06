@@ -21,14 +21,23 @@ const { blok } = Astro.props;
 			</div>
 		</div>
 		<div class="absolute left-0 z-10 h-full w-[60%]">
-			<Image
-				src={blok.image.filename}
-				alt={blok.image.alt}
-				width={1400}
-				height={900}
-				background="auto"
-				class={'h-full w-full object-cover !max-w-full hidden md:block'}
-			/>
+			<div class="relative">
+				<Image
+					src={blok.image.filename}
+					alt={blok.image.alt}
+					width={1400}
+					height={900}
+					background="auto"
+					class={'h-full w-full object-cover !max-w-full hidden md:block'}
+				/>
+				{
+					blok.image.copyright && blok.image.copyright !== '' && (
+						<figcaption class="absolute bottom-0 right-0 z-20 flex items-center justify-center bg-brandDarkGreen-100 px-4 py-2 text-[14px] text-white">
+							{blok.image.copyright}
+						</figcaption>
+					)
+				}
+			</div>
 			<div
 				class="absolute left-10 right-auto top-1/2 flex w-[80vw] -translate-y-1/2 flex-col gap-6 bg-brandCream-100 p-8 lg:-right-80 lg:left-auto lg:max-w-md"
 			>

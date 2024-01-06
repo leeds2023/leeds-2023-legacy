@@ -96,6 +96,11 @@ export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 							layout="fullWidth"
 						/>
 					)}
+					{blok.coverImage.copyright && blok.coverImage.copyright !== '' && (
+						<figcaption className="absolute bottom-0 right-0 z-20 flex items-center justify-center bg-brandDarkGreen-100 px-4 py-2 text-[14px] text-white">
+							{blok.coverImage.copyright}
+						</figcaption>
+					)}
 					<button
 						onClick={() => setIsActive(true)}
 						className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center gap-4 rounded-md  px-4 py-2 text-white"

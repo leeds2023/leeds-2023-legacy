@@ -97,7 +97,7 @@ export default function Project({ project, index }: ProjectProps) {
 
 						{project.content.image.filename &&
 							(!project.content.youtubeId || project.content.youtubeId === '') && (
-								<div className="h-32 mediumHeight:h-64 tall:h-96">
+								<div className="relative h-32 mediumHeight:h-64 tall:h-96">
 									{dimensions ? (
 										<Image
 											src={project.content.image.filename}
@@ -115,6 +115,11 @@ export default function Project({ project, index }: ProjectProps) {
 											background={project.blurhash ? project.blurhash.css : 'auto'}
 											layout="fullWidth"
 										/>
+									)}
+									{project.content.image.copyright && project.content.image.copyright !== '' && (
+										<figcaption className="absolute bottom-0 right-0 z-20 flex items-center justify-center bg-brandDarkGreen-100 px-4 py-2 text-[14px] text-white">
+											{project.content.image.copyright}
+										</figcaption>
 									)}
 								</div>
 							)}
