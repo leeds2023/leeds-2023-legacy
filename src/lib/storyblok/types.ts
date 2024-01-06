@@ -131,6 +131,22 @@ export interface AltHeroStoryblok {
 	[k: string]: any;
 }
 
+export interface CreditStoryblok {
+	creditText: string;
+	creditLink: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
+	_uid: string;
+	component: 'credit';
+	[k: string]: any;
+}
+
+export interface CreditsCategoryStoryblok {
+	title: string;
+	credits: CreditStoryblok[];
+	_uid: string;
+	component: 'creditsCategory';
+	[k: string]: any;
+}
+
 export interface AltHeroTwoStoryblok {
 	title: string;
 	label: string;
@@ -521,6 +537,7 @@ export interface ProjectStoryblok {
 	associatedStage: 'awakening' | 'playing' | 'dreaming';
 	tags?: string[];
 	_uid: string;
+	credits: CreditsCategoryStoryblok[];
 	component: 'project';
 	[k: string]: any;
 }

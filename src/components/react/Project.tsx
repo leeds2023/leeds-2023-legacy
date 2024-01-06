@@ -13,7 +13,7 @@ import {
 } from '@/components/react/ui/Dialog';
 import FullWidthVideo from './FullWidthVideo';
 import { ScrollArea } from './ui/ScrollArea';
-import { extractDimensions } from '@/lib/storyblok/helpers';
+import { extractDimensions, parseStoryblokLink } from '@/lib/storyblok/helpers';
 
 type ProjectProps = {
 	project: Project;
@@ -142,6 +142,40 @@ export default function Project({ project, index }: ProjectProps) {
 								__html: renderRichText(project.content.description),
 							}}
 						/>
+						{project.content.credits && project.content.credits.length > 0 && (
+							<div className="px-6 py-2">
+								<div className="flex flex-col gap-2 bg-brandCream-80 p-6">
+									<h3 className="font-display text-xl">Credits</h3>
+									{project.content.credits.map((creditCategory, index) => (
+										<div key={index} className="flex items-center gap-2">
+											<h4 className="font-display text-lg">{creditCategory.title}</h4>
+											<ul className="flex list-none gap-2">
+												{creditCategory.credits.map((creditItem, index) => {
+													console.log(creditItem);
+													return (
+														<>
+															{creditItem.creditLink && creditItem.creditLink.cached_url !== '' ? (
+																<li key={index} className="text-buttonRed-default underline">
+																	<a
+																		href={parseStoryblokLink(creditItem.creditLink)}
+																		rel="noreferrer"
+																		target="_blank"
+																	>
+																		{creditItem.creditText}
+																	</a>
+																</li>
+															) : (
+																<li key={index}>{creditItem.creditText}</li>
+															)}
+														</>
+													);
+												})}
+											</ul>
+										</div>
+									))}
+								</div>
+							</div>
+						)}
 					</div>
 				</ScrollArea>
 			</DialogContent>
