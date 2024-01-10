@@ -144,7 +144,7 @@ export default function Project({ project, index }: ProjectProps) {
 						/>
 						{project.content.links && project.content.links.length > 0 && (
 							<div className="px-6 py-2">
-								<div className="flex flex-col gap-2 bg-brandMint-100 p-6">
+								<div className="flex flex-col items-center gap-2 bg-brandMint-100 p-6">
 									<ul className="flex gap-8">
 										{project.content.links.map((link, index) => (
 											<li key={index}>
@@ -152,7 +152,7 @@ export default function Project({ project, index }: ProjectProps) {
 													href={parseStoryblokLink(link.link)}
 													rel="noreferrer"
 													target="_blank"
-													className="flex items-center gap-4 font-display font-semibold"
+													className="flex items-center gap-4 font-display font-medium"
 												>
 													{link.image && (
 														<div className="flex h-14 w-14 items-center justify-center rounded-full bg-white p-4">
