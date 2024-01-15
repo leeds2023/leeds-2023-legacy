@@ -63,7 +63,7 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 
 export async function fetchAllProjectsAllPages<T = StoryWithProjectPage>(): Promise<T[]> {
 	const stories = [];
-	const pageSize = 10;
+	const pageSize = 100;
 	const res = await storyblokApi.get(`cdn/stories`, {
 		version: import.meta.env.STORYBLOK_ENV
 			? import.meta.env.STORYBLOK_ENV
