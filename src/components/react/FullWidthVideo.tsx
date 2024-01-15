@@ -40,7 +40,7 @@ export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 			{active ? (
 				<div className=" relative overflow-hidden">
 					<YouTube
-						videoId="LXb3EKWsInQ"
+						videoId={blok.youtubeId ? blok.youtubeId : 'LXb3EKWsInQ'}
 						opts={opts}
 						iframeClassName={'w-full h-full absolute top-0 left-0'}
 						onReady={onPlayerReady}
