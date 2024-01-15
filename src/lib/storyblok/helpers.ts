@@ -74,8 +74,8 @@ export async function fetchAllProjectsAllPages<T = StoryWithProjectPage>(): Prom
 		resolve_links: '1',
 		per_page: pageSize,
 	});
-	const total = res.total ?? 0;
-	const totalPages = Math.ceil(total / pageSize);
+	const totalItems = res.total ?? 0;
+	const totalPages = Math.ceil(totalItems / pageSize);
 	stories.push(...res.data.stories);
 
 	for (let i = 2; i <= totalPages; i++) {
