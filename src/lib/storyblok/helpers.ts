@@ -55,6 +55,7 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 			: 'published',
 		starts_with: 'legacy/projects/',
 		resolve_links: '1',
+		per_page: 100,
 	});
 
 	return stories;
