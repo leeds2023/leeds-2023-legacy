@@ -61,8 +61,43 @@ export async function fetchAllProjects<T = StoryWithProjectPage>(): Promise<T[]>
 	return stories;
 }
 
+export async function fetchAllProjectsAllPages<T = StoryWithProjectPage>(): Promise<T[]> {
+	const stories = [];
+	const pageSize = 10;
+	const res = await storyblokApi.get(`cdn/stories`, {
+		version: import.meta.env.STORYBLOK_ENV
+			? import.meta.env.STORYBLOK_ENV
+			: import.meta.env.DEV
+			? 'draft'
+			: 'published',
+		starts_with: 'legacy/projects/',
+		resolve_links: '1',
+		per_page: pageSize,
+	});
+	const total = res.total ?? 0;
+	const totalPages = Math.ceil(total / pageSize);
+	stories.push(...res.data.stories);
+
+	for (let i = 2; i <= totalPages; i++) {
+		const res = await storyblokApi.get(`cdn/stories`, {
+			version: import.meta.env.STORYBLOK_ENV
+				? import.meta.env.STORYBLOK_ENV
+				: import.meta.env.DEV
+				? 'draft'
+				: 'published',
+			starts_with: 'legacy/projects/',
+			resolve_links: '1',
+			per_page: pageSize,
+			page: i,
+		});
+		stories.push(...res.data.stories);
+	}
+
+	return stories;
+}
+
 export async function fetchAllProjectsTransformed(): Promise<Project[]> {
-	const data = await fetchAllProjects();
+	const data = await fetchAllProjectsAllPages();
 	const mappedData = data.map((project) => {
 		const imageId = project.content.blocks[0].blocks.find(
 			(blok: SectionBlock) => blok.component === 'project'
