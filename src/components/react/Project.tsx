@@ -58,7 +58,7 @@ export default function Project({ project, index }: ProjectProps) {
 									? 'bg-[#EE3796]'
 									: project.content.associatedStage === 'playing'
 									? 'bg-brandTeal-100'
-									: 'bg-brandRose-100'
+									: 'bg-[#FCDB14]'
 							)}
 						/>
 						<div>

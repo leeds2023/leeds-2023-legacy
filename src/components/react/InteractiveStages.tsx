@@ -36,6 +36,7 @@ export default function InteractiveStages({ blok }: Props) {
 				pink: 'bg-[#EE3796]',
 				mint: 'bg-brandTeal-100',
 				rose: 'bg-brandRose-100 text-darkText-30',
+				yellow: 'bg-[#FCDB14] text-darkText-30',
 			},
 		},
 		defaultVariants: {
@@ -64,7 +65,7 @@ export default function InteractiveStages({ blok }: Props) {
 			className={cn(
 				stage === 'Awakening' && stageStyles({ bgColor: 'pink' }),
 				stage === 'Playing' && stageStyles({ bgColor: 'mint' }),
-				stage === 'Dreaming' && stageStyles({ bgColor: 'rose' })
+				stage === 'Dreaming' && stageStyles({ bgColor: 'yellow' })
 			)}
 		>
 			<div
@@ -241,7 +242,7 @@ export default function InteractiveStages({ blok }: Props) {
 						className={cn(
 							stage === 'Awakening' && stageStyles({ bgColor: 'pink' }),
 							stage === 'Playing' && stageStyles({ bgColor: 'mint' }),
-							stage === 'Dreaming' && stageStyles({ bgColor: 'rose' }),
+							stage === 'Dreaming' && stageStyles({ bgColor: 'yellow' }),
 							'absolute right-0 top-0 hidden h-full w-48 skew-x-12 lg:-mr-20 lg:block 2xl:-mr-24'
 						)}
 					></div>

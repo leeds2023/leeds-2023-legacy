@@ -94,10 +94,10 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 											stages[stage].text === 'Playing' &&
 												blok.showProjects === 'playing' &&
 												'border-brandTeal-100 bg-brandTeal-100',
-											stages[stage].text === 'Dreaming' && 'border-brandRose-60',
+											stages[stage].text === 'Dreaming' && 'border-brandYellow-80',
 											stages[stage].text === 'Dreaming' &&
 												blok.showProjects === 'dreaming' &&
-												'border-brandRose-100 bg-brandRose-100'
+												'border-[#FCDB14] bg-[#FCDB14]'
 										)}
 									>
 										{stages[stage].text}
