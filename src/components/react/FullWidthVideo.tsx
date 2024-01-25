@@ -30,7 +30,7 @@ export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 		playerVars: {
 			// https://developers.google.com/youtube/player_parameters
 			autoplay: 1,
-			controls: 0,
+			controls: 1,
 			rel: 0,
 		},
 	};
@@ -48,11 +48,12 @@ export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 					></YouTube>
 					<div>
 						<button
-							className="absolute right-0 top-1/2 z-10 flex h-20 w-20 -translate-y-1/2 transform flex-col items-center gap-4 bg-brandMagenta-100 px-4 py-2 text-white hover:bg-brandMagenta-80"
+							className="absolute right-0 top-1/2  z-10 flex h-12  w-16 -translate-y-1/2 transform flex-col items-center justify-center gap-1 bg-brandMagenta-100 px-2 py-1 text-white hover:bg-brandMagenta-80 lg:h-20 lg:w-24 lg:px-4 lg:py-2"
 							onClick={() => {
 								videoElement?.pauseVideo();
 								setIsActive(false);
 							}}
+							aria-labelledby="close-video"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -68,6 +69,9 @@ export default function FullWidthVideo({ blok, isModal, blurhashCss }: Props) {
 								<path d="M18 6 6 18"></path>
 								<path d="m6 6 12 12"></path>
 							</svg>
+							<span id="close-video" className="hidden text-[10px] uppercase lg:block">
+								Close Video
+							</span>
 						</button>
 					</div>
 				</div>
