@@ -16,7 +16,7 @@ const { blok } = Astro.props;
 	{...storyblokEditable(blok)}
 	class={cn('relative flex flex-col lg:flex-row', blok.reverse && 'lg:flex-row-reverse')}
 >
-	<div class="relative z-[0] lg:w-1/2">
+	<div class="relative z-[0] h-fit lg:w-1/2">
 		<Image
 			src={blok.image.filename}
 			alt={blok.image.alt ? blok.image.alt : ''}
@@ -40,7 +40,12 @@ const { blok } = Astro.props;
 		}
 		{
 			blok.image.copyright && blok.image.copyright !== '' && (
-				<figcaption class="absolute bottom-0 right-0 z-20 flex items-center justify-center bg-brandDarkGreen-100 px-4 py-2 text-[14px] text-white">
+				<figcaption
+					class={cn(
+						'absolute bottom-0 left-0 z-20 flex items-center justify-center bg-brandDarkGreen-100 px-4 py-2 text-[14px] text-white',
+						blok.reverse && 'left-auto right-0'
+					)}
+				>
 					{blok.image.copyright}
 				</figcaption>
 			)
