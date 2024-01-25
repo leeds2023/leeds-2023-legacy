@@ -29,12 +29,13 @@ export default function Map({ blok }: MapProps) {
 									fill="#B9CAAF"
 									stroke="#DEF0C8"
 									strokeWidth={0.5}
+									tabIndex={-1}
 								/>
 							))
 						}
 					</Geographies>
-					{blok.items.map((item) => (
-						<Tooltip key={item._uid} blok={item} />
+					{blok.items.map((item, index) => (
+						<Tooltip key={item._uid} blok={item} index={index} />
 					))}
 				</ComposableMap>
 			</div>

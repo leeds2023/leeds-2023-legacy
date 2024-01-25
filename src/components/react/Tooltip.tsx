@@ -6,9 +6,10 @@ import Button from './ui/Button';
 
 type TooltipProps = {
 	blok: MapTooltipStoryblok;
+	index: number;
 };
 
-export default function Tooltip({ blok }: TooltipProps) {
+export default function Tooltip({ blok, index }: TooltipProps) {
 	const [popoverOpen, setPopoverOpen] = useState(false);
 	const popoverTriggerRef = useRef<HTMLButtonElement>(null);
 
@@ -16,9 +17,16 @@ export default function Tooltip({ blok }: TooltipProps) {
 		<Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
 			<PopoverTrigger asChild ref={popoverTriggerRef}>
 				<Marker
+					tabIndex={index}
 					coordinates={[parseFloat(blok.lon), parseFloat(blok.lat)]}
-					style={{ default: { marginTop: '-200px' } }}
+					className="focus:outline-1 focus:ring-1 focus:ring-inset"
 					onClick={() => setPopoverOpen(true)}
+					onKeyDown={(e) => {
+						if (e.key === 'Enter') {
+							setPopoverOpen(true);
+							popoverTriggerRef.current?.focus();
+						}
+					}}
 				>
 					<svg
 						width="10"
