@@ -16,7 +16,10 @@ const { blok } = Astro.props;
 const dimensions = extractDimensions(blok.image.filename, 500);
 ---
 
-<div {...storyblokEditable(blok)} class="flex w-full flex-col justify-between gap-4 bg-white p-8">
+<div
+	{...storyblokEditable(blok)}
+	class="flex w-full flex-col items-center justify-center gap-4 bg-white p-8"
+>
 	<div class="w-36">
 		{
 			dimensions ? (

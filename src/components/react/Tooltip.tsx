@@ -17,12 +17,13 @@ export default function Tooltip({ blok }: TooltipProps) {
 			<PopoverTrigger asChild ref={popoverTriggerRef}>
 				<Marker
 					coordinates={[parseFloat(blok.lon), parseFloat(blok.lat)]}
+					style={{ default: { marginTop: '-200px' } }}
 					onClick={() => setPopoverOpen(true)}
 				>
 					<svg
-						width="16"
-						height="16"
-						viewBox="0 0 16 16"
+						width="10"
+						height="10"
+						viewBox="0 0 10 10"
 						aria-label="Tooltip"
 						className="cursor-pointer"
 						fill="none"
@@ -32,14 +33,14 @@ export default function Tooltip({ blok }: TooltipProps) {
 							<rect
 								x="0.307692"
 								y="0.307692"
-								width="15.3846"
-								height="15.3846"
+								width="8"
+								height="8"
 								rx="7.69231"
 								stroke="#EE3796"
 								strokeWidth="0.615385"
 							/>
 						</g>
-						<circle cx="8.00008" cy="7.99983" r="4.30769" fill="#EE3796" />
+						<circle cx="4.5" cy="4.5" r="2" fill="#EE3796" />
 					</svg>
 				</Marker>
 			</PopoverTrigger>
