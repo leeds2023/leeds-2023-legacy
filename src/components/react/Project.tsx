@@ -81,9 +81,9 @@ export default function Project({ project, index }: ProjectProps) {
 					</div>
 				</div>
 			</DialogTrigger>
-			<DialogContent className="w-[50rem] max-w-[90vw] overflow-hidden rounded-md border-0 bg-white px-0 pt-0">
+			<DialogContent className="w-full max-w-[90vw] overflow-hidden rounded-md border-0 bg-white px-0 pt-0 xl:w-[50rem]">
 				<ScrollArea type="always">
-					<div className="max-h-[70vh] tall:max-h-[80vh]">
+					<div className="max-h-[70vh] max-w-[90vw] tall:max-h-[80vh]">
 						{project.content.youtubeId && project.content.youtubeId !== '' && (
 							<FullWidthVideo
 								blok={{
@@ -145,7 +145,7 @@ export default function Project({ project, index }: ProjectProps) {
 						{project.content.links && project.content.links.length > 0 && (
 							<div className="px-6 py-2">
 								<div className="flex flex-col items-center gap-2 bg-brandMint-100 p-6">
-									<ul className="flex gap-8">
+									<ul className="flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap">
 										{project.content.links.map((link, index) => (
 											<li key={index}>
 												<a
