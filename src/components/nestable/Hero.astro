@@ -3,15 +3,24 @@ import { storyblokEditable } from '@storyblok/astro';
 import Title from '@/components/ui/Title.astro';
 import type { HeroStoryblok } from '@/lib/storyblok/types';
 import { Image } from '@unpic/astro';
+import { cn } from '@/lib/utils';
+import Button from '../ui/Button.astro';
+
 type Props = {
 	blok: HeroStoryblok;
+	storyblok?: boolean;
+	fourOhFour?: boolean;
 };
-const { blok } = Astro.props;
+const { blok, storyblok = true, fourOhFour } = Astro.props;
+const additionalProps = storyblok ? storyblokEditable(blok) : {};
 ---
 
 <div
-	class="relative flex min-h-screen flex-col items-center justify-center gap-12"
-	{...storyblokEditable(blok)}
+	class={cn(
+		'relative flex min-h-screen flex-col items-center justify-center gap-12',
+		fourOhFour && 'min-h-[80vh]'
+	)}
+	{...additionalProps}
 >
 	<div class={'absolute top-0 left-0 w-full h-full overflow-hidden'}>
 		<Image
@@ -32,6 +41,15 @@ const { blok } = Astro.props;
 			>
 				{blok.title}
 			</Title>
+			{
+				fourOhFour && (
+					<div class="mt-8 flex items-center justify-center">
+						<Button href="/" id="go-home" className="w-fit">
+							Go Home
+						</Button>
+					</div>
+				)
+			}
 		</div>
 	</div>
 </div>

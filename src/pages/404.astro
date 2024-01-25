@@ -1,0 +1,34 @@
+---
+import Layout from '@/components/layouts/Layout.astro';
+import Hero from '@/components/nestable/Hero.astro';
+---
+
+<Layout
+	seo={{
+		title: '404',
+		description: 'Page not found',
+		og_image: {
+			filename: '/images/hero-desktop.jpg',
+			alt: 'Hero Image',
+			id: 123,
+			name: 'hero-image',
+		},
+		plugin: 'seo_metatags',
+		_uid: '404',
+	}}
+>
+	<Hero
+		fourOhFour
+		blok={{
+			title: 'Page Not Found',
+			image: {
+				filename: '/images/hero-desktop.jpg',
+				alt: 'Hero Image',
+				id: 123,
+				name: 'hero-image',
+			},
+			_uid: '404',
+			component: 'hero',
+		}}
+	/>
+</Layout>
