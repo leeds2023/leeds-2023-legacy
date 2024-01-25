@@ -230,6 +230,15 @@ export function parseStoryblokLink(link: Link): string {
 		if (link.story.slug === 'projects-root') {
 			return '/programme/';
 		}
+		if (link.story.slug === 'projects-dreaming') {
+			return '/programme/dreaming/';
+		}
+		if (link.story.slug === 'projects-awakening') {
+			return '/programme/awakening/';
+		}
+		if (link.story.slug === 'projects-playing') {
+			return '/programme/playing/';
+		}
 		if (link.story.slug && link.story.slug !== 'legacy') {
 			return `/${link.story.slug ?? ''}`.replaceAll('//', '/');
 		}
