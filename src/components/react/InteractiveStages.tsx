@@ -233,11 +233,6 @@ export default function InteractiveStages({ blok }: Props) {
 						</div>
 					)}
 
-					<div className="absolute bottom-4 right-0 z-10 flex flex-col">
-						<div className=" -mr-[4rem] inline-block w-[55rem] select-none opacity-5 sm:w-[80rem]  lg:-mr-[6rem] lg:w-[100rem] 2xl:-mr-[8rem] 2xl:w-[110rem]">
-							<img src="/images/nowPlaying.svg" width="100%" height="100%" alt="" />
-						</div>
-					</div>
 					<div
 						className={cn(
 							stage === 'Awakening' && stageStyles({ bgColor: 'pink' }),
