@@ -1,7 +1,8 @@
 ---
 import { storyblokEditable } from '@storyblok/astro';
-
+import Title from '@/components/ui/Title.astro';
 import type { HeroStoryblok } from '@/lib/storyblok/types';
+import { Image } from '@unpic/astro';
 type Props = {
 	blok: HeroStoryblok;
 };
@@ -12,5 +13,25 @@ const { blok } = Astro.props;
 	class="relative flex min-h-screen flex-col items-center justify-center gap-12"
 	{...storyblokEditable(blok)}
 >
-	{JSON.stringify(blok)}
+	<div class={'absolute top-0 left-0 w-full h-full overflow-hidden'}>
+		<Image
+			src={blok.image.filename}
+			alt={blok.image.alt}
+			background="auto"
+			layout="fullWidth"
+			class={'!max-w-none !max-h-none object-cover object-center w-full h-full'}
+		/>
+	</div>
+	<div class="relative z-10">
+		<div class="px-8 md:max-w-xl md:px-0 lg:max-w-2xl xl:max-w-4xl">
+			<Title
+				type={'h1'}
+				className="text-center font-medium normal-case"
+				size={'superLarge'}
+				color={'light'}
+			>
+				{blok.title}
+			</Title>
+		</div>
+	</div>
 </div>

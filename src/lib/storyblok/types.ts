@@ -288,8 +288,7 @@ export interface FullWidthVideoStoryblok {
 
 export interface HeroStoryblok {
 	title: string;
-	subtitle: string;
-	mainTitle: string;
+	image: Asset;
 	_uid: string;
 	component: 'hero';
 	[k: string]: any;
