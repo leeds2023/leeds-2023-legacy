@@ -260,6 +260,7 @@ export interface ExploreItemStoryblok {
 	image: AssetStoryblok;
 	label: string;
 	title: string;
+	type: 'awakening' | 'playing' | 'dreaming'
 	ctaLink: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>;
 	ctaText: string;
 	_uid: string;

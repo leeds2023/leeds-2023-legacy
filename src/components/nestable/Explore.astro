@@ -6,6 +6,7 @@ import Title from '../ui/Title.astro';
 import Text from '../ui/Text.astro';
 import Button from '../ui/Button.astro';
 import { Image } from '@unpic/astro';
+import { cn } from '@/lib/utils';
 type Props = {
 	blok: ExploreStoryblok;
 };
@@ -30,7 +31,13 @@ const { blok } = Astro.props;
 		<div class="grid grid-cols-1 gap-2 lg:grid-cols-3">
 			{
 				blok.items.map((item) => (
-					<div class="flex flex-col bg-[#EE3796] text-white">
+					<div
+						class={cn(
+							'flex flex-col bg-[#EE3796] text-white',
+							item.type === 'playing' && 'bg-brandTeal-100',
+							item.type === 'dreaming' && 'bg-[#FCDB14] text-darkText-10'
+						)}
+					>
 						<Image src={item.image.filename} alt={item.image.alt} width={985.5} height={562.5} />
 						<div class="flex flex-col items-center justify-center gap-6 p-6 text-center">
 							<div class="flex flex-col gap-1">
@@ -38,9 +45,9 @@ const { blok } = Astro.props;
 								<Title size={'medium'}>{item.title}</Title>
 							</div>
 							<Button
-								className="text-white w-full"
+								className={cn('w-full text-white', item.type === 'dreaming' && 'text-darkText-10')}
 								style={'outline'}
-								color={'white'}
+								color={item.type === 'dreaming' ? 'darkGreen' : 'white'}
 								id="1"
 								sbLink={item.ctaLink}
 							>
