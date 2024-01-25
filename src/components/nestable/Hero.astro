@@ -2,16 +2,6 @@
 import { storyblokEditable } from '@storyblok/astro';
 
 import type { HeroStoryblok } from '@/lib/storyblok/types';
-import { Image } from 'astro:assets';
-import Logo from '@assets/hero/logo.svg';
-import Hero1 from '@assets/hero/1.png';
-import Hero2 from '@assets/hero/2.png';
-import Hero3 from '@assets/hero/3.png';
-import Hero4 from '@assets/hero/4.png';
-import Button from '../ui/Button.astro';
-import Title from '../ui/Title.astro';
-import HeroRibbon1 from '@assets/hero/ribbon-1.png';
-import HeroRibbon2 from '@assets/hero/ribbon-2.png';
 type Props = {
 	blok: HeroStoryblok;
 };
@@ -22,71 +12,5 @@ const { blok } = Astro.props;
 	class="relative flex min-h-screen flex-col items-center justify-center gap-12"
 	{...storyblokEditable(blok)}
 >
-	<div data-speed="1.1" class="flex flex-col items-center justify-center gap-12">
-		<Image loading={'eager'} src={Logo} alt="Leeds 2023" width={200} class={'relative z-30'} />
-		<Title size={'superLarge'} className="relative z-40 max-w-md text-center lg:max-w-xl">
-			Letting Culture Loose
-		</Title>
-		<Button id={blok.mainTitle} className="relative z-50">Play the documentary</Button>
-	</div>
-	<div class="hidden xl:block">
-		<div
-			data-speed="clamp(0.9)"
-			class="absolute left-52 top-32 w-[150px] select-none 2xl:w-[299px]"
-		>
-			<Image loading={'eager'} src={Hero1} alt="Hero 1" />
-		</div>
-		<div
-			data-speed="clamp(0.9)"
-			class="absolute right-64 top-24 w-[78px] select-none 2xl:w-[155px]"
-		>
-			<Image loading={'eager'} src={Hero2} alt="Hero 2" />
-		</div>
-		<div
-			data-speed="clamp(0.9)"
-			class="absolute bottom-24 left-48 w-[145px] select-none 2xl:w-[290px]"
-		>
-			<Image loading={'eager'} src={Hero3} alt="Hero 3" />
-		</div>
-		<div
-			data-speed="clamp(0.9)"
-			class="absolute bottom-16 right-32 w-[141px] select-none 2xl:w-[283px]"
-		>
-			<Image loading={'eager'} src={Hero4} alt="Hero 4" />
-		</div>
-	</div>
-	<div>
-		<div class="absolute bottom-0 left-0 z-50 w-[350px] select-none 2xl:w-[762px]">
-			<Image loading={'eager'} src={HeroRibbon1} alt="Hero Ribbon 1" />
-		</div>
-		<div class="absolute right-0 top-0 w-[350px] select-none 2xl:w-[762px]">
-			<Image loading={'eager'} src={HeroRibbon2} alt="Hero Ribbon 2" />
-		</div>
-	</div>
+	{JSON.stringify(blok)}
 </div>
-
-<script>
-	import gsap from 'gsap';
-
-	function documentaryVideo() {
-		const playButton = document.querySelector('[data-element="play-documentary"]');
-		const closeBtn = document.querySelector('[data-element="close-documentary-btn"]');
-		if (!playButton || !closeBtn) return;
-		playButton.addEventListener('click', () => {
-			gsap.to('[data-element="documentary-section"]', {
-				y: '0%',
-				duration: 1,
-				ease: 'power2.inOut',
-			});
-		});
-		closeBtn.addEventListener('click', () => {
-			gsap.to('[data-element="documentary-section"]', {
-				y: '-100%',
-				duration: 1,
-				ease: 'power2.inOut',
-			});
-		});
-	}
-
-	documentaryVideo();
-</script>
