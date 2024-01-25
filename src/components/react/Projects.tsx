@@ -81,11 +81,11 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 										key={index}
 										href={stages[stage].link}
 										className={cn(
-											'flex items-center justify-center rounded-full border-2 border-slate-200 px-4 py-1 font-display text-sm font-medium',
+											'flex items-center justify-center rounded-full border-2 border-brandDarkGreen-60 px-4 py-1 font-display text-sm font-medium',
 											stages[stage].text === 'All' && '',
 											stages[stage].text === 'All' &&
 												blok.showProjects === 'all' &&
-												' border-slate-200 bg-slate-200',
+												' border-brandDarkGreen-100 bg-brandDarkGreen-100 text-white',
 											stages[stage].text === 'Awakening' && 'border-brandMagenta-40',
 											stages[stage].text === 'Awakening' &&
 												blok.showProjects === 'awakening' &&
