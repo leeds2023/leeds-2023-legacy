@@ -31,7 +31,7 @@ const dimensions = blok.icon ? extractDimensions(blok.icon.filename, 2000) : nul
 		<div class="flex items-center gap-4">
 			{
 				blok.icon && blok.icon && blok.icon.filename !== '' && (
-					<div class="h-9">
+					<div class="h-9 w-9">
 						{dimensions ? (
 							<Image
 								src={blok.icon.filename}
