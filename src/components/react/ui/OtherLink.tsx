@@ -28,7 +28,7 @@ export default function OtherLink({
 	return (
 		<a
 			className={cn(
-				'flex flex-col items-center gap-4 text-center font-display font-medium transition-colors duration-300 ease-in-out hover:text-opacity-70 focus:ring-opacity-50',
+				'flex flex-col items-center gap-2 text-center font-display text-sm font-medium transition-colors duration-300 ease-in-out hover:text-opacity-70 focus:ring-opacity-50 lg:gap-4 lg:text-base',
 				{
 					'text-white': textColor === 'white',
 					'text-darkText-10': textColor === 'darkText',

@@ -30,7 +30,7 @@ export default function InteractiveStages({ blok }: Props) {
 		setStageData(currentStageData);
 	}, [stage]);
 
-	const stageStyles = cva('text-white relative h-[970px] lg:h-[760px] flex flex-col lg:flex-row', {
+	const stageStyles = cva('text-white relative h-[1070px] lg:h-[760px] flex flex-col lg:flex-row', {
 		variants: {
 			bgColor: {
 				pink: 'bg-[#EE3796]',
