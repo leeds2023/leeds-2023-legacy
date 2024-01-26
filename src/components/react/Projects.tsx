@@ -72,11 +72,11 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 						'fixed left-0 top-16 z-[101] w-full border-b-2 border-slate-200 shadow-sm'
 				)}
 			>
-				<div className="mx-auto px-4 lg:max-w-[950px] lg:px-2 xl:max-w-[1150px] 2xl:max-w-[1250px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]">
+				<div className="mx-auto px-4 lg:max-w-[950px] lg:px-0 xl:max-w-[1150px] 2xl:max-w-[1250px] 3xl:max-w-[1350px] 4xl:max-w-[1500px]">
 					<div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between xl:gap-0">
 						<h2 className="hidden w-full font-display text-2xl lg:block xl:w-5/12">Programme</h2>
 						<div className="flex w-full flex-col justify-end gap-6 lg:flex-row lg:items-center xl:w-7/12">
-							<ScrollArea type="always" className={'w-[90vw] md:w-[70rem]'}>
+							<ScrollArea type="always" className={'w-[90vw] md:w-fit'}>
 								<div className="text-display flex w-max gap-4 text-base">
 									{(Object.keys(stages) as (keyof typeof stages)[]).map((stage, index) => (
 										<a
@@ -110,7 +110,7 @@ export default function Projects({ initialProjectData, blok }: ProjectsProps) {
 							</ScrollArea>
 							<Input
 								placeholder="Search"
-								className="w-full focus-visible:ring-brandDarkGreen-100 focus-visible:ring-opacity-50"
+								className="w-fit focus-visible:ring-brandDarkGreen-100 focus-visible:ring-opacity-50"
 								onChange={(e) => setSearchQuery(e.target.value)}
 								onClick={handlePressInput}
 							/>
