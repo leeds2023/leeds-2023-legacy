@@ -65,11 +65,11 @@ console.log(seo);
 						? seo.title
 						: 'Leeds 2023',
 				image:
-					seo.twitter_image && seo.twitter_image.filename
-						? seo.twitter_image.filename
-						: seo.og_image.filename
-						? seo.og_image.filename
-						: '',
+					seo.twitter_image && typeof seo.twitter_image === 'string'
+						? `${seo.twitter_image}/m/1200x630/filters:format(png)`
+						: seo.og_image && typeof seo.og_image === 'string'
+						? `${seo.og_image}/m/1200x630/filters:format(png)`
+						: 'https://a.storyblok.com/f/158991/1200x635/df7c2fb16a/leeds-2023-og.jpg/m/1200x630/filters:format(png)',
 			}}
 			extend={{
 				link: [
