@@ -16,6 +16,7 @@ const {
 } = await fetchNavAndFooter();
 
 const { seo } = Astro.props;
+console.log(seo);
 ---
 
 <!doctype html>
@@ -38,8 +39,8 @@ const { seo } = Astro.props;
 							: 'Leeds 2023',
 					type: 'website',
 					image:
-						seo.og_image && seo.og_image.filename
-							? seo.og_image.filename
+						seo.og_image && typeof seo.og_image === 'string'
+							? seo.og_image
 							: 'https://a.storyblok.com/f/158991/1200x635/df7c2fb16a/leeds-2023-og.jpg',
 				},
 			}}
