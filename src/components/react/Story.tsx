@@ -38,7 +38,7 @@ export default function Story({ blok }: StoryProps) {
 						/>
 					</div>
 					<div className="flex flex-col gap-2">
-						<h3 className={cn('font-display text-3xl underline')}>{blok.title}</h3>
+						<h3 className={cn('font-display text-xl underline')}>{blok.title}</h3>
 						<h4 className="text-sm">{blok.subtitle}</h4>
 					</div>
 					<div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-md bg-brandMagenta-100 p-1 text-white">
