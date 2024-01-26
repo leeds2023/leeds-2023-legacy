@@ -108,7 +108,7 @@ export default function InteractiveStages({ blok }: Props) {
 					)}
 				>
 					<div className="relative z-10 flex flex-col">
-						<h3
+						<span
 							className={cn(
 								'font-display text-lg uppercase md:text-2xl',
 								step === 1 && 'text-sm md:text-lg',
@@ -116,7 +116,7 @@ export default function InteractiveStages({ blok }: Props) {
 							)}
 						>
 							{stageData.label}
-						</h3>
+						</span>
 						<h2
 							className={cn(
 								'pl-6 font-display text-5xl sm:text-7xl md:text-8xl lg:pl-12 lg:text-9xl',
