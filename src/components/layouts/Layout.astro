@@ -37,7 +37,10 @@ const { seo } = Astro.props;
 							? seo.title
 							: 'Leeds 2023',
 					type: 'website',
-					image: seo.og_image && seo.og_image.filename ? seo.og_image.filename : '',
+					image:
+						seo.og_image && seo.og_image.filename
+							? seo.og_image.filename
+							: 'https://a.storyblok.com/f/158991/1200x635/df7c2fb16a/leeds-2023-og.jpg',
 				},
 			}}
 			twitter={{
