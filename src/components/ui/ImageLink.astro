@@ -22,7 +22,13 @@ const htmlAttributes = isExternal
 const dimensions = extractDimensions(image.filename, 500);
 ---
 
-<a {...htmlAttributes} class="flex w-28 items-center" href={link} class="underline">
+<a
+	{...htmlAttributes}
+	class="flex w-28 items-center"
+	href={link}
+	aria-label={`Link to our partner ${link}`}
+	class="underline"
+>
 	{
 		dimensions ? (
 			<Image
