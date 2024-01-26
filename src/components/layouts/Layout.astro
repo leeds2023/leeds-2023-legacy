@@ -43,6 +43,14 @@ console.log(seo);
 							? `${seo.og_image}/m/1200x630/filters:format(png)`
 							: 'https://a.storyblok.com/f/158991/1200x635/df7c2fb16a/leeds-2023-og.jpg/m/1200x630/filters:format(png)',
 				},
+				optional: {
+					description:
+						seo.og_description && seo.og_description !== ''
+							? seo.og_description
+							: seo.description && seo.description !== ''
+							? seo.description
+							: 'Stories from a year of culture. Which brought us together, changed our minds and emboldened our city.',
+				},
 			}}
 			twitter={{
 				creator: '@LEEDS_2023',
